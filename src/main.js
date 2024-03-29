@@ -1,13 +1,9 @@
 import Handlebars from "handlebars";
 import { registerPartial } from "./init/register-partials";
-import * as Pages from "./pages";
+import "./style.css";
+import pages from "./routes";
 
 registerPartial();
-
-const pages = {
-  nav: [Pages.Navigation],
-  auth: [Pages.Login],
-};
 
 function navigate(page) {
   const [source, context] = pages[page];
