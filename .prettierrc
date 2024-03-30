@@ -11,5 +11,13 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "singleAttributePerLine": true,
-  "useTabs": false
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": "**/*.hbs",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }
