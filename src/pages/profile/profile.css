@@ -76,6 +76,18 @@
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin: 0 auto;
+}
+
+.profile-img:hover {
+  background: rgb(0 0 0 / 50%);
+  cursor: pointer;
+}
+
+.profile-img:hover::after {
+  width: 100%;
+  color: white;
+  content: "Поменять аватар";
+  text-align: center;
+  font-size: 13px;
 }
