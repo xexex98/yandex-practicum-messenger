@@ -3,7 +3,10 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": ["фиксим"],
+  "words": [
+    "фиксим",
+    "stylelint"
+  ],
   "ignoreWords": [],
   "import": []
 }

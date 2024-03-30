@@ -4,7 +4,7 @@
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 40%);
 }
 
 .modal-container {
@@ -28,6 +28,7 @@
   font-size: 12px;
   margin-bottom: 50px;
 }
+
 .modal-container .modal-error {
   font-size: 11px;
   color: #ff2f2f;
