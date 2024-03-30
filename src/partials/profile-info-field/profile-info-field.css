@@ -1,0 +1,12 @@
+.profile-info-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+
+.profile-info-field p:last-child {
+  color: #999;
+}

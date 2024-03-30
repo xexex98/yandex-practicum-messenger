@@ -16,7 +16,7 @@
     {
       "files": "**/*.hbs",
       "options": {
-        "parser": "html"
+        "parser": "angular"
       }
     }
   ]
