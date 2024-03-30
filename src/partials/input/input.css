@@ -19,6 +19,6 @@
 .field .label {
   font-size: 9px;
   margin-bottom: 0.3rem;
-  color: rgba(153, 153, 153, 1);
+  color: rgb(153 153 153 / 100%);
   text-align: left;
 }
