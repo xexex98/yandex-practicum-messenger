@@ -16,7 +16,7 @@
   max-width: 340px;
 }
 
-.login > h3 {
+.login>h3 {
   font-weight: 500;
   margin-bottom: 40px;
   font-size: 20px;
@@ -29,7 +29,7 @@
   justify-content: space-between;
 }
 
-.link {
+.login-link {
   display: block;
   text-decoration: none;
   color: orange;
