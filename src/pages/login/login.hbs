@@ -1,3 +1,14 @@
-<div class="hello">
-  Login
+<div class="container">
+  <div class="login">
+    <h3>Вход</h3>
+    <form action="#" class="login-form">
+      {{> Input label='Логин' name="login"  placeholder=''}}
+      {{> Input label='Пароль' name='password' placeholder=''}}
+      <div>
+      {{> Button text='Авторизоваться'}}
+      <a href="#" class="without-account">Нет аккаунта?</a>
+      </div>
+    </form>
+    
+  </div>
 </div>

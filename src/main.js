@@ -10,7 +10,7 @@ function navigate(page) {
   const container = document.getElementById("app");
   container.innerHTML = Handlebars.compile(source)(context);
 }
-document.addEventListener("DOMContentLoaded", () => navigate("nav"));
+document.addEventListener("DOMContentLoaded", () => navigate("login"));
 
 document.addEventListener("click", (e) => {
   const page = e.target.getAttribute("page");
