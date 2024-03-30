@@ -7,19 +7,19 @@
   flex: 1;
 }
 
-.server-error-page h3 {
+.server-error-page > h3 {
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
-.server-error-page p {
+.server-error-page > p {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 69px;
 }
 
-.server-error-page a {
+.server-error-page > a {
   text-decoration: none;
   color: orange;
   font-size: 11px;

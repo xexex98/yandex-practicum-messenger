@@ -7,19 +7,19 @@
   flex: 1;
 }
 
-.not-found-page h3 {
+.not-found-page > h3 {
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
-.not-found-page p {
+.not-found-page > p {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 69px;
 }
 
-.not-found-page a {
+.not-found-page > a {
   text-decoration: none;
   color: orange;
   font-size: 11px;
