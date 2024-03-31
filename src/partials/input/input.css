@@ -9,7 +9,11 @@
   border: 0;
   font-size: 13px;
   border-bottom: 1px solid orange;
-  padding-bottom: 0.3rem;
+  padding: 2px 0 7px;
+}
+
+.field .input::after {
+  content: "error";
 }
 
 .field .input:focus {
@@ -17,8 +21,22 @@
 }
 
 .field .label {
-  font-size: 9px;
+  font-size: 11px;
   margin-bottom: 0.3rem;
   color: rgb(153 153 153 / 100%);
   text-align: left;
+}
+
+.field::before {
+  content: attr(data-error);
+  text-align: left;
+  font-size: 8px;
+  padding-top: 7px;
+  height: 11px;
+  display: none;
+}
+
+.field:has(.input:invalid).field::before {
+  color: red;
+  display: block;
 }
