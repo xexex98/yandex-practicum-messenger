@@ -4,3 +4,4 @@ export { Registration } from "./registration";
 export { NotFound } from "./404";
 export { ServerError } from "./500";
 export { Profile } from "./profile";
+export { Messenger } from "./messenger";

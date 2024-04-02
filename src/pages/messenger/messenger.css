@@ -1,0 +1,15 @@
+.messenger {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+}
+
+.messenger-dialogs {
+  background: #fbfbfb;
+  overflow-y: scroll;
+}
+
+.messenger-chats {
+  background: orange;
+}

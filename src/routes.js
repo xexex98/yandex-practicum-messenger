@@ -7,6 +7,7 @@ const pages = {
   404: [Pages.NotFound],
   500: [Pages.ServerError],
   profile: [Pages.Profile],
+  messenger: [Pages.Messenger],
 };
 
 export default pages;
