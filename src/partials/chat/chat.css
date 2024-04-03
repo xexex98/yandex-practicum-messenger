@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.chat:hover {
+  background: rgba(200 200 200 /10%);
+}
+
 .chat-border {
   border-top: #eaeaea 1px solid;
   top: 0;

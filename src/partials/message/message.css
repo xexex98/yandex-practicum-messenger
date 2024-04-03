@@ -1,0 +1,35 @@
+.msg {
+  font-size: 12px;
+  color: #1e1e1e;
+  padding: 11px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 50%;
+}
+
+.msg.is-img {
+  padding: 0;
+}
+
+.is-in {
+  background: #f8f8f8;
+}
+
+.is-out {
+  margin-left: auto;
+  background: #e4edfd;
+  padding-right: 50px;
+}
+
+.msg-content .time {
+  font-size: 9px;
+  color: #999;
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+}
+
+.msg-content .read {
+  font-size: 9px;
+  margin-right: 2px;
+}

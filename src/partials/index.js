@@ -1,6 +1,8 @@
 export { Button } from "./button";
 export { Input } from "./input";
+export { Message } from "./message";
 export { Chat } from "./chat";
+export { ChatSearchResults } from "./chat-search-results";
 export { Link } from "./link";
 export { FormContainer } from "./form-container";
 export { Modal } from "./modal";

@@ -10,6 +10,114 @@
   overflow-y: scroll;
 }
 
-.messenger-chats {
-  background: orange;
+.messenger-chat {
+  background: #fff;
+  display: grid;
+  grid-template-rows: 54px 1fr 54px;
+  padding: 0 21px;
+  overflow: hidden;
+}
+
+.messenger-chat .select-chat {
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.messenger-search-profile {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+  margin-bottom: 23px;
+  cursor: pointer;
+}
+
+.messenger-search-profile:hover {
+  opacity: 0.7;
+}
+
+.messenger-search {
+  padding: 21px 14px 10px;
+}
+
+.messenger-search-input {
+  height: 32px;
+  background: #efefef;
+  width: 100%;
+  border: 0;
+  outline: none;
+  padding: 14px 10px;
+  border-radius: 5px;
+}
+
+.messenger-search-input::placeholder {
+  text-align: center;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="%23000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 490.4 490.4" xml:space="preserve"><g><path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796 s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796z M41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"/></g></svg>');
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: 93px center;
+}
+
+.messenger-search-input:focus::placeholder {
+  color: transparent;
+  background-image: none;
+}
+
+.messenger-chat-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 13px;
+  color: #1e1e1e;
+  font-weight: 600;
+}
+
+.messenger-chat-messages {
+  overflow: scroll;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.messenger-chat-messages-date {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #999;
+}
+
+.messenger-chat-avatar {
+  min-width: 34px;
+  min-height: 34px;
+  width: 34px;
+  height: 34px;
+  background: #efefef;
+  border-radius: 50%;
+}
+
+.messenger-chat-input-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #eaeaea;
+}
+
+.messenger-chat-input {
+  height: 32px;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: 0;
+  background-color: #efefef;
+  flex-grow: 1;
+}
+
+.messenger-chat-input::placeholder {
+  font-size: 12px;
+  color: #999;
 }
