@@ -76,7 +76,9 @@
   border-radius: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
+  position: relative;
 }
 
 .profile-img:hover {
@@ -85,9 +87,8 @@
 }
 
 .profile-img:hover::after {
-  width: 100%;
+  position: absolute;
   color: white;
-  content: "Поменять аватар";
-  text-align: center;
+  content: "Поменять \A аватар";
   font-size: 13px;
 }
