@@ -7,4 +7,5 @@ export { ChatSearchResults } from "./chat-search-results";
 export { Link } from "./link";
 export { FormContainer } from "./form-container";
 export { Modal } from "./modal";
+export { ChatModal } from "./chat-modal";
 export { ProfileInfoField } from "./profile-info-field";
