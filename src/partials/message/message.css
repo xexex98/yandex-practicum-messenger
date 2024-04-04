@@ -29,6 +29,10 @@
   right: 8px;
 }
 
+.msg.is-out .msg-content .time {
+  color: orange;
+}
+
 .msg-content .read {
   font-size: 9px;
   margin-right: 2px;

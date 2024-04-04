@@ -16,8 +16,38 @@
   </ul>
   <div class="messenger-chat">
     <div class="messenger-chat-info">
-      <div class="messenger-chat-avatar"></div>
-      <p>Вадим</p>
+      <div class="messenger-chat-avatar-name">
+        <div class="messenger-chat-avatar"></div>
+        <p>Вадим</p>
+      </div>
+      <div class="messenger-chat-info-kebab">
+        <svg
+          width="3"
+          height="16"
+          viewBox="0 0 3 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="1.5"
+            cy="2"
+            r="1.5"
+            fill="orange"
+          />
+          <circle
+            cx="1.5"
+            cy="8"
+            r="1.5"
+            fill="orange"
+          />
+          <circle
+            cx="1.5"
+            cy="14"
+            r="1.5"
+            fill="orange"
+          />
+        </svg>
+      </div>
     </div>
     <div class="messenger-chat-messages">
       <div class="messenger-chat-messages-date">19 июня</div>
@@ -39,6 +69,7 @@
       {{> Message type="is-out" content="Круто!" }}
     </div>
     <div class="messenger-chat-input-container">
+      {{>ChatAttachMenu}}
       <svg
         width="32"
         height="32"

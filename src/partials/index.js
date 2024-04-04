@@ -2,6 +2,7 @@ export { Button } from "./button";
 export { Input } from "./input";
 export { Message } from "./message";
 export { Chat } from "./chat";
+export { ChatAttachMenu } from "./chat-attach-menu";
 export { ChatSearchResults } from "./chat-search-results";
 export { Link } from "./link";
 export { FormContainer } from "./form-container";

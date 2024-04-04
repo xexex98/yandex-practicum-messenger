@@ -67,12 +67,25 @@
 
 .messenger-chat-info {
   display: flex;
-  gap: 10px;
   align-items: center;
   border-bottom: 1px solid #eaeaea;
+  justify-content: space-between;
   font-size: 13px;
   color: #1e1e1e;
   font-weight: 600;
+}
+
+.messenger-chat-info-kebab {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messenger-chat-info-kebab:hover {
+  background: #f5f5f5;
+  border-radius: 50%;
 }
 
 .messenger-chat-messages {
@@ -91,6 +104,12 @@
   color: #999;
 }
 
+.messenger-chat-avatar-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .messenger-chat-avatar {
   min-width: 34px;
   min-height: 34px;
@@ -101,6 +120,7 @@
 }
 
 .messenger-chat-input-container {
+  position: relative;
   display: flex;
   gap: 10px;
   align-items: center;
