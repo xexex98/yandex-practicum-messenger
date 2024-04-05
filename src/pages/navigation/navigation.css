@@ -1,10 +1,10 @@
 .navigation {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  width: 100vw;
+  height: 100vh;
   list-style-type: none;
 }
