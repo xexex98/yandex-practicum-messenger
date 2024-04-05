@@ -1,10 +1,10 @@
 .msg {
-  font-size: 12px;
-  color: #1e1e1e;
-  padding: 11px;
-  border-radius: 12px;
   position: relative;
+  border-radius: 12px;
+  padding: 11px;
   max-width: 50%;
+  color: #1e1e1e;
+  font-size: 12px;
 }
 
 .msg.is-img {
@@ -22,18 +22,18 @@
 }
 
 .msg-content .time {
-  font-size: 9px;
-  color: #999;
   position: absolute;
-  bottom: 4px;
   right: 8px;
+  bottom: 4px;
+  color: #999;
+  font-size: 9px;
 }
 
 .msg.is-out .msg-content .time {
-  color: orange;
+  color: rgb(var(--primary-color));
 }
 
 .msg-content .read {
-  font-size: 9px;
   margin-right: 2px;
+  font-size: 9px;
 }

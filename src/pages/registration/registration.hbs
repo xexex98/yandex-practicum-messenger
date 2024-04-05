@@ -1,29 +1,21 @@
-<div class="registration">
+<main class="registration">
   <h3>Регистрация</h3>
   <form
     action="#"
     class="registration-form"
   >
     <div>
-      {{> Input label='Почта' name="email" placeholder=''}}
-      {{> Input label='Логин' name='login'
-      placeholder=''}}
-      {{> Input label='Имя' name='first_name' placeholder=''}}
-      {{> Input
-      label='Фамилия' name='second_name' placeholder=''}}
-      {{> Input label='Телефон' name='phone'
-      placeholder=''}}
-      {{> Input label='Пароль' name='password' placeholder=''}}
-      {{> Input
-      label='Пароль (еще раз)' name='password_check' placeholder=''}}
+      {{> Input label='Почта' name="email"}}
+      {{> Input label='Логин' name='login'}}
+      {{> Input label='Имя' name='first_name'}}
+      {{> Input label='Фамилия' name='second_name'}}
+      {{> Input label='Телефон' name='phone'}}
+      {{> Input label='Пароль' name='password'}}
+      {{> Input label='Пароль (еще раз)' name='password_check'}}
     </div>
     <div>
       {{> Button text='Зарегистрироваться' type="submit"}}
-      <a
-        href="#"
-        class="registration-link"
-        >Войти</a
-      >
+      {{> Link href="#" class="registration-link" label="Войти"}}
     </div>
   </form>
-</div>
+</main>

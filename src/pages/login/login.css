@@ -1,38 +1,38 @@
 .login {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  width: 75%;
-  height: 460px;
-  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
-  margin: 0 auto;
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
   flex-direction: column;
-  gap: 1rem;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
   border-radius: 12px;
+  padding: 2rem 1.5rem;
+  width: 75%;
   max-width: 340px;
+  height: 460px;
+  text-align: center;
 }
 
 .login > h3 {
-  font-weight: 500;
   margin-bottom: 40px;
+  font-weight: 500;
   font-size: 20px;
+  line-height: 20px;
 }
 
 .login-form {
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .login-link {
   display: block;
-  text-decoration: none;
-  color: orange;
-  font-size: 11px;
   margin-top: 15px;
+  color: rgb(var(--primary-color));
+  font-size: 11px;
+  text-decoration: none;
 }

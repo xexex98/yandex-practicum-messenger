@@ -1,6 +1,11 @@
 @font-face {
-  font-family: Inter;
   src: url("fonts/Inter_Variable.ttf");
+  font-family: Inter;
+}
+
+:root {
+  --primary-color: 255 165 0;
+  --primary-color-heading: #1e1e1e;
 }
 
 * {
@@ -14,5 +19,13 @@ html,
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color-heading);
 }

@@ -1,27 +1,27 @@
 .not-found-page {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .not-found-page > h3 {
-  font-size: 40px;
-  font-weight: 500;
   margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 40px;
 }
 
 .not-found-page > p {
-  font-size: 20px;
-  font-weight: 500;
   margin-bottom: 69px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .not-found-page > a {
-  text-decoration: none;
-  color: orange;
-  font-size: 11px;
+  color: rgb(var(--primary-color));
   font-weight: 500;
+  font-size: 11px;
+  text-decoration: none;
 }

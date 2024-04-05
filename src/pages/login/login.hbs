@@ -6,16 +6,15 @@
   >
     <div>
       {{> Input label='Логин' name="login" error="Неверный логин" required=true}}
-      {{> Input label='Пароль' name='password' type="password" error="Неверный пароль"
-      placeholder=''}}
+      {{> Input label='Пароль' name='password' type="password" error="Неверный пароль"}}
     </div>
     <div>
       {{> Button text='Авторизоваться'}}
-      <a
+      {{> Link 
         href="#"
         class="login-link"
-        >Нет аккаунта?</a
-      >
+        label="Нет аккаунта?"
+      }}
     </div>
   </form>
 </div>

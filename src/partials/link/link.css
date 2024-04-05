@@ -1,8 +1,8 @@
 .link {
-  color: orange;
-  font-size: 13px;
-  font-weight: 500;
   width: 100%;
+  color: rgb(var(--primary-color));
+  font-weight: 500;
+  font-size: 13px;
 }
 
 .link.logout {
@@ -15,8 +15,8 @@
 
 .link.profile-underline {
   display: block;
-  text-decoration: none;
-  padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+  text-decoration: none;
 }

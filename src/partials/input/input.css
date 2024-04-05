@@ -7,9 +7,9 @@
 .field .input {
   outline: 0;
   border: 0;
-  font-size: 13px;
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid rgb(var(--primary-color));
   padding: 2px 0 7px;
+  font-size: 13px;
 }
 
 .field .input::after {
@@ -21,22 +21,22 @@
 }
 
 .field .label {
-  font-size: 11px;
   margin-bottom: 0.3rem;
   color: rgb(153 153 153 / 100%);
+  font-size: 11px;
   text-align: left;
 }
 
 .field::before {
-  content: attr(data-error);
-  text-align: left;
-  font-size: 8px;
+  display: none;
   padding-top: 7px;
   height: 11px;
-  display: none;
+  content: attr(data-error);
+  font-size: 8px;
+  text-align: left;
 }
 
 .field:has(.input:invalid).field::before {
-  color: red;
   display: block;
+  color: red;
 }
