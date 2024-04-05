@@ -1,4 +1,4 @@
-<div class="messenger">
+<main class="messenger">
   <ul class="messenger-dialogs">
     <div class="messenger-search">
       <a class="messenger-search-profile">Профиль ></a>
@@ -16,62 +16,7 @@
   </ul>
   <div class="messenger-chat">
     <div class="messenger-chat-info">
-      <div class="messenger-chat-info-user-settings">
-        <div class="chat-attach-menu-item">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="5.99988"
-              y1="0.5"
-              x2="5.99988"
-              y2="11.5"
-              stroke="rgb(var(--primary-color));"
-              stroke-width="1.5"
-            />
-            <line
-              x1="0.499878"
-              y1="6"
-              x2="11.4999"
-              y2="6"
-              stroke="rgb(var(--primary-color));"
-              stroke-width="1.5"
-            />
-          </svg>
-          Добавить пользователя
-        </div>
-        <div class="chat-attach-menu-item">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="5.99988"
-              y1="0.5"
-              x2="5.99988"
-              y2="11.5"
-              stroke="rgb(var(--primary-color));"
-              stroke-width="1.5"
-            />
-            <line
-              x1="0.499878"
-              y1="6"
-              x2="11.4999"
-              y2="6"
-              stroke="rgb(var(--primary-color));"
-              stroke-width="1.5"
-            />
-          </svg>
-          Удалить пользователя
-        </div>
-      </div>
+      {{> ChatUserMenu}}
       <div class="messenger-chat-avatar-name">
         <div class="messenger-chat-avatar"></div>
         <p>Вадим</p>
@@ -188,4 +133,4 @@
       </div>
     </div>
   </div>
-</div>
+</main>

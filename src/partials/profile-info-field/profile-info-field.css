@@ -1,13 +1,17 @@
 .profile-info-field {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #eaeaea;
-  font-size: 13px;
-  padding-bottom: 10px;
+  align-items: center;
   margin-bottom: 10px;
+  border-bottom: 1px solid rgb(var(--primary-border));
+  padding-bottom: 10px;
+  font-size: 13px;
 }
 
 .profile-info-field p:last-child {
-  color: #999;
+  color: rgb(var(--secondary-color));
+}
+
+.profile-info-field-input {
+  display: none;
 }

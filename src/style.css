@@ -4,8 +4,14 @@
 }
 
 :root {
+  /* rgb(255 165 0) */
   --primary-color: 255 165 0;
-  --primary-color-heading: #1e1e1e;
+
+  /* rgb(153 153 153) */
+  --secondary-color: 153 153 153;
+
+  /* rgb(234 234 234) */
+  --primary-border: 234 234 234;
 }
 
 * {
@@ -27,5 +33,5 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--primary-color-heading);
+  color: #1e1e1e;
 }

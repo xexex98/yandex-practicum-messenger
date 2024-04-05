@@ -1,15 +1,16 @@
-.chat-attach-menu {
+.chat-user-menu {
   display: flex;
   position: absolute;
-  top: -135px;
-  left: -5px;
+  top: 63px;
+  right: 0;
   flex-direction: column;
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
   border-radius: 12px;
   background: #fff;
+  font-size: 12px;
 }
 
-.chat-attach-menu-item {
+.chat-user-menu-item {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -18,7 +19,7 @@
   font-size: 12px;
 }
 
-.chat-attach-menu-item:hover {
+.chat-user-menu-item:hover {
   cursor: pointer;
   border-radius: 12px;
   background-color: rgb(220 220 220 / 80%);

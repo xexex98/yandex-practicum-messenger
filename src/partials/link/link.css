@@ -1,8 +1,9 @@
 .link {
-  width: 100%;
+  display: inline-block;
   color: rgb(var(--primary-color));
   font-weight: 500;
   font-size: 13px;
+  text-decoration: none;
 }
 
 .link.logout {
@@ -11,12 +12,4 @@
 
 .link:hover {
   opacity: 0.8;
-}
-
-.link.profile-underline {
-  display: block;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 10px;
-  text-decoration: none;
 }

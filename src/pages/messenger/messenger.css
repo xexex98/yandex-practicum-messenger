@@ -1,8 +1,8 @@
 .messenger {
-  width: 100vw;
-  height: 100vh;
   display: grid;
   grid-template-columns: 310px 1fr;
+  width: 100vw;
+  height: 100vh;
 }
 
 .messenger-dialogs {
@@ -11,27 +11,27 @@
 }
 
 .messenger-chat {
-  background: #fff;
   display: grid;
   grid-template-rows: 54px 1fr 54px;
+  background: #fff;
   padding: 0 21px;
   overflow: hidden;
 }
 
 .messenger-chat .select-chat {
-  font-size: 12px;
   color: #999;
-  white-space: nowrap;
+  font-size: 12px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .messenger-search-profile {
   display: block;
-  font-size: 12px;
-  color: #999;
-  text-align: right;
-  margin-bottom: 23px;
   cursor: pointer;
+  margin-bottom: 23px;
+  color: #999;
+  font-size: 12px;
+  text-align: right;
 }
 
 .messenger-search-profile:hover {
@@ -43,78 +43,65 @@
 }
 
 .messenger-search-input {
-  height: 32px;
-  background: #efefef;
-  width: 100%;
-  border: 0;
   outline: none;
-  padding: 14px 10px;
+  border: 0;
   border-radius: 5px;
+  background: #efefef;
+  padding: 14px 10px;
+  width: 100%;
+  height: 32px;
 }
 
 .messenger-search-input::placeholder {
-  text-align: center;
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="%23000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 490.4 490.4" xml:space="preserve"><g><path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796 s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796z M41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"/></g></svg>');
+  background-position: 93px center;
   background-size: 13px;
   background-repeat: no-repeat;
-  background-position: 93px center;
-}
-
-.messenger-chat-info-user-settings {
-  position: absolute;
-  right: 0;
-  top: 63px;
-  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
-  border-radius: 12px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
+  text-align: center;
 }
 
 .messenger-search-input:focus::placeholder {
-  color: transparent;
   background-image: none;
+  color: transparent;
 }
 
 .messenger-chat-info {
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid #eaeaea;
-  justify-content: space-between;
-  font-size: 13px;
-  color: #1e1e1e;
-  font-weight: 600;
   position: relative;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(var(--primary-border));
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .messenger-chat-info-kebab {
-  width: 25px;
-  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 25px;
+  height: 25px;
 }
 
 .messenger-chat-info-kebab:hover {
-  background: #f5f5f5;
   border-radius: 50%;
+  background: #f5f5f5;
 }
 
 .messenger-chat-messages {
-  overflow: scroll;
-  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: flex-end;
+  gap: 10px;
+  padding-bottom: 30px;
+  overflow: scroll;
 }
 
 .messenger-chat-messages-date {
-  text-align: center;
   margin-bottom: 20px;
-  font-size: 12px;
   color: #999;
+  font-size: 12px;
+  text-align: center;
 }
 
 .messenger-chat-avatar-name {
@@ -124,33 +111,33 @@
 }
 
 .messenger-chat-avatar {
-  min-width: 34px;
-  min-height: 34px;
-  width: 34px;
-  height: 34px;
-  background: #efefef;
   border-radius: 50%;
+  background: #efefef;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  min-height: 34px;
 }
 
 .messenger-chat-input-container {
-  position: relative;
   display: flex;
-  gap: 10px;
-  align-items: center;
+  position: relative;
   justify-content: center;
-  border-top: 1px solid #eaeaea;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid rgb(var(--primary-border));
 }
 
 .messenger-chat-input {
-  height: 32px;
-  border-radius: 30px;
-  padding: 10px 20px;
-  border: 0;
-  background-color: #efefef;
   flex-grow: 1;
+  border: 0;
+  border-radius: 30px;
+  background-color: #efefef;
+  padding: 10px 20px;
+  height: 32px;
 }
 
 .messenger-chat-input::placeholder {
-  font-size: 12px;
   color: #999;
+  font-size: 12px;
 }

@@ -10,12 +10,12 @@
       {{> Input label='Имя' name='first_name'}}
       {{> Input label='Фамилия' name='second_name'}}
       {{> Input label='Телефон' name='phone'}}
-      {{> Input label='Пароль' name='password'}}
-      {{> Input label='Пароль (еще раз)' name='password_check'}}
+      {{> Input class="error" label='Пароль' name='password' type="password"}}
+      {{> Input class="error" label='Пароль (еще раз)' name='password_check' error="Пароли не совпадают" required=true type="password"}}
     </div>
     <div>
       {{> Button text='Зарегистрироваться' type="submit"}}
-      {{> Link href="#" class="registration-link" label="Войти"}}
+      {{> Link href="#" class="registration-signin" label="Войти"}}
     </div>
   </form>
 </main>

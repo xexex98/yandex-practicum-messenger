@@ -1,4 +1,4 @@
-.not-found-page {
+.error-page {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -7,19 +7,19 @@
   height: 100vh;
 }
 
-.not-found-page > h3 {
+.error-page > h3 {
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 40px;
 }
 
-.not-found-page > p {
+.error-page > p {
   margin-bottom: 69px;
   font-weight: 500;
   font-size: 20px;
 }
 
-.not-found-page > a {
+.error-page > a {
   color: rgb(var(--primary-color));
   font-weight: 500;
   font-size: 11px;

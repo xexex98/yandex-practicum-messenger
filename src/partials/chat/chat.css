@@ -18,7 +18,7 @@
   top: 0;
   right: 10px;
   left: 10px;
-  border-top: #eaeaea 1px solid;
+  border-top: rgb(var(--primary-border)) 1px solid;
 }
 
 .chat-avatar {
