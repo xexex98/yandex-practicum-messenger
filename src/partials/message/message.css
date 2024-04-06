@@ -25,7 +25,7 @@
   position: absolute;
   right: 8px;
   bottom: 4px;
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 9px;
 }
 

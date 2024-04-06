@@ -4,7 +4,7 @@
   top: -135px;
   left: -5px;
   flex-direction: column;
-  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+  box-shadow: var(--box-shadow);
   border-radius: 12px;
   background: #fff;
 }
@@ -15,6 +15,7 @@
   gap: 15px;
   padding: 10px;
   color: #1e1e1e;
+  font-weight: normal;
   font-size: 12px;
 }
 

@@ -19,7 +19,7 @@
 }
 
 .messenger-chat .select-chat {
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 12px;
   text-align: center;
   white-space: nowrap;
@@ -29,7 +29,7 @@
   display: block;
   cursor: pointer;
   margin-bottom: 23px;
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 12px;
   text-align: right;
 }
@@ -99,7 +99,7 @@
 
 .messenger-chat-messages-date {
   margin-bottom: 20px;
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 12px;
   text-align: center;
 }
@@ -138,6 +138,6 @@
 }
 
 .messenger-chat-input::placeholder {
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 12px;
 }

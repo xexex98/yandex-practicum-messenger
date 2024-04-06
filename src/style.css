@@ -4,16 +4,22 @@
 }
 
 :root {
-  /* rgb(255 165 0) */
+  /* color: rgb(255 165 0) */
 
-  /* rgb(51, 105, 243) */
+  /* color: rgb(51, 105, 243) */
   --primary-color: 51 105 243;
 
-  /* rgb(153 153 153) */
+  /* color: rgb(153 153 153) */
   --secondary-color: 153 153 153;
 
-  /* rgb(234 234 234) */
+  /* color: rgb(255, 47, 47); */
+  --error: 255 47 47;
+
+  /* color: rgb(234 234 234) */
   --primary-border: 234 234 234;
+
+  /* color: rgb(0 0 0 / 14%) */
+  --box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
 }
 
 * {

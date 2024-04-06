@@ -46,7 +46,7 @@
 .dialog-msg {
   display: -webkit-box;
   overflow: hidden;
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-size: 12px;
   line-height: 15px;
   text-overflow: ellipsis;
@@ -63,7 +63,7 @@
 }
 
 .chat-info-time {
-  color: #999;
+  color: rgb(var(--secondary-color));
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
