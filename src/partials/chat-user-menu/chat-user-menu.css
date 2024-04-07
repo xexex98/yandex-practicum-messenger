@@ -1,0 +1,27 @@
+.chat-user-menu {
+  display: flex;
+  position: absolute;
+  top: 63px;
+  right: 0;
+  flex-direction: column;
+  box-shadow: var(--box-shadow);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.chat-user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  color: #1e1e1e;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.chat-user-menu-item:hover {
+  cursor: pointer;
+  border-radius: 12px;
+  background-color: rgb(220 220 220 / 80%);
+}

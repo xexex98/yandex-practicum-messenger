@@ -1,0 +1,19 @@
+<div
+  class="field"
+  data-error="{{ error }}"
+>
+  <input
+  {{#if required}}required=true{{else}}{{/if}}
+    name="{{ name }}"
+    id="{{ name }}"
+    class="input {{class}}"
+    type="{{#if type}}{{ type }}{{else}}text{{/if}}"
+    placeholder="{{#if placeholder}}{{ placeholder }}{{else}}{{/if}}"
+  />
+  <label
+    for="{{ name }}"
+    class="label"
+  >
+    {{ label }}
+  </label>
+</div>

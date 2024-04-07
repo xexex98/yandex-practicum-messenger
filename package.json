@@ -1,0 +1,29 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "vite build",
+    "start": "npm run build && nodemon server.js",
+    "format": "prettier . --write",
+    "lint:formatting": "prettier . --check",
+    "lint:css": "stylelint src/**/*.css --fix"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.1.0",
+    "postcss": "^8.4.38",
+    "prettier": "3.2.5",
+    "prettier-plugin-css-order": "^2.1.2",
+    "stylelint": "^16.3.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4",
+    "vite": "^5.2.0",
+    "vite-plugin-handlebars": "^2.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

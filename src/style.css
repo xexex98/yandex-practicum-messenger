@@ -1,0 +1,45 @@
+@font-face {
+  src: url("fonts/Inter_Variable.ttf");
+  font-family: Inter;
+}
+
+:root {
+  /* color: rgb(255 165 0) */
+
+  /* color: rgb(51, 105, 243) */
+  --primary-color: 51 105 243;
+
+  /* color: rgb(153 153 153) */
+  --secondary-color: 153 153 153;
+
+  /* color: rgb(255, 47, 47); */
+  --error: 255 47 47;
+
+  /* color: rgb(234 234 234) */
+  --primary-border: 234 234 234;
+
+  /* color: rgb(0 0 0 / 14%) */
+  --box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1e1e1e;
+}
