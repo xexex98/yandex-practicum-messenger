@@ -1,5 +1,7 @@
 import * as Pages from "./pages";
 
+export type TPages = keyof typeof pages;
+
 const pages = {
   nav: [Pages.Navigation],
   login: [Pages.Login],
