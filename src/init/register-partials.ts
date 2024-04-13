@@ -1,4 +1,5 @@
 import Handlebars from "handlebars";
+
 import * as Partials from "../partials";
 
 export const registerPartial = () => {
