@@ -1,7 +1,7 @@
 type TFunction = (...args: unknown[]) => void;
 type TListeners = Record<string, TFunction[]>;
 
-class EventBus {
+export default class EventBus {
   private _listeners: TListeners = {};
 
   constructor() {
@@ -31,5 +31,3 @@ class EventBus {
     this._listeners[event].forEach((listener) => listener(...args));
   }
 }
-
-export default EventBus;

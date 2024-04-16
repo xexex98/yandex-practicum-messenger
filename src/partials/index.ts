@@ -12,3 +12,4 @@ export { Link } from "./link";
 export { Message } from "./message";
 export { Modal } from "./modal";
 export { ProfileInfoField } from "./profile-info-field";
+export { RButton } from "./r-button";
