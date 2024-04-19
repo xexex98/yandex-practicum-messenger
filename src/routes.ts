@@ -4,10 +4,10 @@ export type TPages = keyof typeof pages;
 
 const pages = {
   nav: [Pages.Navigation, {}],
-  login: [Pages.Login],
+  login: [Pages.PageLogin],
   registration: [Pages.Registration],
-  "404": [Pages.NotFound, {}],
-  "500": [Pages.ServerError],
+  "404": [Pages.PageNotFound],
+  "500": [Pages.PageServerError],
   profile: [Pages.Profile],
   messenger: [Pages.Messenger],
 };

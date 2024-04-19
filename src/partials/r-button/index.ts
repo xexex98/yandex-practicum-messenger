@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 
-import Block from "../../reactivity";
+import Block from "../../reactivity/block";
 
 type TRButton = Record<string, unknown>;
 

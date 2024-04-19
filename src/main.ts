@@ -1,8 +1,6 @@
 import Handlebars from "handlebars";
 
 import { registerPartial } from "./init/register-partials";
-import { RButton } from "./partials";
-import Block from "./reactivity";
 import pages, { TPages } from "./routes";
 
 import "./style.css";
@@ -16,7 +14,6 @@ function navigate(page: TPages) {
   if (source instanceof Object) {
     const page = new source(context);
 
-    // container?.innerHTML = "";
     container?.append(page.getContent());
     return;
   }
@@ -25,7 +22,7 @@ function navigate(page: TPages) {
     container.innerHTML = Handlebars.compile(source)(context);
   }
 }
-document.addEventListener("DOMContentLoaded", () => navigate("404"));
+document.addEventListener("DOMContentLoaded", () => navigate("login"));
 
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLLinkElement;

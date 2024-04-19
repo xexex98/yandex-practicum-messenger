@@ -22,8 +22,6 @@ class Block {
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
-    console.log({ props, children });
-
     this.props = this._makePropsProxy({ ...props });
     this.children = children;
 
@@ -49,9 +47,13 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
 
-  _init() {
+  private _init() {
+    this.init();
+
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
+
+  protected init() {}
 
   _componentDidMount() {
     this.componentDidMount();
@@ -110,6 +112,7 @@ class Block {
   _render() {
     const propsAndStubs = { ...this.props };
 
+    // console.log(propsAndStubs);
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
