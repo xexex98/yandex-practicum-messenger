@@ -1,4 +1,4 @@
-import { ErrorPagesLayout } from "src/partials";
+import ErrorPagesLayout from "src/partials/error-pages-layout";
 import Block from "src/reactivity/block";
 
 export default class PageNotFound extends Block {
@@ -11,6 +11,10 @@ export default class PageNotFound extends Block {
     });
   }
   render() {
-    return `<div>{{{ErrorPagesLayout}}}</div>`;
+    return `
+    <main class="error-page">
+      {{{ErrorPagesLayout}}}
+    </main>
+    `;
   }
 }

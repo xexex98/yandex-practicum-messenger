@@ -1,13 +1,12 @@
-import { FormLogin } from "src/partials/form-login";
-import { FormWrapper } from "src/partials/form-wrapper";
+import FormLogin from "src/partials/form-login";
+import FormWrapper from "src/partials/form-wrapper";
 import Block from "src/reactivity/block";
 
-import "./page-login.css";
+import css from "./style.module.css";
 
 export default class PageLogin extends Block {
-  constructor(props) {
+  constructor() {
     super({
-      ...props,
       FormLogin: new FormWrapper({
         title: "Вход",
         body: new FormLogin(),
@@ -17,7 +16,7 @@ export default class PageLogin extends Block {
 
   render() {
     return `
-      <main class="login">
+      <main class="${css.login}">
         {{{FormLogin}}}
       </main>
     `;

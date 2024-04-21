@@ -1,3 +1,15 @@
-import "./error-pages-layout.css";
+import Block from "../../reactivity/block";
 
-export { default as ErrorPagesLayout } from "./error-pages-layout.ts";
+import styles from "./style.module.css";
+
+export default class ErrorPagesLayout extends Block {
+  render() {
+    return `
+    <div>
+      <h3>{{{ error }}}</h3>
+      <p>{{{ reason }}}</p>
+      <a href="#">Назад к чатам</a>
+    </div>
+      `;
+  }
+}

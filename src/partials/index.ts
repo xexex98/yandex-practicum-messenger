@@ -1,15 +1,14 @@
-export { Button } from "./button";
 export { Chat } from "./chat";
 export { ChatAttachMenu } from "./chat-attach-menu";
 export { ChatModal } from "./chat-modal";
 export { ChatSearchResults } from "./chat-search-results";
 export { ChatUserMenu } from "./chat-user-menu";
-export { ErrorPagesLayout } from "./error-pages-layout";
+export { default as ErrorPagesLayout } from "./error-pages-layout";
 export { FormContainer } from "./form-container";
 export { GoBackArrowButton } from "./go-back-arrow-button";
-export { Input } from "./input";
-export { Link } from "./link";
 export { Message } from "./message";
 export { Modal } from "./modal";
 export { ProfileInfoField } from "./profile-info-field";
 export { RButton } from "./r-button";
+export { default as RInput } from "./r-input";
+export { default as RLink } from "./r-link";

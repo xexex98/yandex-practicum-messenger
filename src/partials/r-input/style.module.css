@@ -1,0 +1,36 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.label {
+  margin-bottom: 0.3rem;
+  color: rgb(153 153 153 / 100%);
+  font-size: 11px;
+  text-align: left;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input {
+  outline: 0;
+  border: 0;
+  border-bottom: 1px solid rgb(var(--primary-color));
+  padding: 2px 0 7px;
+  font-size: 13px;
+}
+
+.error {
+  display: none;
+  padding-top: 7px;
+  height: 11px;
+  content: attr(data-error);
+  font-size: 8px;
+  text-align: left;
+  color: red;
+}
+
+:global(.input-error) .error {
+  display: block;
+}

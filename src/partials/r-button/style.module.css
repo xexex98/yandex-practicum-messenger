@@ -11,11 +11,11 @@
   line-height: 13px;
 }
 
+.btn:hover {
+  background-color: rgb(var(--primary-color) / 80%);
+}
+
 .btn-default {
   width: 100%;
   color: white;
-}
-
-.btn:hover {
-  background-color: rgb(var(--primary-color) / 80%);
 }

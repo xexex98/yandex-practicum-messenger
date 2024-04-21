@@ -13,20 +13,16 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "simple-import-sort"],
+  "plugins": ["@typescript-eslint", "import", "simple-import-sort"],
   "rules": {
     "newline-after-var": "error",
     "simple-import-sort/imports": [
       "error",
       {
-        "groups": [
-          ["^\\u0000"],
-          ["^@?\\w"],
-          ["^\\."],
-          ["^.+\\.s?css$"]
-        ]
+        "groups": [["^\\u0000"], ["^@?\\w"], ["^\\."], ["^.+\\.s?css$"]]
       }
     ],
+    "import/newline-after-import": "error",
     "simple-import-sort/exports": "error"
   }
 }

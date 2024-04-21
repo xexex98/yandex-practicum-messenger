@@ -1,15 +1,27 @@
-import Handlebars from "handlebars";
-
 import Block from "../../reactivity/block";
+
+import styles from "./style.module.css";
 
 type TRButton = Record<string, unknown>;
 
 export class RButton extends Block {
   constructor(props: TRButton) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
   }
 
   render() {
-    return Handlebars.compile("<button>{{text}}</button>")({ ...this.props });
+    return `
+      <button
+        class="${styles.btn} ${styles["btn-default"]}"
+        type="{{ type }}"
+      >
+        {{ text }}
+      </button>
+  `;
   }
 }

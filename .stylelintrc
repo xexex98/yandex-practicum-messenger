@@ -2,6 +2,12 @@
   "plugins": ["stylelint-prettier"],
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "prettier/prettier": true
+    "prettier/prettier": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
   }
 }

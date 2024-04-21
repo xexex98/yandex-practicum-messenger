@@ -12,7 +12,6 @@ export default function handlebars() {
 
       const code = `
         import Handlebars from "handlebars/runtime";
-
         export default Handlebars.template(${Handlebars.precompile(src)});
       `;
 
