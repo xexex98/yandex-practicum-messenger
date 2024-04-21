@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 
 type TRButton = Record<string, unknown>;
 
-export class RButton extends Block {
+export default class RButton extends Block {
   constructor(props: TRButton) {
     super({
       ...props,

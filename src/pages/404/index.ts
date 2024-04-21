@@ -6,15 +6,15 @@ export default class PageNotFound extends Block {
     super({
       ErrorPagesLayout: new ErrorPagesLayout({
         error: "404",
-        reason: "Не туда попали",
+        description: "Не туда попали",
       }),
     });
   }
   render() {
     return `
-    <main class="error-page">
-      {{{ErrorPagesLayout}}}
-    </main>
+      <main >
+        {{{ErrorPagesLayout}}}
+      </main>
     `;
   }
 }

@@ -1,6 +1,6 @@
 import Block from "src/reactivity/block";
 
-import styles from "./style.module.css";
+import css from "./style.module.css";
 
 export default class FormWrapper extends Block {
   constructor(props) {
@@ -10,10 +10,9 @@ export default class FormWrapper extends Block {
   render() {
     return `
       <form
-        action="#"
-        class="${styles.form}"
+        class="${css.form}"
       >
-        <h3 class="${styles.title}">{{title}}</h3>
+        <h3 class="${css.title}">{{ title }}</h3>
         {{{ body }}}
       </form>
     `;

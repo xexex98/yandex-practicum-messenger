@@ -12,6 +12,7 @@ export default class RInputElement extends Block {
       <input
         name="{{ name }}"
         id="{{ name }}"
+        type="{{type}}"
         class="${styles.input} {{class}}"
       />
         `;

@@ -1,27 +1,25 @@
-.error-page {
+.container {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-weight: 500;
 }
 
-.error-page > h3 {
+.code {
   margin-bottom: 20px;
-  font-weight: 500;
   font-size: 40px;
 }
 
-.error-page > p {
+.description {
   margin-bottom: 69px;
-  font-weight: 500;
   font-size: 20px;
 }
 
-.error-page > a {
+.back {
   color: rgb(var(--primary-color));
-  font-weight: 500;
   font-size: 11px;
   text-decoration: none;
 }

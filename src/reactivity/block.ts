@@ -17,6 +17,8 @@ class Block {
   private _element;
   private eventBus;
 
+  children;
+
   constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
 
@@ -143,12 +145,12 @@ class Block {
     return this.element;
   }
 
-  updateComponent(oldTarget, target) {
+  private _updateComponent(oldTarget, target) {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
   }
 
   private _makePropsProxy(props: TTarget) {
-    const updateComponentBind = this.updateComponent.bind(this);
+    const updateComponentBind = this._updateComponent.bind(this);
 
     return new Proxy(props, {
       get(target, prop: string) {
@@ -173,7 +175,7 @@ class Block {
   }
 
   _createDocumentElement(tagName: string) {
-    return document.createElement(tagName); // return <tagName></tagName>
+    return document.createElement(tagName);
   }
 
   show() {

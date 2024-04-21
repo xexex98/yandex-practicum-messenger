@@ -6,11 +6,15 @@ export default class PageNotFound extends Block {
     super({
       ErrorPagesLayout: new ErrorPagesLayout({
         error: "500",
-        reason: "Мы уже фиксим",
+        description: "Мы уже фиксим",
       }),
     });
   }
   render() {
-    return `<div>{{{ErrorPagesLayout}}}</div>`;
+    return `
+      <main>
+        {{{ ErrorPagesLayout }}}
+      </main>
+    `;
   }
 }
