@@ -1,7 +1,7 @@
 import { ProfileInfoField } from "src/partials";
 import Block from "src/reactivity/block";
 
-export default class Info extends Block {
+export default class ProfileInfo extends Block {
   init() {
     const Email = new ProfileInfoField({
       label: "Почта",

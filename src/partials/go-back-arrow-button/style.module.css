@@ -1,4 +1,4 @@
-.side-button {
+.button {
   display: flex;
   position: absolute;
   top: 0;
@@ -10,7 +10,7 @@
   height: 100vh;
 }
 
-.side-button-circle {
+.circle {
   display: flex;
   position: relative;
   justify-content: center;
@@ -22,12 +22,12 @@
   height: 28px;
 }
 
-.side-button-circle-arrow {
+.arrow {
   position: absolute;
   color: white;
   font-size: 16px;
 }
 
-.side-button-circle:hover {
+.circle:hover {
   background-color: rgb(var(--primary-color) / 80%);
 }

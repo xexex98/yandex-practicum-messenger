@@ -19,47 +19,6 @@
   margin-bottom: 60px;
 }
 
-.content div:last-child {
-  margin: 0;
-  border: 0;
-  padding: 0;
-}
-
-.profile-info-links a:last-child {
-  margin: 0;
-  margin-bottom: 30px;
-  border: 0;
-  padding: 0;
-}
-
-.avatar {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  border-radius: 50%;
-  background: #efefef;
-  width: 130px;
-  height: 130px;
-}
-
-.avatar:hover {
-  cursor: pointer;
-  background: rgb(0 0 0 / 50%);
-}
-
-.avatar:hover::after {
-  position: absolute;
-  content: "Поменять аватар";
-  color: white;
-  font-size: 13px;
-}
-
-.avatar-input {
-  display: none;
-}
-
 .name {
   margin: 21px 0 60px;
   font-weight: 600;

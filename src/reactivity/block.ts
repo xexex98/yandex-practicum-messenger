@@ -182,8 +182,8 @@ class Block {
     return document.createElement(tagName);
   }
 
-  show() {
-    this.getContent()!.style.display = "block";
+  show(display = "block") {
+    this.getContent()!.style.display = display;
   }
 
   hide() {

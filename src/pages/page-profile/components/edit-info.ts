@@ -1,29 +1,55 @@
-import { ProfileInfoField } from "src/partials";
+import { RButton } from "src/partials";
+import ProfileEditInfoField from "src/partials/profile-edit-info-field";
 import Block from "src/reactivity/block";
 
-export default class EditInfo extends Block {
+export default class ProfileEditInfo extends Block {
   init() {
-    const Email = new ProfileInfoField({
+    const Email = new ProfileEditInfoField({
       label: "Почта",
       name: "email",
-      value: "pochta@yandex.ru",
+      value: "",
+      events: {
+        mouseenter: (e) => console.log(e.target.value),
+      },
     });
-    const Login = new ProfileInfoField({ label: "Логин", name: "login", value: "Ivan" });
-    const FirstName = new ProfileInfoField({ label: "Имя", name: "first_name", value: "Иван" });
-    const SecondName = new ProfileInfoField({
+
+    const Login = new ProfileEditInfoField({
+      label: "Логин",
+      name: "login",
+      value: "",
+      events: {
+        change: (e) => console.log(e.target.value),
+      },
+    });
+
+    const FirstName = new ProfileEditInfoField({ label: "Имя", name: "first_name", value: "" });
+
+    const SecondName = new ProfileEditInfoField({
       label: "Фамилия",
       name: "second_name",
-      value: "Иванов",
+      value: "",
     });
-    const DisplayName = new ProfileInfoField({
+
+    const DisplayName = new ProfileEditInfoField({
       label: "Имя в чате",
       name: "display_name",
-      value: "Иван",
+      value: "",
     });
-    const Phone = new ProfileInfoField({
+
+    const Phone = new ProfileEditInfoField({
       label: "Телефон",
       name: "phone",
-      value: "+7 (909) 967 30 30",
+      value: "",
+    });
+
+    const Save = new RButton({
+      text: "Сохранить",
+      type: "submit",
+      onClick: (e) => {
+        e.preventDefault();
+        this.props.onSaveEdit();
+        this.hide();
+      },
     });
 
     this.children = {
@@ -34,19 +60,21 @@ export default class EditInfo extends Block {
       SecondName,
       DisplayName,
       Phone,
+      Save,
     };
   }
 
   render() {
     return `
-      <div>
+      <form action="#">
         {{{ Email }}}
         {{{ Login }}}
         {{{ FirstName }}}
         {{{ SecondName }}}
         {{{ DisplayName }}}
         {{{ Phone }}}
-      </div>
+        {{{ Save }}}
+      </form>
     `;
   }
 }
