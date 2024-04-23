@@ -1,4 +1,4 @@
-import ProfileEditInput from "src/partials/profile-edit-info-input";
+import ProfileEditInput from "src/pages/page-profile/components/edit-info-input";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";

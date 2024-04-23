@@ -1,4 +1,5 @@
 import {
+  GoPrevPage,
   ProfileAvatar,
   ProfileControls,
   ProfileEditInfo,
@@ -6,14 +7,13 @@ import {
   ProfileInfo,
 } from "src/pages/page-profile/components";
 import ProfileAvatarModal from "src/pages/page-profile/components/avatar-modal";
-import { GoBackArrowButton } from "src/partials";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
 export default class PageProfile extends Block {
   init() {
-    const Back = new GoBackArrowButton();
+    const Back = new GoPrevPage();
 
     const Avatar = new ProfileAvatar({
       events: {
@@ -21,7 +21,7 @@ export default class PageProfile extends Block {
       },
     });
 
-    const AvatarModal = new ProfileAvatarModal({});
+    const AvatarModal = new ProfileAvatarModal({ title: "Загрузить файл" });
 
     const Info = new ProfileInfo();
 
@@ -68,19 +68,19 @@ export default class PageProfile extends Block {
 
   render(): string {
     return `
-    <main class="${css.profile}">
-      {{{ AvatarModal }}}
-      {{{ Back }}}
-      <div class="${css.info}">
-        <div class="${css.content}">
-          {{{ Avatar }}}
-          <h3 class="${css.name}">Андрей</h3>
-          {{{ Info }}}
-          {{{ EditInfo }}}
-          {{{ EditPassword }}}
+      <main class="${css.profile}">
+        {{{ AvatarModal }}}
+        {{{ Back }}}
+        <div class="${css.info}">
+          <div class="${css.content}">
+            {{{ Avatar }}}
+            <h3 class="${css.name}">Андрей</h3>
+            {{{ Info }}}
+            {{{ EditInfo }}}
+            {{{ EditPassword }}}
+          </div>
+          {{{ Controls }}}
         </div>
-        {{{ Controls }}}
-      </div>
       </main>
     `;
   }

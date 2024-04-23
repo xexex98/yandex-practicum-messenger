@@ -1,5 +1,5 @@
 import { RButton } from "src/partials";
-import ProfileEditInfoField from "src/partials/profile-edit-info-field";
+import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import Block from "src/reactivity/block";
 
 export default class ProfileEditPassword extends Block {

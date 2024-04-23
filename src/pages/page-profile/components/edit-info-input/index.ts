@@ -6,7 +6,7 @@ type Props = {
   name: string;
 };
 
-export default class ProfileEditInput extends Block {
+export default class ProfileEditInfoInput extends Block {
   constructor(props: Props) {
     super(props);
   }

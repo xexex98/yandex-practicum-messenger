@@ -2,7 +2,7 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
-export default class GoBackArrowButton extends Block {
+export default class GoPrevPage extends Block {
   render(): string {
     return `
       <div class="${css.button}">

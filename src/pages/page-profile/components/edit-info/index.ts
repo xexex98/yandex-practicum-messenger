@@ -1,5 +1,5 @@
+import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import { RButton } from "src/partials";
-import ProfileEditInfoField from "src/partials/profile-edit-info-field";
 import Block from "src/reactivity/block";
 
 export default class ProfileEditInfo extends Block {
@@ -7,7 +7,6 @@ export default class ProfileEditInfo extends Block {
     const Email = new ProfileEditInfoField({
       label: "Почта",
       name: "email",
-      value: "",
       events: {
         mouseenter: (e) => console.log(e.target.value),
       },
@@ -16,30 +15,26 @@ export default class ProfileEditInfo extends Block {
     const Login = new ProfileEditInfoField({
       label: "Логин",
       name: "login",
-      value: "",
       events: {
         change: (e) => console.log(e.target.value),
       },
     });
 
-    const FirstName = new ProfileEditInfoField({ label: "Имя", name: "first_name", value: "" });
+    const FirstName = new ProfileEditInfoField({ label: "Имя", name: "first_name" });
 
     const SecondName = new ProfileEditInfoField({
       label: "Фамилия",
       name: "second_name",
-      value: "",
     });
 
     const DisplayName = new ProfileEditInfoField({
       label: "Имя в чате",
       name: "display_name",
-      value: "",
     });
 
     const Phone = new ProfileEditInfoField({
       label: "Телефон",
       name: "phone",
-      value: "",
     });
 
     const Save = new RButton({

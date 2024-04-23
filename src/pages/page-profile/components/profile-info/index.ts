@@ -1,4 +1,4 @@
-import { ProfileInfoField } from "src/partials";
+import ProfileInfoField from "src/pages/page-profile/components/profile-info-field";
 import Block from "src/reactivity/block";
 
 export default class ProfileInfo extends Block {

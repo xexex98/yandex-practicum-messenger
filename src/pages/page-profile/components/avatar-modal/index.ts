@@ -3,8 +3,12 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
+type Props = {
+  title: string;
+};
+
 export default class ProfileAvatarModal extends Block {
-  constructor(props) {
+  constructor(props: Props) {
     super({
       ...props,
       Button: new RButton({
