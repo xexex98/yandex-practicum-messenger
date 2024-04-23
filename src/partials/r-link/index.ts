@@ -1,11 +1,22 @@
-import { Props } from "src/partials/r-link/r-links";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
+type Props = {
+  href: string;
+  class?: string;
+  label: string;
+  onClick?: () => void;
+};
+
 export default class RLink extends Block {
   constructor(props: Props) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
   }
 
   render() {

@@ -18,12 +18,12 @@ const validate = (value: string, el) => {
 
   if (!regexp[name].test(value)) {
     el.setProps({
-      errorText: `Некорректно заполнено поле`,
+      errorText: `Некорректно заполнено: ${el.props.label}`,
       error: true,
     });
     return;
   } else {
-    el.setProps({ error: false, errorText: null, [el.props.name]: value });
+    el.setProps({ error: false, errorText: null, [name]: value });
   }
 };
 
@@ -139,6 +139,7 @@ export default class FormRegistration extends Block {
     e.preventDefault();
 
     console.log({
+      email: this.children.Email.props.email,
       login: this.children.Login.props.login,
       password: this.children.Password.props.password,
     });

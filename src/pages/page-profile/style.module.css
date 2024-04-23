@@ -9,17 +9,17 @@
   overflow: scroll;
 }
 
-.profile-info {
+.info {
   width: 50%;
   max-width: 510px;
   height: 80%;
 }
 
-.profile-info-content {
+.content {
   margin-bottom: 60px;
 }
 
-.profile-info-content div:last-child {
+.content div:last-child {
   margin: 0;
   border: 0;
   padding: 0;
@@ -32,7 +32,7 @@
   padding: 0;
 }
 
-.profile-img {
+.avatar {
   display: flex;
   position: relative;
   justify-content: center;
@@ -44,30 +44,30 @@
   height: 130px;
 }
 
-.profile-img:hover {
+.avatar:hover {
   cursor: pointer;
   background: rgb(0 0 0 / 50%);
 }
 
-.profile-img:hover::after {
+.avatar:hover::after {
   position: absolute;
   content: "Поменять аватар";
   color: white;
   font-size: 13px;
 }
 
-.profile-img-input {
+.avatar-input {
   display: none;
 }
 
-.profile-name {
+.name {
   margin: 21px 0 60px;
   font-weight: 600;
   font-size: 16px;
   text-align: center;
 }
 
-.profile-underline {
+.profile :global(.profile-underline) {
   display: block;
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(var(--primary-border));

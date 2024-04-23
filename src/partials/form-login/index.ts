@@ -30,6 +30,7 @@ export default class FormLogin extends Block {
       type: "submit",
       onClick: onLoginBind,
     });
+
     const Signup = new RLink({
       href: "#",
       class: "signup",

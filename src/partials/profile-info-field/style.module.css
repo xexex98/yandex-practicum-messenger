@@ -1,4 +1,4 @@
-.profile-info-field {
+.field {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,10 +8,10 @@
   font-size: 13px;
 }
 
-.profile-info-field p:last-child {
+.field p:last-child {
   color: rgb(var(--secondary-color));
 }
 
-.profile-info-field-input {
+.field-input {
   display: none;
 }

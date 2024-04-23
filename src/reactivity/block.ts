@@ -14,16 +14,20 @@ class Block {
   };
 
   protected id = uuidv4();
-  private _element;
-  private eventBus;
+  private _element: HTMLElement | null = null;
+  private eventBus: () => EventBus;
+  props;
 
-  children;
+  children: {
+    [key: string]: Block | Element;
+  };
 
   constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
+    // console.log(this._getChildrenAndProps(propsWithChildren));
     this.props = this._makePropsProxy({ ...props });
     this.children = children;
 
@@ -42,7 +46,7 @@ class Block {
     });
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -55,7 +59,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {}
+  init() {}
 
   _componentDidMount() {
     this.componentDidMount();
@@ -71,7 +75,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: TTarget, newProps: TTarget) {
+  _componentDidUpdate(oldProps, newProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
 
     if (!response) {
@@ -111,7 +115,7 @@ class Block {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const propsAndStubs = { ...this.props };
 
     // console.log(propsAndStubs);
@@ -179,11 +183,11 @@ class Block {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-    this.getContent().style.display = "none";
+    this.getContent()!.style.display = "none";
   }
 }
 

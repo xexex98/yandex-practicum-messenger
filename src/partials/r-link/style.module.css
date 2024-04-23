@@ -6,10 +6,6 @@
   text-decoration: none;
 }
 
-.link.logout {
-  color: red;
-}
-
 .link:hover {
   opacity: 0.8;
 }
@@ -17,4 +13,8 @@
 .link:global(.signup) {
   margin-top: 15px;
   font-size: 11px;
+}
+
+.link:global(.logout) {
+  color: red;
 }
