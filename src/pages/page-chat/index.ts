@@ -60,6 +60,10 @@ export default class PageMessenger extends Block {
         type: "is-in",
       }),
       Message2: new ChatMessage({
+        content: "<img src='/src/assets/img/photo.png' alt='message-image' />",
+        type: "is-in is-img",
+      }),
+      Message3: new ChatMessage({
         content: "Привет!",
         type: "is-out",
       }),
@@ -84,16 +88,11 @@ export default class PageMessenger extends Block {
             {{{ HeaderKebab }}}
             {{{ Menu }}}
           </div>
-          <div class="messenger-chat-messages">
-            <div class="messenger-chat-messages-date">19 июня</div>
+          <div class="${css.messages}">
+            <div class="${css.date}">19 июня</div>
             {{{ Message1 }}}
-            <div class="msg is-img">
-              <img
-                src="/src/assets/img/photo.png"
-                alt="message-image"
-              />
-            </div>
             {{{ Message2 }}}
+            {{{ Message3 }}}
           </div>
           {{{ NewMessageInput }}}
         </div>

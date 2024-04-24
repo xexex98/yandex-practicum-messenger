@@ -7,18 +7,23 @@
   font-size: 12px;
 }
 
-:global(.is-img) {
+.msg:global(.is-img) {
   padding: 0;
 }
 
-:global(.is-in) {
+.msg:global(.is-in) {
   background: #f8f8f8;
 }
 
-:global(.is-out) {
+.msg:global(.is-out) {
   margin-left: auto;
   background: #e4edfd;
   padding-right: 50px;
+}
+
+.msg:global(.is-img img) {
+  padding: 0;
+  width: 100%;
 }
 
 .time {

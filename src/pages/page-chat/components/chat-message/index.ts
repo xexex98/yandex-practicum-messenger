@@ -7,7 +7,7 @@ export default class ChatMessage extends Block {
     return `
       <div class="${css.msg} {{ type }}">
         <p>
-          {{ content }}
+          {{{ content }}}
           <span class="${css.time}">
             <span class="${css.read}">
               <svg
