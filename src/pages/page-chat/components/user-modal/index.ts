@@ -15,7 +15,7 @@ export default class UserModal extends Block {
   render() {
     return `
       <div class="${css.modal}">
-        <div class="${css.container}">
+        <div class="${css.content}">
           <p class="${css.title}">{{ title }}</p>
             {{{ Input }}}
           <div class="${css.button}">

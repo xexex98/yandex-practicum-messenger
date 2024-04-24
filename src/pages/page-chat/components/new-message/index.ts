@@ -3,13 +3,13 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
-export default class Input extends Block {
+export default class NewMessage extends Block {
   constructor(props) {
     super({ ...props, Attach: new MessageAttachMenu() });
   }
   render(): string {
     return `
-      <div class="${css.input}">
+      <div class="${css.container}">
         {{{ Attach }}}
         <svg
           width="32"

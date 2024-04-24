@@ -2,13 +2,11 @@ import {
   Dialog,
   HeaderInfo,
   HeaderMenu,
-  Input,
-  Message,
+  NewMessage,
   Search,
   SearchResult,
 } from "src/pages/page-chat/components";
 import Kebab from "src/pages/page-chat/components/kebab";
-import UserModal from "src/pages/page-chat/components/user-modal";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
@@ -57,7 +55,7 @@ export default class PageMessenger extends Block {
         name: "Андрей",
       }),
 
-      NewMessage: new Message(),
+      NewMessageInput: new NewMessage(),
     });
   }
 
@@ -89,7 +87,7 @@ export default class PageMessenger extends Block {
             </div>
 
           </div>
-          {{{ NewMessage }}}
+          {{{ NewMessageInput }}}
         </div>
       </main>
     `;

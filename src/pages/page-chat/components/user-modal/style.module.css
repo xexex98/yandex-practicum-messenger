@@ -9,7 +9,7 @@
   height: 100vh;
 }
 
-.container {
+.content {
   margin: auto;
   box-shadow: var(--box-shadow);
   border: 1px solid #888;
