@@ -1,4 +1,4 @@
-.chat-search-result {
+.result {
   display: flex;
   position: relative;
   gap: 10px;
@@ -9,28 +9,28 @@
   height: 73px;
 }
 
-.chat-search-result:hover {
+.result:hover {
   background: rgba(200 200 200 /10%);
 }
 
-.chat-border {
+.border {
   position: absolute;
   right: 10px;
   left: 10px;
   border-top: rgb(var(--primary-border)) 1px solid;
 }
 
-.chat-border.top {
+.border.top {
   top: 0;
   bottom: unset;
 }
 
-.chat-border.bottom {
+.border.bottom {
   top: unset;
   bottom: 0;
 }
 
-.chat-avatar {
+.avatar {
   border-radius: 50%;
   background: #efefef;
   width: 47px;
@@ -39,7 +39,7 @@
   min-height: 47px;
 }
 
-.dialog-result {
+.search {
   margin: auto 0;
   font-weight: 600;
   font-size: 13px;

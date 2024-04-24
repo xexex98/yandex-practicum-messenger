@@ -9,7 +9,7 @@ const pages = {
   "404": [Pages.PageNotFound],
   "500": [Pages.PageServerError],
   profile: [Pages.PageProfile],
-  messenger: [Pages.Messenger],
+  messenger: [Pages.PageMessenger],
 };
 
 export default pages;

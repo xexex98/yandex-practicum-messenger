@@ -1,7 +1,4 @@
-export { Chat } from "./chat";
-export { ChatAttachMenu } from "./chat-attach-menu";
 export { ChatModal } from "./chat-modal";
-export { ChatSearchResults } from "./chat-search-results";
 export { ChatUserMenu } from "./chat-user-menu";
 export { default as ErrorPagesLayout } from "./error-pages-layout";
 export { Message } from "./message";

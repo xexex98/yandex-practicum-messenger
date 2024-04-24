@@ -12,7 +12,7 @@ export default class PageNotFound extends Block {
   }
   render() {
     return `
-      <main >
+      <main>
         {{{ErrorPagesLayout}}}
       </main>
     `;

@@ -1,4 +1,4 @@
-.chat {
+.dialog {
   display: flex;
   position: relative;
   gap: 10px;
@@ -9,11 +9,11 @@
   height: 73px;
 }
 
-.chat:hover {
+.dialog:hover {
   background: rgba(200 200 200 /10%);
 }
 
-.chat-border {
+.border {
   position: absolute;
   top: 0;
   right: 10px;
@@ -21,7 +21,7 @@
   border-top: rgb(var(--primary-border)) 1px solid;
 }
 
-.chat-avatar {
+.avatar {
   border-radius: 50%;
   background: #efefef;
   width: 47px;
@@ -30,7 +30,7 @@
   min-height: 47px;
 }
 
-.dialog {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,12 +38,12 @@
   overflow: hidden;
 }
 
-.dialog-name {
+.user {
   font-weight: 600;
   font-size: 13px;
 }
 
-.dialog-msg {
+.message {
   display: -webkit-box;
   overflow: hidden;
   color: rgb(var(--secondary-color));
@@ -55,21 +55,21 @@
   -webkit-box-orient: vertical;
 }
 
-.chat-info {
+.info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-.chat-info-time {
+.time {
   color: rgb(var(--secondary-color));
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
 }
 
-.chat-info-unread {
+.unread {
   border-radius: 50%;
   background: rgb(var(--primary-color));
   width: 16px;

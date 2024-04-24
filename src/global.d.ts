@@ -1,5 +1,5 @@
 declare module "*.module.css" {
-  const classes: { link: string };
+  const css: { [key: string]: string };
 
-  export default classes;
+  export default css;
 }
