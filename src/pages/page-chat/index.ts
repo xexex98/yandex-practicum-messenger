@@ -6,8 +6,9 @@ import {
   Message,
   Search,
   SearchResult,
-} from "src/pages/chat/components";
-import Kebab from "src/pages/chat/components/kebab";
+} from "src/pages/page-chat/components";
+import Kebab from "src/pages/page-chat/components/kebab";
+import UserModal from "src/pages/page-chat/components/user-modal";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
@@ -16,6 +17,7 @@ export default class PageMessenger extends Block {
   constructor(props) {
     super({
       ...props,
+      // Modal: new UserModal({ title: "Добавить" }),
       Search: new Search({
         result: "Андрей",
       }),
@@ -48,10 +50,13 @@ export default class PageMessenger extends Block {
       Header: new HeaderInfo({
         name: "Андрей",
       }),
+
       HeaderKebab: new Kebab(),
+
       Menu: new HeaderMenu({
         name: "Андрей",
       }),
+
       NewMessage: new Message(),
     });
   }
@@ -59,6 +64,7 @@ export default class PageMessenger extends Block {
   render(): string {
     return `
       <main class="${css.messenger}">
+        {{{ Modal }}}
         <ul class="${css.dialogs}">
           {{{ Search }}}
           {{{ Dialog }}}

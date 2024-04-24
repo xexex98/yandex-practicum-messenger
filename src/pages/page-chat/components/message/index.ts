@@ -1,4 +1,4 @@
-import MessageAttachMenu from "src/pages/chat/components/message-attach-menu";
+import MessageAttachMenu from "src/pages/page-chat/components/message-attach-menu";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";

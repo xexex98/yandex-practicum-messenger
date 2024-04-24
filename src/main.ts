@@ -22,7 +22,7 @@ function navigate(page: TPages) {
     container.innerHTML = Handlebars.compile(source)(context);
   }
 }
-document.addEventListener("DOMContentLoaded", () => navigate("messenger"));
+document.addEventListener("DOMContentLoaded", () => navigate("chat"));
 
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLLinkElement;

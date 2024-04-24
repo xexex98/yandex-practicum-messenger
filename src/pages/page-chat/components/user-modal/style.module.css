@@ -9,7 +9,7 @@
   height: 100vh;
 }
 
-.modal-container {
+.container {
   margin: auto;
   box-shadow: var(--box-shadow);
   border: 1px solid #888;
@@ -20,25 +20,11 @@
   text-align: center;
 }
 
-.modal-container .modal-title {
+.title {
   margin-bottom: 40px;
   font-size: 15px;
 }
 
-.modal-container .modal-content {
-  cursor: pointer;
-  margin-bottom: 50px;
-  color: rgb(var(--primary-color));
-  font-size: 12px;
-  text-decoration: underline;
-}
-
-.modal-container .modal-error {
-  margin-top: 14px;
-  color: #ff2f2f;
-  font-size: 11px;
-}
-
-.modal-btn {
+.button {
   margin-top: 45px;
 }
