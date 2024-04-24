@@ -1,4 +1,4 @@
-import FormRegistration from "src/partials/form-registration";
+import FormRegistration from "src/pages/page-registration/components/form-registration";
 import FormWrapper from "src/partials/form-wrapper";
 import Block from "src/reactivity/block";
 

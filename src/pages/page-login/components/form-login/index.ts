@@ -1,3 +1,4 @@
+import validate from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -46,43 +47,23 @@ export default class FormLogin extends Block {
     };
   }
 
-  onChangeLogin(e) {
-    const inputValue = e.target.value;
-    const regex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/.test(inputValue);
-
-    if (!regex) {
-      this.children.Login.setProps({
-        errorText: "Некорректный логин",
-        error: true,
-      });
-      return;
-    } else {
-      this.children.Login.setProps({ error: false, errorText: null, login: inputValue });
-    }
+  onChangeLogin(e: Event) {
+    validate((e.target as HTMLInputElement).value, this.children.Login);
   }
 
-  onChangePassword(e) {
-    const inputValue = e.target.value;
-    const regex = /^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,40}$/.test(inputValue);
-
-    if (!regex) {
-      this.children.Password.setProps({
-        errorText: "Некорректный пароль",
-        error: true,
-      });
-      return;
-    } else {
-      this.children.Password.setProps({ error: false, errorText: null, password: inputValue });
-    }
+  onChangePassword(e: Event) {
+    validate((e.target as HTMLInputElement).value, this.children.Password);
   }
 
-  onLogin(e) {
+  onLogin(e: Event) {
     e.preventDefault();
 
-    console.log({
+    const props = {
       login: this.children.Login.props.login,
       password: this.children.Password.props.password,
-    });
+    };
+
+    console.log(props);
   }
 
   render() {

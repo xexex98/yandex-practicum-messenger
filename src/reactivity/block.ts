@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import EventBus from "./event-bus.ts";
 
 type TTarget = Record<string, unknown>;
-
+type TChildren = Record<string, unknown>;
 class Block {
   static EVENTS = {
     INIT: "init",
@@ -14,13 +14,12 @@ class Block {
   };
 
   protected id = uuidv4();
+
   private _element: HTMLElement | null = null;
   private eventBus: () => EventBus;
-  props;
+  private props;
 
-  children: {
-    [key: string]: Block | Element;
-  };
+  children: TChildren;
 
   constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
@@ -182,12 +181,20 @@ class Block {
     return document.createElement(tagName);
   }
 
-  show(display = "block") {
-    this.getContent()!.style.display = display;
+  show(display = "block"): void {
+    const content = this.getContent();
+
+    if (content) {
+      content.style.display = display;
+    }
   }
 
-  hide() {
-    this.getContent()!.style.display = "none";
+  hide(): void {
+    const content = this.getContent();
+
+    if (content) {
+      content.style.display = "none";
+    }
   }
 }
 

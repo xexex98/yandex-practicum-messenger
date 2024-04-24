@@ -1,4 +1,4 @@
-import FormLogin from "src/partials/form-login";
+import { FormLogin } from "src/pages/page-login/components";
 import FormWrapper from "src/partials/form-wrapper";
 import Block from "src/reactivity/block";
 
