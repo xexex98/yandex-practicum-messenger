@@ -1,3 +1,4 @@
+export { default as ChatMessage } from "./chat-message";
 export { default as Dialog } from "./dialog";
 export { default as HeaderInfo } from "./header-info";
 export { default as HeaderMenu } from "./header-menu";

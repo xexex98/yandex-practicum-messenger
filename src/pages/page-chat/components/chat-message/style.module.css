@@ -7,21 +7,21 @@
   font-size: 12px;
 }
 
-.msg.is-img {
+:global(.is-img) {
   padding: 0;
 }
 
-.is-in {
+:global(.is-in) {
   background: #f8f8f8;
 }
 
-.is-out {
+:global(.is-out) {
   margin-left: auto;
   background: #e4edfd;
   padding-right: 50px;
 }
 
-.msg-content .time {
+.time {
   position: absolute;
   right: 8px;
   bottom: 4px;
@@ -29,11 +29,11 @@
   font-size: 9px;
 }
 
-.msg.is-out .msg-content .time {
-  color: rgb(var(--primary-color));
-}
-
-.msg-content .read {
+.read {
   margin-right: 2px;
   font-size: 9px;
+}
+
+:global(.is-in) .read {
+  display: none;
 }

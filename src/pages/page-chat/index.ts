@@ -1,4 +1,5 @@
 import {
+  ChatMessage,
   Dialog,
   HeaderInfo,
   HeaderMenu,
@@ -54,7 +55,14 @@ export default class PageMessenger extends Block {
       Menu: new HeaderMenu({
         name: "Андрей",
       }),
-
+      Message1: new ChatMessage({
+        content: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории!!",
+        type: "is-in",
+      }),
+      Message2: new ChatMessage({
+        content: "Привет!",
+        type: "is-out",
+      }),
       NewMessageInput: new NewMessage(),
     });
   }
@@ -78,14 +86,14 @@ export default class PageMessenger extends Block {
           </div>
           <div class="messenger-chat-messages">
             <div class="messenger-chat-messages-date">19 июня</div>
-
+            {{{ Message1 }}}
             <div class="msg is-img">
               <img
                 src="/src/assets/img/photo.png"
                 alt="message-image"
               />
             </div>
-
+            {{{ Message2 }}}
           </div>
           {{{ NewMessageInput }}}
         </div>
