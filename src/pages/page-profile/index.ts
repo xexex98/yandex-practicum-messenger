@@ -50,6 +50,7 @@ export default class PageProfile extends Block {
       },
     });
 
+    Info.show();
     EditInfo.hide();
     EditPassword.hide();
     AvatarModal.hide();

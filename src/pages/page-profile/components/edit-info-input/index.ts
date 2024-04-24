@@ -15,7 +15,8 @@ export default class ProfileEditInfoInput extends Block {
     return `
       <input
         name="{{ name }}"
-        type="text"
+        id="{{ name }}"
+        type={{ type }}
         class="${css.edit}"
       />
     `;
