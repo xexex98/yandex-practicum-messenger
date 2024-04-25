@@ -1,13 +1,11 @@
 import {
   ChatMessage,
   Dialog,
-  HeaderInfo,
-  HeaderMenu,
+  Header,
   NewMessage,
   Search,
   SearchResult,
 } from "src/pages/page-chat/components";
-import Kebab from "src/pages/page-chat/components/kebab";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
@@ -16,14 +14,13 @@ export default class PageMessenger extends Block {
   constructor(props) {
     super({
       ...props,
-      // Modal: new UserModal({ title: "Добавить" }),
       Search: new Search({
         result: "Андрей",
       }),
 
       Dialog: new Dialog({
         name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!...",
+        msg: "Друзья, у меня для вас особенный выпуск новостей!.",
         unread: "12",
         date: "14:12",
       }),
@@ -46,15 +43,8 @@ export default class PageMessenger extends Block {
         result: "Андрей",
       }),
 
-      Header: new HeaderInfo({
-        name: "Андрей",
-      }),
+      ChatHeader: new Header({}),
 
-      HeaderKebab: new Kebab(),
-
-      Menu: new HeaderMenu({
-        name: "Андрей",
-      }),
       Message1: new ChatMessage({
         content: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории!!",
         type: "is-in",
@@ -67,14 +57,13 @@ export default class PageMessenger extends Block {
         content: "Привет!",
         type: "is-out",
       }),
-      NewMessageInput: new NewMessage(),
+      NewMessageInput: new NewMessage({}),
     });
   }
 
   render(): string {
     return `
       <main class="${css.messenger}">
-        {{{ Modal }}}
         <ul class="${css.dialogs}">
           {{{ Search }}}
           {{{ Dialog }}}
@@ -83,11 +72,7 @@ export default class PageMessenger extends Block {
           {{{ Result }}}
         </ul>
         <div class="${css.chat}">
-          <div class="${css.header}">
-            {{{ Header }}}
-            {{{ HeaderKebab }}}
-            {{{ Menu }}}
-          </div>
+          {{{ ChatHeader }}}
           <div class="${css.messages}">
             <div class="${css.date}">19 июня</div>
             {{{ Message1 }}}

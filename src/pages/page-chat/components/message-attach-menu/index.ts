@@ -5,7 +5,7 @@ import css from "./style.module.css";
 export default class MessageAttach extends Block {
   render(): string {
     return `
-      <ul class="${css.container}">
+      <ul class="${css.container} {{#if show}}${css.show}{{/if}}">
         <li class="${css.item}">
           <svg
             width="22"

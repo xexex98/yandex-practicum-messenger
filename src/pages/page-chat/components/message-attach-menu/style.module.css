@@ -1,5 +1,4 @@
 .container {
-  display: flex;
   position: absolute;
   top: -135px;
   left: -5px;
@@ -9,6 +8,11 @@
   background: #fff;
   font-size: 12px;
   z-index: 10;
+  display: none;
+}
+
+.container.show {
+  display: flex;
 }
 
 .item {

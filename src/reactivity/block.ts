@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import EventBus from "./event-bus.ts";
 
 type TTarget = Record<string, unknown>;
-type TChildren = Record<string, unknown>;
+type TChildren = Record<string, Block>;
+type TProps = Record<string, unknown>;
+
 class Block {
   static EVENTS = {
     INIT: "init",
@@ -13,20 +15,19 @@ class Block {
     FLOW_RENDER: "flow:render",
   };
 
-  protected id = uuidv4();
+  protected id: string = uuidv4();
 
   private _element: HTMLElement | null = null;
   private eventBus: () => EventBus;
-  private props;
 
-  children: TChildren;
+  public props: TProps;
+  public children: TChildren;
 
-  constructor(propsWithChildren = {}) {
+  constructor(propsWithChildren: TProps = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
-    // console.log(this._getChildrenAndProps(propsWithChildren));
     this.props = this._makePropsProxy({ ...props });
     this.children = children;
 
@@ -37,12 +38,14 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _addEvents() {
-    const { events = {} } = this.props;
+  _addEvents(): void {
+    const { events } = this.props;
 
-    Object.keys(events).forEach((eventName) => {
-      this._element.addEventListener(eventName, events[eventName]);
-    });
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element!.addEventListener(eventName, events[eventName]);
+      });
+    }
   }
 
   _registerEvents(eventBus: EventBus) {
@@ -110,11 +113,23 @@ class Block {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  get element(): HTMLElement | null {
     return this._element;
   }
 
   private _render() {
+    // console.log(this.props.events);
+
+    const { events } = this.props;
+
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        if (events[eventName]) {
+          this._element?.removeEventListener(eventName, events[eventName]);
+        }
+      });
+    }
+
     const propsAndStubs = { ...this.props };
 
     // console.log(propsAndStubs);
@@ -130,6 +145,7 @@ class Block {
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
 
+      // console.log(child);
       stub?.replaceWith(child.getContent());
     });
 

@@ -1,8 +1,22 @@
+import HeaderMenu from "src/pages/page-chat/components/header-menu";
+import UserModal from "src/pages/page-chat/components/user-modal";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
 export default class Kebab extends Block {
+  init(): void {
+    // console.log(this);
+  }
+  constructor(props) {
+    super({
+      ...props,
+      events: {
+        click: () => this.props.onShow(),
+      },
+    });
+  }
+
   render(): string {
     return `
       <div class="${css.kebab}">

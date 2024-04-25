@@ -1,11 +1,22 @@
+import MenuButton from "src/pages/page-chat/components/menu-button";
+import UserModal from "src/pages/page-chat/components/user-modal";
+import { RButton } from "src/partials";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
 export default class HeaderMenu extends Block {
+  constructor(props) {
+    super({
+      ...props,
+      Add: new MenuButton({ onClick: props.onAdd, title: "Добавить пользователя" }),
+      Remove: new MenuButton({ onClick: props.onRemove, title: "Удалить пользователя" }),
+    });
+  }
+
   render(): string {
     return `
-      <ul class="${css.container}">
+      <ul class="${css.container} {{#if show}}${css.show}{{/if}}">
         <li class="${css.item}">
           <svg
             width="12"
@@ -31,7 +42,7 @@ export default class HeaderMenu extends Block {
               stroke-width="1.5"
             />
           </svg>
-          Добавить пользователя
+          {{{ Add }}}
         </li>
         <li class="${css.item}">
           <svg
@@ -58,7 +69,7 @@ export default class HeaderMenu extends Block {
               stroke-width="1.5"
             />
           </svg>
-          Удалить пользователя
+          {{{ Remove }}}
         </li>
       </ul>
     `;

@@ -1,4 +1,4 @@
-import validate from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -14,7 +14,6 @@ export default class FormLogin extends Block {
       label: "Логин",
       name: "login",
       type: "text",
-      errorText: "Неверный логин",
       onBlur: onChangeLoginBind,
     });
 
@@ -22,7 +21,6 @@ export default class FormLogin extends Block {
       label: "Пароль",
       name: "password",
       type: "password",
-      errorText: "Неверный пароль",
       onBlur: onChangePasswordBind,
     });
 
@@ -57,13 +55,16 @@ export default class FormLogin extends Block {
 
   onLogin(e: Event) {
     e.preventDefault();
+    // const isValid = validateForm(this.children);
 
+    // if (!isValid) {
     const props = {
-      login: this.children.Login.props.login,
-      password: this.children.Password.props.password,
+      login: this.children.Login.props.value,
+      password: this.children.Password.props.value,
     };
 
     console.log(props);
+    // }
   }
 
   render() {

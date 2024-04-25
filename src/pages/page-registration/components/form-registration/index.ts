@@ -1,4 +1,4 @@
-import validate from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -115,11 +115,17 @@ export default class FormRegistration extends Block {
   onRegister(e) {
     e.preventDefault();
 
-    console.log({
-      email: this.children.Email.props.email,
-      login: this.children.Login.props.login,
-      password: this.children.Password.props.password,
-    });
+    const isValid = validateForm(this.children);
+
+    if (!isValid) {
+      const props = {
+        email: this.children.Email.props.value,
+        login: this.children.Login.props.value,
+        password: this.children.Password.props.value,
+      };
+
+      console.log(props);
+    }
   }
 
   render() {

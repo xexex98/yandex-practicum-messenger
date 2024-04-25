@@ -1,4 +1,4 @@
-import validate from "src/helpers";
+import { validate } from "src/helpers";
 import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import { RButton } from "src/partials";
 import Block from "src/reactivity/block";
