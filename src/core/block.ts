@@ -3,12 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import EventBus from "./event-bus";
 
-interface EventMap {
-  [key: string]: (event: Event) => void;
-}
-
 interface BlockProps {
-  events?: EventMap;
+  events?: Record<string, EventListener>;
   [key: string]: unknown;
 }
 
@@ -24,14 +20,15 @@ class Block {
     FLOW_RENDER: "flow:render",
   };
 
-  id: string = uuidv4();
+  private _id: string = uuidv4();
 
-  _element: HTMLElement | null = null;
+  private _element: HTMLElement | null = null;
 
-  props: BlockProps;
-  children: BlockChildrenMap;
+  protected children: BlockChildrenMap;
 
-  eventBus: () => EventBus;
+  protected eventBus: () => EventBus;
+
+  public props: BlockProps;
 
   constructor(propsWithChildren: BlockProps = {}) {
     const eventBus = new EventBus();
@@ -48,7 +45,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events } = this.props;
 
     if (events) {
@@ -58,12 +55,27 @@ class Block {
     }
   }
 
+  private _removeEvents() {
+    const { events } = this.props;
+
+    if (!events) {
+      return;
+    }
+
+    Object.keys(events).forEach((eventName) => {
+      if (events[eventName]) {
+        // this._element?.removeEventListener(eventName, events[eventName]);
+      }
+    });
+  }
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
+
+  init() {}
 
   _init() {
     this.init();
@@ -71,32 +83,32 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  init() {}
+  componentDidMount() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
 
-    Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+    Object.values(this.children).forEach((child: unknown) => {
+      if (child instanceof Block) {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 
-  componentDidMount() {}
-
-  dispatchComponentDidMount() {
+  dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
+  private _componentDidUpdate(...args: unknown[]) {
+    const [oldProps, newProps] = args as [BlockProps, BlockProps];
     const response = this.componentDidUpdate(oldProps, newProps);
 
-    if (!response) {
-      return;
+    if (response) {
+      this._render();
     }
-    this._render();
   }
 
-  //TODO! реализовать проверку на изменение пропсов
+  //TODO! реализовать проверку на изменение пропсов тут объект от проверки нет смысла
   componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
     if (oldProps === newProps) {
       return false;
@@ -134,32 +146,25 @@ class Block {
     return this._element;
   }
 
-  _render() {
-    const { events } = this.props;
-
-    if (events) {
-      Object.keys(events).forEach((eventName) => {
-        if (events[eventName]) {
-          this._element?.removeEventListener(eventName, events[eventName]);
-        }
-      });
-    }
+  private _render(): void {
+    this._removeEvents();
 
     const propsAndStubs = { ...this.props };
 
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
     const fragment = this._createDocumentElement("template");
 
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
+
     const newElement = fragment.content.firstElementChild as HTMLElement;
 
     Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+      const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
 
-      stub?.replaceWith(child.getContent() as Node);
+      stub?.replaceWith(child.getContent() as HTMLElement);
     });
 
     if (this._element) {
@@ -171,7 +176,7 @@ class Block {
     this._addEvents();
   }
 
-  render() {}
+  render(): void {}
 
   getContent(): HTMLElement | null {
     return this.element;
@@ -206,7 +211,7 @@ class Block {
     });
   }
 
-  _createDocumentElement(tagName: string): HTMLTemplateElement {
+  private _createDocumentElement(tagName: string): HTMLTemplateElement {
     return document.createElement(tagName) as HTMLTemplateElement;
   }
 

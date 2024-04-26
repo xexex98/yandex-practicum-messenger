@@ -1,5 +1,5 @@
 import Block from "src/core/block";
-import { validate } from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -45,26 +45,26 @@ export default class FormLogin extends Block {
     };
   }
 
-  onChangeLogin(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Login);
+  onChangeLogin(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Login);
   }
 
-  onChangePassword(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Password);
+  onChangePassword(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Password);
   }
 
   onLogin(e: Event) {
     e.preventDefault();
-    // const isValid = validateForm(this.children);
+    const isValid = validateForm(this.children);
 
-    // if (!isValid) {
-    const props = {
-      login: this.children.Login.props.value,
-      password: this.children.Password.props.value,
-    };
+    if (!isValid) {
+      const props = {
+        login: this.children.Login.props.value,
+        password: this.children.Password.props.value,
+      };
 
-    console.log(props);
-    // }
+      console.log(props);
+    }
   }
 
   render() {

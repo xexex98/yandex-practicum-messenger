@@ -10,7 +10,7 @@ type TProps = {
   type: string;
   error?: boolean;
   errorText?: string;
-  onBlur: (e: Event) => void;
+  onBlur: (e?: Event) => void;
 };
 
 export default class RInput extends Block {

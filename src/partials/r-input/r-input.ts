@@ -5,7 +5,7 @@ import styles from "./style.module.css";
 type TProps = {
   name: string;
   type: string;
-  onBlur: (e: Event) => void;
+  onBlur: (e?: Event) => void;
   class?: string;
 };
 

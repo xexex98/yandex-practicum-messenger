@@ -8,7 +8,7 @@
     "build": "npm run prebuild && vite build",
     "start": "npm run build && nodemon server.js",
     "format": "prettier . --write",
-    "eslint:check": "eslint . --ext .ts",
+    "eslint:check": "eslint src --ext .ts",
     "eslint:fix": "eslint . --fix --ext .ts",
     "lint:formatting": "prettier . --check",
     "lint:css": "stylelint src/**/*.css --fix"

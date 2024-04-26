@@ -1,21 +1,20 @@
-type TFunction = (...args: unknown[]) => void;
-type TListeners = Record<string, TFunction[]>;
+type Callback = (...args: unknown[]) => void;
 
 export default class EventBus {
-  private _listeners: TListeners = {};
+  private _listeners: Record<string, Callback[]>;
 
   constructor() {
     this._listeners = {};
   }
 
-  on(event: string, callback: TFunction) {
+  on(event: string, callback: Callback) {
     if (!this._listeners[event]) {
       this._listeners[event] = [];
     }
     this._listeners[event].push(callback);
   }
 
-  off(event: string, callback: TFunction) {
+  off(event: string, callback: Callback) {
     if (!this._listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -23,7 +22,7 @@ export default class EventBus {
     this._listeners[event] = this._listeners[event].filter((listener) => listener !== callback);
   }
 
-  emit(event: string, ...args) {
+  emit(event: string, ...args: unknown[]) {
     if (!this._listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }

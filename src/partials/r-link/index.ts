@@ -6,7 +6,7 @@ type Props = {
   href: string;
   class?: string;
   label: string;
-  onClick?: () => void;
+  onClick?: (e?: Event) => void;
 };
 
 export default class RLink extends Block {
