@@ -1,6 +1,8 @@
+import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RInput } from "src/partials";
 
 //TODO! Поправить сообщения об ошибке, поправлю потом. пока не успеваю :(
+
 export function validate(value: string, el) {
   const regexp = {
     email: /^[a-zA-Z0-9_.+-]+@[A-Za-z0-9]+([_.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/,
@@ -18,28 +20,25 @@ export function validate(value: string, el) {
 
   const name = el.props.name;
 
-  if (!regexp[name].test(value) || !value) {
-    console.log("error");
+  if (!regexp[name].test(value) || !String(value)) {
     el.setProps({
       errorText: `Некорректно заполнено: ${el.props.label}`,
       error: true,
     });
     return false;
   }
-  console.log("ok");
+
   el.setProps({ error: false, errorText: null, value });
   return true;
 }
 
+//TODO! Не самый верный подход с instanceof, можно лучше переделать
 export function validateForm(elements) {
-  const fields = Object.keys(elements).filter((el) => elements[el] instanceof RInput);
+  const fields = Object.keys(elements).filter(
+    (el) => elements[el] instanceof RInput || elements[el] instanceof ProfileEditInfoField
+  );
 
-  let isError = false;
+  const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
 
-  fields.forEach((el) => {
-    const block = elements[el];
-
-    isError = validate(block.props.value, elements[el]);
-  });
   return isError;
 }

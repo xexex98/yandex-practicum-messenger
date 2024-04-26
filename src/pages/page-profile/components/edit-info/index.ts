@@ -1,4 +1,4 @@
-import { validate } from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import { RButton } from "src/partials";
 import Block from "src/reactivity/block";
@@ -44,18 +44,22 @@ export default class ProfileEditInfo extends Block {
     const Save = new RButton({
       text: "Сохранить",
       onClick: (e) => {
-        console.log(this.props);
         e.preventDefault();
-        this.props.onSaveEdit();
-        this.hide();
-        console.log({
-          email: this.children.Email.props.email,
-          login: this.children.Login.props.login,
-          first_name: this.children.FirstName.props.first_name,
-          second_name: this.children.SecondName.props.second_name,
-          display_name: this.children.DisplayName.props.display_name,
-          phone: this.children.Phone.props.phone,
-        });
+
+        const isValid = validateForm(this.children);
+
+        if (isValid) {
+          this.props.onSaveEdit();
+          this.hide();
+          console.log({
+            email: this.children.Email.props.value,
+            login: this.children.Login.props.value,
+            first_name: this.children.FirstName.props.value,
+            second_name: this.children.SecondName.props.value,
+            display_name: this.children.DisplayName.props.value,
+            phone: this.children.Phone.props.value,
+          });
+        }
       },
     });
 

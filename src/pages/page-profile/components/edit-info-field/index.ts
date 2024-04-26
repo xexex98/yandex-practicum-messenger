@@ -7,6 +7,7 @@ import css from "./style.module.css";
 type Props = {
   label: string;
   name: string;
+  onBlur: () => void;
 };
 
 export default class ProfileEditInfoField extends Block {

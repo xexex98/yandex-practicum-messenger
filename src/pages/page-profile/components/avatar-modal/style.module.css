@@ -35,12 +35,24 @@
   text-decoration: underline;
 }
 
+.load {
+  position: relative;
+}
+
 .error {
+  display: none;
   margin-top: 14px;
   color: #ff2f2f;
   font-size: 11px;
 }
 
-.button {
-  margin-top: 45px;
+.error.show {
+  display: block;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 35px;
 }

@@ -1,4 +1,4 @@
-import { validate } from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RButton } from "src/partials";
 import Block from "src/reactivity/block";
@@ -20,7 +20,7 @@ export default class ProfileEditPassword extends Block {
     });
 
     const RepeatNewPassword = new ProfileEditInfoField({
-      label: "Новый пароль",
+      label: "Повторите новый пароль",
       name: "repeatNewPassword",
       type: "password",
       onBlur: (e) => validate(e.target.value, this.children.RepeatNewPassword),
@@ -31,14 +31,19 @@ export default class ProfileEditPassword extends Block {
       type: "submit",
       onClick: (e) => {
         e.preventDefault();
-        this.props.onSaveEdit();
-        this.hide();
 
-        console.log({
-          oldPassword: this.children.OldPassword.props.oldPassword,
-          newPassword: this.children.NewPassword.props.newPassword,
-          repeatPassword: this.children.RepeatNewPassword.props.repeatNewPassword,
-        });
+        const isValid = validateForm(this.children);
+
+        if (isValid) {
+          this.props.onSaveEdit();
+          this.hide();
+
+          console.log({
+            oldPassword: this.children.OldPassword.props.value,
+            newPassword: this.children.NewPassword.props.value,
+            repeatPassword: this.children.RepeatNewPassword.props.value,
+          });
+        }
       },
     });
 
