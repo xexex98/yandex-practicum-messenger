@@ -2,9 +2,21 @@ import Block from "src/reactivity/block";
 
 import styles from "./style.module.css";
 
+type TProps = {
+  name: string;
+  type: string;
+  onBlur: (e: Event) => void;
+  class?: string;
+};
+
 export default class RInputElement extends Block {
-  constructor(props) {
-    super(props);
+  constructor(props: TProps) {
+    super({
+      ...props,
+      events: {
+        blur: props.onBlur,
+      },
+    });
   }
 
   render(): string {
@@ -15,6 +27,6 @@ export default class RInputElement extends Block {
         type="{{type}}"
         class="${styles.input} {{class}}"
       />
-        `;
+    `;
   }
 }

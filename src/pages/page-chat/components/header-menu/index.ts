@@ -1,6 +1,4 @@
 import MenuButton from "src/pages/page-chat/components/menu-button";
-import UserModal from "src/pages/page-chat/components/user-modal";
-import { RButton } from "src/partials";
 import Block from "src/reactivity/block";
 
 import css from "./style.module.css";

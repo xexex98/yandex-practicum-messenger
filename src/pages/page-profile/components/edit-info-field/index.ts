@@ -4,14 +4,16 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
-type Props = {
+type TProps = {
   label: string;
   name: string;
   onBlur: () => void;
+  error?: boolean;
+  errorText?: string;
 };
 
 export default class ProfileEditInfoField extends Block {
-  constructor(props: Props) {
+  constructor(props: TProps) {
     super({
       ...props,
       Input: new ProfileEditInput({
@@ -21,12 +23,12 @@ export default class ProfileEditInfoField extends Block {
         },
       }),
       ErrorLine: new ErrorLine({
-        errorText: props.errorText,
+        errorText: props.errorText || "",
       }),
     });
   }
 
-  componentDidUpdate(oldProps: any, newProps: any): boolean {
+  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
     if (oldProps === newProps) {
       return false;
     }

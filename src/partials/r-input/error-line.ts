@@ -2,8 +2,12 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
+type TProps = {
+  errorText: string;
+};
+
 export default class ErrorLine extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super(props);
   }
   render(): string {

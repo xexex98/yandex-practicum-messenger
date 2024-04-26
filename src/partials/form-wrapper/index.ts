@@ -2,8 +2,13 @@ import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
+type TProps = {
+  title: string;
+  body: Block;
+};
+
 export default class FormWrapper extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super(props);
   }
 

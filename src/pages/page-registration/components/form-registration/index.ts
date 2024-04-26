@@ -112,7 +112,7 @@ export default class FormRegistration extends Block {
     validate((e.target as HTMLInputElement).value, this.children.PasswordRetry);
   }
 
-  onRegister(e) {
+  onRegister(e: Event) {
     e.preventDefault();
 
     const isValid = validateForm(this.children);

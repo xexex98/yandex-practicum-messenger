@@ -37,8 +37,9 @@ export function validateForm(elements) {
   const fields = Object.keys(elements).filter(
     (el) => elements[el] instanceof RInput || elements[el] instanceof ProfileEditInfoField
   );
-
-  const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
+  const isError = fields.every((el) => elements[el].props.value);
+  //TODO! Поправить валидацию на Enter
+  // const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
 
   return isError;
 }

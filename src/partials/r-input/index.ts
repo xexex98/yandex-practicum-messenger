@@ -4,23 +4,31 @@ import Block from "src/reactivity/block";
 
 import styles from "./style.module.css";
 
+type TProps = {
+  name: string;
+  label: string;
+  type: string;
+  error?: boolean;
+  errorText?: string;
+  onBlur: (e: Event) => void;
+};
+
 export default class RInput extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super({
       ...props,
       Input: new RInputElement({
         ...props,
-        events: {
-          blur: props.onBlur,
-        },
+        onBlur: props.onBlur,
       }),
       ErrorLine: new ErrorLine({
-        errorText: props.errorText,
+        errorText: props.errorText || "",
       }),
     });
   }
 
-  componentDidUpdate(oldProps: any, newProps: any): boolean {
+  //TODO! тут объекты смысла нет, поправить типы
+  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
     if (oldProps === newProps) {
       return false;
     }

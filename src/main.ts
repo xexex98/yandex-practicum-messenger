@@ -14,7 +14,7 @@ function navigate(page: TPages) {
   if (source instanceof Object) {
     const page = new source(context);
 
-    container?.append(page.getContent());
+    container?.append(page.getContent() as Node);
     return;
   }
 
@@ -22,7 +22,7 @@ function navigate(page: TPages) {
     container.innerHTML = Handlebars.compile(source)(context);
   }
 }
-document.addEventListener("DOMContentLoaded", () => navigate("profile"));
+document.addEventListener("DOMContentLoaded", () => navigate("login"));
 
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLLinkElement;

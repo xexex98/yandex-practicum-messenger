@@ -2,7 +2,16 @@ import Block from "../../reactivity/block";
 
 import css from "./style.module.css";
 
+type TProps = {
+  error: string;
+  description: string;
+  href?: string;
+};
+
 export default class ErrorPagesLayout extends Block {
+  constructor(props: TProps) {
+    super(props);
+  }
   render() {
     return `
       <div class="${css.container}">

@@ -4,6 +4,7 @@ import css from "./style.module.css";
 
 type Props = {
   name: string;
+  events?: Record<string, () => void>;
 };
 
 export default class ProfileEditInfoInput extends Block {
