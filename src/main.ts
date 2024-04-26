@@ -10,9 +10,14 @@ registerPartial();
 function navigate(page: TPages) {
   const [source, context] = pages[page];
   const container = document.getElementById("app");
+  const nav = document.getElementById("nav");
 
   if (source instanceof Object) {
     const page = new source(context);
+
+    if (nav) {
+      nav.remove();
+    }
 
     container?.append(page.getContent() as Node);
     return;
@@ -22,7 +27,7 @@ function navigate(page: TPages) {
     container.innerHTML = Handlebars.compile(source)(context);
   }
 }
-document.addEventListener("DOMContentLoaded", () => navigate("login"));
+document.addEventListener("DOMContentLoaded", () => navigate("nav"));
 
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLLinkElement;

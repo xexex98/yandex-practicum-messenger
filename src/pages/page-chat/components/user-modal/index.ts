@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import { validate, validateForm } from "src/helpers";
 import { RButton, RInput } from "src/partials";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

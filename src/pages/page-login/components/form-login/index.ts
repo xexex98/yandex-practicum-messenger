@@ -1,8 +1,8 @@
+import Block from "src/core/block";
 import { validate } from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
-import Block from "src/reactivity/block";
 
 export default class FormLogin extends Block {
   init() {

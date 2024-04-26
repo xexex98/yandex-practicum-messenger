@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import { FormLogin } from "src/pages/page-login/components";
 import FormWrapper from "src/partials/form-wrapper";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

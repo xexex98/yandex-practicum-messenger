@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import FormRegistration from "src/pages/page-registration/components/form-registration";
 import FormWrapper from "src/partials/form-wrapper";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

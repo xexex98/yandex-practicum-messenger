@@ -1,5 +1,5 @@
+import Block from "src/core/block";
 import MenuButton from "src/pages/page-chat/components/menu-button";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

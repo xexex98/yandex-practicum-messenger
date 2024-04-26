@@ -1,3 +1,4 @@
+import Block from "src/core/block";
 import {
   GoPrevPage,
   ProfileAvatar,
@@ -7,7 +8,6 @@ import {
   ProfileInfo,
 } from "src/pages/page-profile/components";
 import ProfileAvatarModal from "src/pages/page-profile/components/avatar-modal";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 
@@ -50,8 +50,9 @@ export default class PageProfile extends Block {
       },
     });
 
-    Info.hide();
-    EditInfo.show();
+    //TODO! Переделать через #if
+    Info.show();
+    EditInfo.hide();
     EditPassword.hide();
     AvatarModal.hide();
 

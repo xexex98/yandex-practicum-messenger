@@ -1,8 +1,8 @@
+import Block from "src/core/block";
 import HeaderInfo from "src/pages/page-chat/components/header-info";
 import HeaderMenu from "src/pages/page-chat/components/header-menu";
 import Kebab from "src/pages/page-chat/components/kebab";
 import UserModal from "src/pages/page-chat/components/user-modal";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

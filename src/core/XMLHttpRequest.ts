@@ -1,3 +1,5 @@
+type RequestMethod = (typeof Request)[keyof typeof Request];
+
 const Request = {
   GET: "GET",
   PUT: "PUT",
@@ -5,22 +7,23 @@ const Request = {
   DELETE: "DELETE",
 } as const;
 
-type RequestMethod = (typeof Request)[keyof typeof Request];
+function queryStringify(data: Record<string, unknown> = {}) {
+  if (typeof data !== "object") {
+    throw new Error("Data must be object");
+  }
 
-function queryParams(data: Record<string, unknown> = {}) {
-  return data
-    ? Object.entries(data)
-        .map(([key, value]) => `${key}=${String(value)}`)
-        .reduce((acc, item) => `${acc}${item}&`, "?")
-        .slice(0, -1)
-    : "";
+  const keys = Object.keys(data);
+
+  return keys.reduce((result, key, index) => {
+    return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
+  }, "?");
 }
 
 export class HTTPTransport {
   get = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) => {
-    const urlWithQuery = url + queryParams(options?.data);
+    const urlWithQueryParams = url + queryStringify(options?.data);
 
-    return this.request(urlWithQuery, { ...options, method: Request.GET }, options.timeout);
+    return this.request(urlWithQueryParams, { ...options, method: Request.GET }, options.timeout);
   };
 
   post = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) =>
@@ -48,8 +51,8 @@ export class HTTPTransport {
 
       xhr.open(method, url);
 
-      Object.entries(headers).forEach(([header, value]) => {
-        xhr.setRequestHeader(header, value);
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key]);
       });
 
       xhr.onload = () => resolve(xhr);
@@ -57,10 +60,9 @@ export class HTTPTransport {
       const handleError = (event: ProgressEvent<EventTarget>) =>
         reject(new Error(`Error: ${event.type}`));
 
-      xhr.timeout = timeout;
-
       xhr.onabort = handleError;
       xhr.onerror = handleError;
+      xhr.timeout = timeout;
       xhr.ontimeout = handleError;
 
       if (method === Request.GET || !data) {

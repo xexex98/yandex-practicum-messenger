@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import ProfileEditInput from "src/pages/page-profile/components/edit-info-input";
 import ErrorLine from "src/partials/r-input/error-line";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

@@ -1,11 +1,11 @@
-import Block from "src/reactivity/block";
+import Block from "src/core/block";
 
 import css from "./style.module.css";
 
 export default class PageNavigation extends Block {
   render() {
     return `
-      <nav>
+      <nav id="nav">
         <ul class="${css.navigation}">
           <li>
             <a
@@ -45,8 +45,8 @@ export default class PageNavigation extends Block {
           <li>
             <a
               href="#"
-              page="messenger"
-              >Messenger</a
+              page="chat"
+              >Chat</a
             >
           </li>
         </ul>

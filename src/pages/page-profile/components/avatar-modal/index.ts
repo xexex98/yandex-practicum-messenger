@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import LoadFile from "src/pages/page-profile/components/load-file";
 import { RButton } from "src/partials";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

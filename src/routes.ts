@@ -6,9 +6,9 @@ const pages = {
   nav: [Pages.PageNavigation],
   login: [Pages.PageLogin],
   registration: [Pages.PageRegistration],
+  profile: [Pages.PageProfile],
   "404": [Pages.PageNotFound],
   "500": [Pages.PageServerError],
-  profile: [Pages.PageProfile],
   chat: [Pages.PageChat],
 };
 

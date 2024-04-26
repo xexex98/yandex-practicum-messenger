@@ -1,6 +1,6 @@
+import Block from "src/core/block";
 import ErrorLine from "src/partials/r-input/error-line";
 import RInputElement from "src/partials/r-input/r-input";
-import Block from "src/reactivity/block";
 
 import styles from "./style.module.css";
 

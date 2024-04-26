@@ -1,4 +1,4 @@
-import Block from "src/reactivity/block";
+import Block from "src/core/block";
 
 import css from "./style.module.css";
 

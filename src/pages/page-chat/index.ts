@@ -1,3 +1,4 @@
+import Block from "src/core/block";
 import {
   ChatMessage,
   Dialog,
@@ -6,7 +7,6 @@ import {
   Search,
   SearchResult,
 } from "src/pages/page-chat/components";
-import Block from "src/reactivity/block";
 
 import css from "./style.module.css";
 

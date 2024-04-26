@@ -1,5 +1,5 @@
+import Block from "src/core/block";
 import ErrorPagesLayout from "src/partials/error-pages-layout";
-import Block from "src/reactivity/block";
 
 export default class PageNotFound extends Block {
   constructor() {

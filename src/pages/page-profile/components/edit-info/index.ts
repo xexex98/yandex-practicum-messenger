@@ -1,7 +1,7 @@
+import Block from "src/core/block";
 import { validate, validateForm } from "src/helpers";
 import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import { RButton } from "src/partials";
-import Block from "src/reactivity/block";
 
 export default class ProfileEditInfo extends Block {
   init() {

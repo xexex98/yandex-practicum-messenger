@@ -1,5 +1,5 @@
+import Block from "src/core/block";
 import { RLink } from "src/partials";
-import Block from "src/reactivity/block";
 
 export default class ProfileControls extends Block {
   onEditInfo() {

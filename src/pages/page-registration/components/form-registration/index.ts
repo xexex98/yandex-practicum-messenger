@@ -1,8 +1,8 @@
+import Block from "src/core/block";
 import { validate, validateForm } from "src/helpers";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
-import Block from "src/reactivity/block";
 
 export default class FormRegistration extends Block {
   init() {
