@@ -4,6 +4,8 @@ import * as Partials from "../partials";
 
 export const registerPartial = () => {
   Object.entries(Partials).forEach(([name, component]) => {
-    Handlebars.registerPartial(name, component as any);
+    if (typeof component === "string") {
+      Handlebars.registerPartial(name, component);
+    }
   });
 };

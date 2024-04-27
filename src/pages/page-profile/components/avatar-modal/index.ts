@@ -13,7 +13,7 @@ export default class ProfileAvatarModal extends Block {
   constructor(props: TProps) {
     super({
       ...props,
-      Load: new LoadFile({}),
+      Load: new LoadFile(),
 
       Button: new RButton({
         text: "Поменять",

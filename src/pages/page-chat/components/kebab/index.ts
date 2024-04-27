@@ -11,7 +11,7 @@ export default class Kebab extends Block {
     super({
       ...props,
       events: {
-        click: () => this.props.onShow(),
+        click: props.onShow,
       },
     });
   }

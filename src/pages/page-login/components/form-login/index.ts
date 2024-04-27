@@ -57,7 +57,7 @@ export default class FormLogin extends Block {
     e.preventDefault();
     const isValid = validateForm(this.children);
 
-    if (!isValid) {
+    if (isValid) {
       const props = {
         login: this.children.Login.props.value,
         password: this.children.Password.props.value,

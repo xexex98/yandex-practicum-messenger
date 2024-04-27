@@ -9,7 +9,7 @@ export default class PageRegistration extends Block {
     super({
       FormRegistration: new FormWrapper({
         title: "Регистрация",
-        body: new FormRegistration({}),
+        body: new FormRegistration(),
       }),
     });
   }

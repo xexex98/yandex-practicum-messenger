@@ -5,7 +5,7 @@ import css from "./style.module.css";
 type Props = {
   name: string;
   type?: string;
-  events?: Record<string, () => void>;
+  events?: Record<string, EventListener>;
 };
 
 export default class ProfileEditInfoInput extends Block {

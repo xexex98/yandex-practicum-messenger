@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 
 import EventBus from "./event-bus";
 
-interface BlockProps {
+export type BlockProps = {
   events?: Record<string, EventListener>;
   [key: string]: unknown;
-}
+};
 
-interface BlockChildrenMap {
+type BlockChildrenMap = {
   [key: string]: Block;
-}
+};
 
 class Block {
   static EVENTS = {
@@ -64,7 +64,7 @@ class Block {
 
     Object.keys(events).forEach((eventName) => {
       if (events[eventName]) {
-        // this._element?.removeEventListener(eventName, events[eventName]);
+        this._element?.removeEventListener(eventName, events[eventName]);
       }
     });
   }

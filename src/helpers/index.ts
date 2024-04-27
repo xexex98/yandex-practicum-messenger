@@ -2,7 +2,7 @@ import Block from "src/core/block";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RInput } from "src/partials";
 
-//TODO! Поправить сообщения об ошибке, поправлю потом. пока не успеваю :(
+//TODO! Поправить сообщения об ошибке, на более узкие
 
 const regexp = {
   email: /^[a-zA-Z0-9_.+-]+@[A-Za-z0-9]+([_.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/,
@@ -41,7 +41,7 @@ export function validateForm(elements: Record<string, Block>) {
     (el) => elements[el] instanceof RInput || elements[el] instanceof ProfileEditInfoField
   );
   const isError = fields.every((el) => elements[el].props.value);
-  //TODO! Поправить валидацию на Enter
+  //TODO! Поправить валидацию на Enter, из за 2х validate на submit и blur как будто элемент удаляется из дерева при onblur и вылазит ошибка, но приложение не падает
   // const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
 
   return isError;

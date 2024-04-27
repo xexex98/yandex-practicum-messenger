@@ -2,6 +2,7 @@ import Block from "src/core/block";
 
 import css from "./style.module.css";
 
+//Учитывая что добавим routing не стал переделывать через RLink
 export default class PageNavigation extends Block {
   render() {
     return `

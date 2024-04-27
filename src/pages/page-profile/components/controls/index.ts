@@ -1,14 +1,18 @@
 import Block from "src/core/block";
-import { RLink } from "src/partials";
+import { RLink, RLinkWithEvent } from "src/partials";
 
 export default class ProfileControls extends Block {
   onEditInfo() {
-    this.props.onEditInfo();
+    if (typeof this.props.onEditInfo === "function") {
+      this.props.onEditInfo();
+    }
     this.hide();
   }
 
   onEditPassword() {
-    this.props.onEditPassword();
+    if (typeof this.props.onEditPassword === "function") {
+      this.props.onEditPassword();
+    }
     this.hide();
   }
 
@@ -16,13 +20,13 @@ export default class ProfileControls extends Block {
     const onEditInfoBind = this.onEditInfo.bind(this);
     const onEditPasswordBind = this.onEditPassword.bind(this);
 
-    const LinkEditInfo = new RLink({
+    const LinkEditInfo = new RLinkWithEvent({
       label: "Изменить данные",
       href: "#",
       class: "profile-underline",
       onClick: onEditInfoBind,
     });
-    const LinkChangePassword = new RLink({
+    const LinkChangePassword = new RLinkWithEvent({
       label: "Изменить пароль",
       href: "#",
       class: "profile-underline",

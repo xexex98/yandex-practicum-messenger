@@ -1,11 +1,15 @@
 import Block from "src/core/block";
 
+type TProps = {
+  title: string;
+  onClick: (e?: Event) => void;
+};
 export default class MenuButton extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super({
       ...props,
       events: {
-        click: () => this.props.onClick(),
+        click: props.onClick,
       },
     });
   }

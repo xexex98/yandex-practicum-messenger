@@ -2,10 +2,15 @@ import Block from "../../core/block";
 
 import styles from "./style.module.css";
 
-type TRButton = Record<string, unknown>;
+type TProps = {
+  text: string;
+  type?: string;
+  onClick: (e: Event) => void;
+  events?: Record<string, EventListener>;
+};
 
 export default class RButton extends Block {
-  constructor(props: TRButton) {
+  constructor(props: TProps) {
     super({
       ...props,
       events: {

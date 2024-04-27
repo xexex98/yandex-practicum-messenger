@@ -27,7 +27,7 @@ export default class RInput extends Block {
     });
   }
 
-  //TODO! тут объекты смысла нет, поправить типы
+  //TODO! тут объекты смысла нет, поправить проверку на рекурсивную
   componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
     if (oldProps === newProps) {
       return false;

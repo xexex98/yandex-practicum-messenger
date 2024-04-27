@@ -6,11 +6,17 @@ type Props = {
   href: string;
   class?: string;
   label: string;
+  onClick: (e?: Event) => void;
 };
 
-export default class RLink extends Block {
+export default class RLinkWithEvent extends Block {
   constructor(props: Props) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
   }
 
   render() {

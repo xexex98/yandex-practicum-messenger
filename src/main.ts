@@ -10,16 +10,22 @@ registerPartial();
 function navigate(page: TPages) {
   const [source, context] = pages[page];
   const container = document.getElementById("app");
-  const nav = document.getElementById("nav");
 
   if (source instanceof Object) {
+    //TODO! пока никак не получилось типизировать
+    //! const [source, context] = pages[page];
+    //! не смог разрешить ошибку -> Argument of type 'typeof PageNavigation is not assignable to parameter of type 'BlockProps | undefined'.
+    //! поправлю в следующем спринте, не успеваю :(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const page = new source(context);
 
-    if (nav) {
-      nav.remove();
+    if (!container) {
+      throw new Error("Не удалось найти контейнер app");
     }
 
-    container?.append(page.getContent() as Node);
+    container.innerHTML = "";
+    container.append(page.getContent() as Node);
     return;
   }
 

@@ -90,26 +90,26 @@ export default class FormRegistration extends Block {
     };
   }
 
-  onChangeEmail(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Email);
+  onChangeEmail(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Email);
   }
-  onChangeLogin(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Login);
+  onChangeLogin(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Login);
   }
-  onChangeName(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Name);
+  onChangeName(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Name);
   }
-  onChangeSurname(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Surname);
+  onChangeSurname(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Surname);
   }
-  onChangePhone(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Phone);
+  onChangePhone(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Phone);
   }
-  onChangePassword(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Password);
+  onChangePassword(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Password);
   }
-  onChangePasswordRetry(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.PasswordRetry);
+  onChangePasswordRetry(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.PasswordRetry);
   }
 
   onRegister(e: Event) {
@@ -122,6 +122,7 @@ export default class FormRegistration extends Block {
         email: this.children.Email.props.value,
         login: this.children.Login.props.value,
         password: this.children.Password.props.value,
+        repeatNewPassword: this.children.PasswordRetry.props.value,
       };
 
       console.log(props);

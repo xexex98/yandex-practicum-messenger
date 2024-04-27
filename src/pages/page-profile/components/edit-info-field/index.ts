@@ -8,7 +8,7 @@ type TProps = {
   label: string;
   name: string;
   type?: string;
-  onBlur: (e: Event) => void | boolean;
+  onBlur: (e: Event) => void;
   error?: boolean;
   errorText?: string;
 };

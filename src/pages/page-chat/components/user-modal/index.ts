@@ -28,8 +28,8 @@ export default class UserModal extends Block {
     };
   }
 
-  onChangeLogin(e: Event) {
-    validate((e.target as HTMLInputElement).value, this.children.Input);
+  onChangeLogin(e?: Event) {
+    validate((e?.target as HTMLInputElement).value, this.children.Input);
   }
 
   onSubmit(e: Event) {
@@ -43,6 +43,7 @@ export default class UserModal extends Block {
         show: false,
       });
     }
+    this.children.Input.setProps({ value: "" });
   }
 
   onClose(e: Event) {
@@ -55,6 +56,7 @@ export default class UserModal extends Block {
     this.children.Input.setProps({
       error: false,
       errorText: null,
+      value: "",
     });
   }
 
