@@ -9,33 +9,36 @@ export default class ProfileEditPassword extends Block {
       label: "Старый пароль",
       name: "oldPassword",
       type: "password",
-      onBlur: (e) => validate(e.target.value, this.children.OldPassword),
+      onBlur: (e) => validate((e.target as HTMLInputElement).value, this.children.OldPassword),
     });
 
     const NewPassword = new ProfileEditInfoField({
       label: "Новый пароль",
       name: "newPassword",
       type: "password",
-      onBlur: (e) => validate(e.target.value, this.children.NewPassword),
+      onBlur: (e) => validate((e.target as HTMLInputElement).value, this.children.NewPassword),
     });
 
     const RepeatNewPassword = new ProfileEditInfoField({
       label: "Повторите новый пароль",
       name: "repeatNewPassword",
       type: "password",
-      onBlur: (e) => validate(e.target.value, this.children.RepeatNewPassword),
+      onBlur: (e) =>
+        validate((e.target as HTMLInputElement).value, this.children.RepeatNewPassword),
     });
 
     const Save = new RButton({
       text: "Сохранить",
       type: "submit",
-      onClick: (e) => {
+      onClick: (e: Event) => {
         e.preventDefault();
 
         const isValid = validateForm(this.children);
 
         if (isValid) {
-          this.props.onSaveEdit();
+          if (typeof this.props.onSaveEdit === "function") {
+            this.props.onSaveEdit();
+          }
           this.hide();
 
           console.log({

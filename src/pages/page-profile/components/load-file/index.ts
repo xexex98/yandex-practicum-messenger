@@ -3,9 +3,8 @@ import Block from "src/core/block";
 import css from "./style.module.css";
 
 export default class LoadFile extends Block {
-  constructor(props) {
+  constructor() {
     super({
-      ...props,
       events: {
         click: () => console.log("load"),
       },

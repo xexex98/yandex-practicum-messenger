@@ -3,8 +3,12 @@ import MenuButton from "src/pages/page-chat/components/menu-button";
 
 import css from "./style.module.css";
 
+type TProps = {
+  onAdd: () => void;
+  onRemove: () => void;
+};
 export default class HeaderMenu extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super({
       ...props,
       Add: new MenuButton({ onClick: props.onAdd, title: "Добавить пользователя" }),

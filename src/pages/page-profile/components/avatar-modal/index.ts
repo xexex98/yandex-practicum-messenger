@@ -4,12 +4,13 @@ import { RButton } from "src/partials";
 
 import css from "./style.module.css";
 
-type Props = {
+type TProps = {
   title: string;
+  error?: boolean;
 };
 
 export default class ProfileAvatarModal extends Block {
-  constructor(props: Props) {
+  constructor(props: TProps) {
     super({
       ...props,
       Load: new LoadFile({}),

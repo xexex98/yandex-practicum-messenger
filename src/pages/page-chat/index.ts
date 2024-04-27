@@ -11,9 +11,8 @@ import {
 import css from "./style.module.css";
 
 export default class PageMessenger extends Block {
-  constructor(props) {
+  constructor() {
     super({
-      ...props,
       Search: new Search({
         result: "Андрей",
       }),
@@ -57,7 +56,7 @@ export default class PageMessenger extends Block {
         content: "Привет!",
         type: "is-out",
       }),
-      NewMessageInput: new NewMessage({}),
+      NewMessageInput: new NewMessage(),
     });
   }
 

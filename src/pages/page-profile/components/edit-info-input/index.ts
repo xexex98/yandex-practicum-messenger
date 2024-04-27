@@ -4,6 +4,7 @@ import css from "./style.module.css";
 
 type Props = {
   name: string;
+  type?: string;
   events?: Record<string, () => void>;
 };
 

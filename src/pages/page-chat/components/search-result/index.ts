@@ -9,6 +9,7 @@ export default class SearchResult extends Block {
   constructor(props: TProps) {
     super(props);
   }
+
   render(): string {
     return `
       <div class="${css.result}">

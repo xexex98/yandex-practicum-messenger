@@ -8,48 +8,52 @@ export default class ProfileEditInfo extends Block {
     const Email = new ProfileEditInfoField({
       label: "Почта",
       name: "email",
-      onBlur: (e) => validate(e.target.value, this.children.Email),
+      onBlur: (e: Event) => validate((e.target as HTMLInputElement).value, this.children.Email),
     });
 
     const Login = new ProfileEditInfoField({
       label: "Логин",
       name: "login",
-      onBlur: (e) => validate(e.target.value, this.children.Login),
+      onBlur: (e: Event) => validate((e.target as HTMLInputElement).value, this.children.Login),
     });
 
     const FirstName = new ProfileEditInfoField({
       label: "Имя",
       name: "first_name",
-      onBlur: (e) => validate(e.target.value, this.children.FirstName),
+      onBlur: (e: Event) => validate((e.target as HTMLInputElement).value, this.children.FirstName),
     });
 
     const SecondName = new ProfileEditInfoField({
       label: "Фамилия",
       name: "second_name",
-      onBlur: (e) => validate(e.target.value, this.children.SecondName),
+      onBlur: (e: Event) =>
+        validate((e.target as HTMLInputElement).value, this.children.SecondName),
     });
 
     const DisplayName = new ProfileEditInfoField({
       label: "Имя в чате",
       name: "display_name",
-      onBlur: (e) => validate(e.target.value, this.children.DisplayName),
+      onBlur: (e: Event) =>
+        validate((e.target as HTMLInputElement).value, this.children.DisplayName),
     });
 
     const Phone = new ProfileEditInfoField({
       label: "Телефон",
       name: "phone",
-      onBlur: (e) => validate(e.target.value, this.children.Phone),
+      onBlur: (e: Event) => validate((e.target as HTMLInputElement).value, this.children.Phone),
     });
 
     const Save = new RButton({
       text: "Сохранить",
-      onClick: (e) => {
+      onClick: (e: Event) => {
         e.preventDefault();
 
         const isValid = validateForm(this.children);
 
         if (isValid) {
-          this.props.onSaveEdit();
+          if (typeof this.props.onSaveEdit === "function") {
+            this.props.onSaveEdit();
+          }
           this.hide();
           console.log({
             email: this.children.Email.props.value,

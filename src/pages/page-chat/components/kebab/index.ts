@@ -2,11 +2,12 @@ import Block from "src/core/block";
 
 import css from "./style.module.css";
 
+type TProps = {
+  onShow: () => void;
+};
+
 export default class Kebab extends Block {
-  init(): void {
-    // console.log(this);
-  }
-  constructor(props) {
+  constructor(props: TProps) {
     super({
       ...props,
       events: {

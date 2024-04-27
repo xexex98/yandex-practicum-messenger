@@ -7,7 +7,8 @@ import css from "./style.module.css";
 type TProps = {
   label: string;
   name: string;
-  onBlur: () => void;
+  type?: string;
+  onBlur: (e: Event) => void | boolean;
   error?: boolean;
   errorText?: string;
 };

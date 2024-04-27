@@ -2,8 +2,11 @@ import Block from "src/core/block";
 
 import css from "./style.module.css";
 
+type TProps = {
+  name: string;
+};
 export default class HeaderInfo extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super(props);
   }
 

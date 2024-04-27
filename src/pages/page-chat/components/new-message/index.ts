@@ -4,9 +4,10 @@ import MessageAttachMenu from "src/pages/page-chat/components/message-attach-men
 import css from "./style.module.css";
 
 export default class NewMessage extends Block {
-  constructor(props) {
-    super({ ...props, Attach: new MessageAttachMenu() });
+  constructor() {
+    super({ Attach: new MessageAttachMenu() });
   }
+
   render(): string {
     return `
       <div class="${css.container}">
