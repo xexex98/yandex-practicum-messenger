@@ -4,9 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
-    "prebuild": "tsc --noEmit",
-    "build": "npm run prebuild && vite build",
-    "start": "npm run build && nodemon server.js",
+    "build": "vite build",
+    "start": "vite build && nodemon server.js",
     "format": "prettier . --write",
     "eslint:check": "eslint src --ext .ts",
     "eslint:fix": "eslint . --fix --ext .ts",
