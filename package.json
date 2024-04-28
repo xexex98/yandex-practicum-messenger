@@ -6,6 +6,9 @@
     "npm": ">=10.0.0",
     "node": ">=18.0.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
