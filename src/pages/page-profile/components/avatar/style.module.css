@@ -1,0 +1,27 @@
+.avatar {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #efefef;
+  width: 130px;
+  height: 130px;
+}
+
+.avatar:hover {
+  cursor: pointer;
+  background: rgb(0 0 0 / 50%);
+}
+
+.avatar:hover::after {
+  position: absolute;
+  content: "Поменять аватар";
+  color: white;
+  font-size: 13px;
+}
+
+.input {
+  display: none;
+}

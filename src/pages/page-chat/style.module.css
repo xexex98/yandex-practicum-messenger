@@ -1,0 +1,35 @@
+.messenger {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dialogs {
+  background: #fbfbfb;
+  overflow-y: scroll;
+}
+
+.chat {
+  display: grid;
+  grid-template-rows: 54px 1fr 54px;
+  background: #fff;
+  padding: 0 21px;
+  overflow: hidden;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-bottom: 30px;
+  overflow: scroll;
+}
+
+.date {
+  margin-bottom: 20px;
+  color: rgb(var(--secondary-color));
+  font-size: 12px;
+  text-align: center;
+}

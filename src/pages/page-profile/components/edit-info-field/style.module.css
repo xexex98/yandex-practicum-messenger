@@ -1,0 +1,18 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(var(--primary-border));
+  padding-bottom: 10px;
+  font-size: 13px;
+}
+
+.label {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.field p:last-child {
+  color: rgb(var(--secondary-color));
+}

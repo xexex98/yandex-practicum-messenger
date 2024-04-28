@@ -1,0 +1,33 @@
+.button {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #fbfbfb;
+  width: 64px;
+  height: 100vh;
+}
+
+.circle {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgb(var(--primary-color));
+  width: 28px;
+  height: 28px;
+}
+
+.arrow {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+}
+
+.circle:hover {
+  background-color: rgb(var(--primary-color) / 80%);
+}

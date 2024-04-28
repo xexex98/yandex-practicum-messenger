@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-weight: 500;
+}
+
+.code {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.description {
+  margin-bottom: 69px;
+  font-size: 20px;
+}
+
+.back {
+  color: rgb(var(--primary-color));
+  font-size: 11px;
+  text-decoration: none;
+}

@@ -1,0 +1,18 @@
+import Block from "src/core/block";
+
+import css from "./style.module.css";
+
+export default class LoadFile extends Block {
+  constructor() {
+    super({
+      events: {
+        click: () => console.log("load"),
+      },
+    });
+  }
+  render(): string {
+    return `
+      <input type="file" id="file" class="${css.input}" accept="image/png, image/jpeg"  />
+    `;
+  }
+}

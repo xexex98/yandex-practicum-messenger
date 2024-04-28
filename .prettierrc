@@ -1,5 +1,4 @@
 {
-  "plugins": ["prettier-plugin-css-order"],
   "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
@@ -15,10 +14,12 @@
   "useTabs": false,
   "overrides": [
     {
-      "files": "**/*.hbs",
-      "options": {
-        "parser": "angular"
-      }
+      "files": ["**/*.hbs"],
+      "options": { "parser": "angular", "trailingComma": "none" }
+    },
+    {
+      "files": ".eslintrc",
+      "options": { "trailingComma": "none" }
     }
   ]
 }

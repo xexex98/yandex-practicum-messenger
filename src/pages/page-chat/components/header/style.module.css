@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(var(--primary-border));
+  font-weight: 600;
+  font-size: 13px;
+}

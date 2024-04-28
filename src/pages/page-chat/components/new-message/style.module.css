@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid rgb(var(--primary-border));
+}
+
+.message {
+  flex-grow: 1;
+  border: 0;
+  border-radius: 30px;
+  background-color: #efefef;
+  padding: 10px 20px;
+  height: 32px;
+}
+
+.message::placeholder {
+  color: rgb(var(--secondary-color));
+  font-size: 12px;
+}
+
+.circle {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgb(var(--primary-color));
+  width: 28px;
+  height: 28px;
+}
+
+.arrow {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+}
+
+.circle:hover {
+  background-color: rgb(var(--primary-color) / 80%);
+}

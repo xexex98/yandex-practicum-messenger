@@ -1,0 +1,21 @@
+.btn {
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(var(--primary-color));
+  padding: 12px 20px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+}
+
+.btn:hover {
+  background-color: rgb(var(--primary-color) / 80%);
+}
+
+.btn-default {
+  width: 100%;
+  color: white;
+}

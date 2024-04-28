@@ -1,0 +1,13 @@
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(var(--primary-border));
+  padding-bottom: 10px;
+  font-size: 13px;
+}
+
+.field p:last-child {
+  color: rgb(var(--secondary-color));
+}
