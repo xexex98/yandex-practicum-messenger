@@ -10,6 +10,16 @@ const __dirname = path.dirname(__filename);
 import handlebars from "./src/init/vite-plugin-handlebars-precompile";
 
 export default defineConfig({
+  base: "./",
+  build: {
+    outDir: "dist",
+  },
+  server: {
+    port: 3000,
+  },
+  preview: {
+    port: 3000,
+  },
   resolve: {
     alias: {
       src: path.resolve(__dirname, "./src"),

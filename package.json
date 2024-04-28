@@ -7,8 +7,8 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "dev": "vite --port 3000",
-    "build": "npm install && tsc && vite build",
+    "dev": "vite",
+    "build": "vite build",
     "start": "npm run build && nodemon server.js",
     "format": "prettier . --write",
     "eslint:check": "eslint src --ext .ts",
