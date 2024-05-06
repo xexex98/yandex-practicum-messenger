@@ -1,4 +1,5 @@
 type RequestMethod = (typeof Request)[keyof typeof Request];
+type TData = Record<string, unknown>;
 
 const Request = {
   GET: "GET",
@@ -6,6 +7,8 @@ const Request = {
   POST: "POST",
   DELETE: "DELETE",
 } as const;
+
+const BASE_URL = "ya-praktikum.tech/api/v2/";
 
 function queryStringify(data: Record<string, unknown> = {}) {
   if (typeof data !== "object") {
@@ -19,20 +22,26 @@ function queryStringify(data: Record<string, unknown> = {}) {
   }, "?");
 }
 
-export class HTTPTransport {
-  get = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) => {
+export default class HTTP {
+  private _base;
+
+  constructor(base: string = "") {
+    this._base = BASE_URL + base;
+  }
+
+  get = (url: string, options: { data?: TData; timeout?: number } = {}) => {
     const urlWithQueryParams = url + queryStringify(options?.data);
 
     return this.request(urlWithQueryParams, { ...options, method: Request.GET }, options.timeout);
   };
 
-  post = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) =>
+  post = (url: string, options: { data?: TData; timeout?: number } = {}) =>
     this.request(url, { ...options, method: Request.POST }, options.timeout);
 
-  put = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) =>
+  put = (url: string, options: { data?: TData; timeout?: number } = {}) =>
     this.request(url, { ...options, method: Request.PUT }, options.timeout);
 
-  delete = (url: string, options: { data?: Record<string, unknown>; timeout?: number } = {}) =>
+  delete = (url: string, options: { data?: TData; timeout?: number } = {}) =>
     this.request(url, { ...options, method: Request.DELETE }, options.timeout);
 
   request = (
@@ -49,7 +58,7 @@ export class HTTPTransport {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      xhr.open(method, url);
+      xhr.open(method, this._base + url);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);

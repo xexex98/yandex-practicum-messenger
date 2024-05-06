@@ -1,4 +1,6 @@
 import Handlebars from "handlebars";
+import APIRegister from "src/api/registration";
+import HTTP from "src/core/XMLHttpRequest";
 
 import { registerPartial } from "./init/register-partials";
 import pages, { TPages } from "./routes";
@@ -7,6 +9,9 @@ import "./style.css";
 
 registerPartial();
 
+const register = new APIRegister();
+
+console.log(register);
 function navigate(page: TPages) {
   const [source, context] = pages[page];
   const container = document.getElementById("app");
