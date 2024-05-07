@@ -15,6 +15,7 @@
   },
   "plugins": ["@typescript-eslint", "import", "simple-import-sort"],
   "rules": {
+    "curly": "error",
     "newline-after-var": "error",
     "simple-import-sort/imports": [
       "error",

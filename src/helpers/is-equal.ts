@@ -1,8 +1,8 @@
-type TObject<T = unknown> = {
+type TIndexed<T = unknown> = {
   [key in string]: T;
 };
 
-function isEqual(obj1: TObject, obj2: TObject): boolean {
+function isEqual<T>(obj1: TIndexed<T>, obj2: TIndexed<T>): boolean {
   if (obj1 === obj2) {
     return true;
   }
@@ -47,7 +47,7 @@ function isEqual(obj1: TObject, obj2: TObject): boolean {
       return false;
     }
 
-    if (!isEqual(obj1[key] as TObject, obj2[key] as TObject)) {
+    if (!isEqual(obj1[key] as TIndexed<T>, obj2[key] as TIndexed<T>)) {
       return false;
     }
   }
