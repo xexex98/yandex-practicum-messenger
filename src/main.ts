@@ -1,22 +1,24 @@
-import Handlebars from "handlebars";
-import APIRegister from "src/api/registration";
 import Router from "src/core/router";
-import { PageLogin } from "src/pages";
+import { PageLogin, PageNotFound, PageProfile, PageRegistration, PageServerError } from "src/pages";
+import PageMessenger from "src/pages/page-chat";
 
 import { registerPartial } from "./init/register-partials";
-import pages, { TPages } from "./routes";
 
 import "./style.css";
 
 registerPartial();
+export const router = new Router();
 
-// document.addEventListener("DOMContentLoaded", () => {
-const router = new Router("#app");
-
-router.use("/", PageLogin).start();
-
-router.go("/");
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  router
+    .use("/", PageLogin)
+    .use("/sign-up", PageRegistration)
+    .use("/settings", PageProfile)
+    .use("/messenger", PageMessenger)
+    .use("/404", PageNotFound)
+    .use("/500", PageServerError);
+  router.start();
+});
 
 // function navigate(page: TPages) {
 //   const [source, context] = pages[page];

@@ -1,4 +1,5 @@
 import Handlebars from "handlebars";
+import isEqual from "src/helpers/is-equal";
 import { v4 as uuidv4 } from "uuid";
 
 import EventBus from "./event-bus";
@@ -100,7 +101,7 @@ class Block {
   }
 
   private _componentDidUpdate(...args: unknown[]) {
-    const [oldProps, newProps] = args as [BlockProps, BlockProps];
+    const [oldProps, newProps]: BlockProps[] = args as [BlockProps, BlockProps];
     const response = this.componentDidUpdate(oldProps, newProps);
 
     if (response) {
@@ -108,9 +109,8 @@ class Block {
     }
   }
 
-  //TODO! реализовать проверку на изменение пропсов тут объект от проверки нет смысла
   componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-    if (oldProps === newProps) {
+    if (isEqual(oldProps, newProps)) {
       return false;
     }
     return true;

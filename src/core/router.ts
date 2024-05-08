@@ -8,7 +8,7 @@ export default class Router {
   private _history!: History;
   private _currentRoute: Route | null = null;
 
-  constructor(rootQuery: string) {
+  constructor(rootQuery: string = "#app") {
     if (Router.__instance) {
       return Router.__instance;
     }
@@ -36,10 +36,16 @@ export default class Router {
         this._onRoute(pathname);
       }
     };
+
+    this._onRoute(window.location.pathname);
+  }
+
+  private _getRoute(pathname: string) {
+    return this._routes.find((route) => route.match(pathname));
   }
 
   private _onRoute(pathname: string): void {
-    const route = this.getRoute(pathname);
+    const route = this._getRoute(pathname);
 
     if (!route) {
       return;
@@ -65,9 +71,5 @@ export default class Router {
 
   forward(): void {
     this._history.forward();
-  }
-
-  getRoute(pathname: string) {
-    return this._routes.find((route) => route.match(pathname));
   }
 }
