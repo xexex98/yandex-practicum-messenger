@@ -3,7 +3,7 @@ export default class BaseAPI {
     throw new Error("Not implemented");
   }
 
-  request() {
+  read() {
     throw new Error("Not implemented");
   }
 

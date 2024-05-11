@@ -1,14 +1,14 @@
-import RegistrationAPI from "src/api/registration";
 import Block from "src/core/block";
 import router from "src/core/router";
-import { validate, validateForm } from "src/helpers";
+import { validate } from "src/helpers";
+import controller from "src/pages/page-registration/controller";
 import ButtonLink from "src/partials/button-link";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
-import RLink from "src/partials/r-link";
 
 export default class FormRegistration extends Block {
   init() {
+    // auth.logout();
     const onChangeEmailBind = this.onChangeEmail.bind(this);
     const onChangeLoginBind = this.onChangeLogin.bind(this);
     const onChangeNameBind = this.onChangeName.bind(this);
@@ -74,9 +74,11 @@ export default class FormRegistration extends Block {
     });
 
     const Signin = new ButtonLink({
-      text: "click",
+      text: "Уже зарегистрированы?",
+      type: "submit",
+      class: "registration",
       events: {
-        click: (e) => {
+        click: (e: Event) => {
           e.preventDefault();
           router.go("/");
         },
@@ -122,10 +124,7 @@ export default class FormRegistration extends Block {
   onRegister(e: Event) {
     e.preventDefault();
 
-    const isValid = validateForm(this.children);
-
     // if (!isValid) {
-    const registration = new RegistrationAPI();
 
     // const props = {
     //   email: this.children.Email.props.value,
@@ -135,15 +134,14 @@ export default class FormRegistration extends Block {
     // };
     const props = {
       first_name: "Ivan",
-      second_name: "Ivanov",
+      second_name: "Ivan",
       login: "ivan",
       email: "ivan@mail.ru",
       password: "qweQWE123",
       phone: "79555555555",
     };
 
-    registration.create(props);
-    console.log(props);
+    controller.signup(props);
     // }
   }
 

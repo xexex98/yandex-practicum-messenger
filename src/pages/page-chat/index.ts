@@ -7,10 +7,14 @@ import {
   Search,
   SearchResult,
 } from "src/pages/page-chat/components";
+import controller from "src/pages/page-chat/controller";
 
 import css from "./style.module.css";
 
 export default class PageMessenger extends Block {
+  public init(): void {
+    controller.user();
+  }
   constructor() {
     super({
       Search: new Search({

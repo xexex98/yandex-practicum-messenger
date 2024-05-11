@@ -1,4 +1,3 @@
-import LoginAPI from "src/api/login";
 import Block from "src/core/block";
 import router from "src/core/router";
 import { validate, validateForm } from "src/helpers";
@@ -6,7 +5,6 @@ import login from "src/pages/page-login/controller";
 import ButtonLink from "src/partials/button-link";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
-import RLink from "src/partials/r-link";
 
 export default class FormLogin extends Block {
   init() {
@@ -37,8 +35,9 @@ export default class FormLogin extends Block {
     const Signup = new ButtonLink({
       text: "Нет аккаунта?",
       type: "submit",
+      class: "login",
       events: {
-        click: (e) => {
+        click: (e: Event) => {
           e.preventDefault();
           router.go("/sign-up");
         },

@@ -1,4 +1,4 @@
-import LoginAPI from "src/api/login";
+import LoginAPI from "src/api/auth";
 
 type TLoginFormModal = {
   login: "string";
@@ -11,7 +11,7 @@ export default class UserLoginController {
   public async login(data: TLoginFormModal) {
     try {
       console.log("data", data);
-      loginAPI.signin();
+      // loginAPI.signin();
     } catch (error) {
       console.error("error");
     }

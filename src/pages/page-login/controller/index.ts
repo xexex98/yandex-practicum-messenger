@@ -1,4 +1,4 @@
-import LoginAPI from "src/api/login";
+import auth from "src/api/auth";
 import router from "src/core/router";
 
 type LoginForm = {
@@ -6,15 +6,13 @@ type LoginForm = {
   password: string;
 };
 
-const api = new LoginAPI();
-
 class LoginController {
   public async signin(data: LoginForm) {
     try {
-      await api.signin(data);
+      await auth.signin(data);
       router.go("/messenger");
     } catch (error) {
-      console.error("Error in: class LoginController");
+      console.error("Error in: class LoginController -> signin");
     }
   }
 }
