@@ -1,5 +1,8 @@
+import RegistrationAPI from "src/api/registration";
 import Block from "src/core/block";
+import router from "src/core/router";
 import { validate, validateForm } from "src/helpers";
+import ButtonLink from "src/partials/button-link";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -70,10 +73,14 @@ export default class FormRegistration extends Block {
       onClick: onRegisterBind,
     });
 
-    const Signin = new RLink({
-      href: "#",
-      class: "signup",
-      label: "Войти",
+    const Signin = new ButtonLink({
+      text: "click",
+      events: {
+        click: (e) => {
+          e.preventDefault();
+          router.go("/");
+        },
+      },
     });
 
     this.children = {
@@ -117,16 +124,27 @@ export default class FormRegistration extends Block {
 
     const isValid = validateForm(this.children);
 
-    if (!isValid) {
-      const props = {
-        email: this.children.Email.props.value,
-        login: this.children.Login.props.value,
-        password: this.children.Password.props.value,
-        repeatNewPassword: this.children.PasswordRetry.props.value,
-      };
+    // if (!isValid) {
+    const registration = new RegistrationAPI();
 
-      console.log(props);
-    }
+    // const props = {
+    //   email: this.children.Email.props.value,
+    //   login: this.children.Login.props.value,
+    //   password: this.children.Password.props.value,
+    //   repeatNewPassword: this.children.PasswordRetry.props.value,
+    // };
+    const props = {
+      first_name: "Ivan",
+      second_name: "Ivanov",
+      login: "ivan",
+      email: "ivan@mail.ru",
+      password: "qweQWE123",
+      phone: "79555555555",
+    };
+
+    registration.create(props);
+    console.log(props);
+    // }
   }
 
   render() {

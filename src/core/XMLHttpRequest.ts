@@ -8,7 +8,7 @@ const Request = {
   DELETE: "DELETE",
 } as const;
 
-const BASE_URL = "ya-praktikum.tech/api/v2/";
+const BASE_URL = "https://ya-praktikum.tech/api/v2/";
 
 function queryStringify(data: Record<string, unknown> = {}) {
   if (typeof data !== "object") {
@@ -63,20 +63,34 @@ export default class HTTP {
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
-
       xhr.onload = () => resolve(xhr);
 
-      const handleError = (event: ProgressEvent<EventTarget>) =>
-        reject(new Error(`Error: ${event.type}`));
+      const handleError = (event: ProgressEvent<EventTarget>) => {
+        return reject(new Error(`Error: ${event.type}`));
+      };
+
+      const handleOnReadyStateChange = () => {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+          if (xhr.status >= 400 && xhr.status < 500) {
+            return reject();
+          } else if (xhr.status >= 500 && xhr.status < 600) {
+            return reject();
+          }
+        }
+      };
 
       xhr.onabort = handleError;
       xhr.onerror = handleError;
-      xhr.timeout = timeout;
       xhr.ontimeout = handleError;
+      xhr.onreadystatechange = handleOnReadyStateChange;
+
+      xhr.timeout = timeout;
+      xhr.withCredentials = true;
 
       if (method === Request.GET || !data) {
         xhr.send();
       } else {
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));
       }
     });

@@ -29,7 +29,7 @@ class Block {
 
   protected eventBus: () => EventBus;
 
-  public props: BlockProps;
+  protected props: BlockProps;
 
   constructor(propsWithChildren: BlockProps = {}) {
     const eventBus = new EventBus();
@@ -46,7 +46,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _addEvents() {
+  private _addEvents(): void {
     const { events } = this.props;
 
     if (events) {
@@ -56,7 +56,7 @@ class Block {
     }
   }
 
-  private _removeEvents() {
+  private _removeEvents(): void {
     const { events } = this.props;
 
     if (!events) {
@@ -69,34 +69,34 @@ class Block {
       }
     });
   }
-  _registerEvents(eventBus: EventBus) {
+
+  private _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  init() {}
+  public init(): void {}
 
-  _init() {
+  private _init(): void {
     this.init();
-
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount() {}
+  public componentDidMount(): void {}
 
-  private _componentDidMount() {
+  private _componentDidMount(): void {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child: unknown) => {
       if (child instanceof Block) {
-        child.dispatchComponentDidMount();
+        child._dispatchComponentDidMount();
       }
     });
   }
 
-  dispatchComponentDidMount(): void {
+  private _dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
@@ -109,14 +109,14 @@ class Block {
     }
   }
 
-  componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
     return true;
   }
 
-  _getChildrenAndProps(propsAndChildren: BlockProps): {
+  private _getChildrenAndProps(propsAndChildren: BlockProps): {
     children: BlockChildrenMap;
     props: BlockProps;
   } {
@@ -134,7 +134,7 @@ class Block {
     return { children, props };
   }
 
-  setProps = (nextProps: BlockProps) => {
+  public setProps = (nextProps: BlockProps): void => {
     if (!nextProps) {
       return;
     }
@@ -142,7 +142,7 @@ class Block {
     Object.assign(this.props, nextProps);
   };
 
-  get element(): HTMLElement | null {
+  public get element(): HTMLElement | null {
     return this._element;
   }
 
@@ -176,26 +176,22 @@ class Block {
     this._addEvents();
   }
 
-  render(): void {}
+  public render(): string {
+    return "";
+  }
 
-  getContent(): HTMLElement | null {
+  public getContent(): HTMLElement | null {
     return this.element;
   }
 
-  _updateComponent(oldTarget: BlockProps, target: BlockProps) {
+  private _updateComponent(oldTarget: BlockProps, target: BlockProps): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
   }
 
-  _makePropsProxy(props: BlockProps): BlockProps {
+  private _makePropsProxy(props: BlockProps): BlockProps {
     const updateComponentBind = this._updateComponent.bind(this);
 
     return new Proxy(props, {
-      get(target, prop: string) {
-        const value = target[prop];
-
-        return typeof value === "function" ? value.bind(target) : value;
-      },
-
       set(target, prop: string, value) {
         const oldTarget = { ...target };
 
@@ -215,7 +211,7 @@ class Block {
     return document.createElement(tagName) as HTMLTemplateElement;
   }
 
-  show(display: string = "block") {
+  public show(display: string = "block"): void {
     const content = this.getContent();
 
     if (content) {
@@ -223,7 +219,7 @@ class Block {
     }
   }
 
-  hide() {
+  public hide(): void {
     const content = this.getContent();
 
     if (content) {

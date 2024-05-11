@@ -1,4 +1,5 @@
 import Block from "src/core/block";
+import isEqual from "src/helpers/is-equal";
 import ErrorLine from "src/partials/r-input/error-line";
 import RInputElement from "src/partials/r-input/r-input";
 
@@ -17,22 +18,17 @@ export default class RInput extends Block {
   constructor(props: TProps) {
     super({
       ...props,
-      Input: new RInputElement({
-        ...props,
-        onBlur: props.onBlur,
-      }),
+      Input: new RInputElement(props),
       ErrorLine: new ErrorLine({
         errorText: props.errorText || "",
       }),
     });
   }
 
-  //TODO! тут объекты смысла нет, поправить проверку на рекурсивную
   componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    if (oldProps === newProps) {
+    if (isEqual(oldProps, newProps)) {
       return false;
     }
-
     this.children.ErrorLine.setProps(newProps);
 
     return true;

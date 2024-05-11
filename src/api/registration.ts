@@ -13,8 +13,13 @@ type TRegistration = {
 const registerAPIInstance = new HTTP("auth");
 
 export default class RegistrationAPI extends BaseAPI {
-  create() {
-    return registerAPIInstance.post("/signup");
+  create(data) {
+    return registerAPIInstance.post("/signup", {
+      data,
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
   }
   request() {
     return registerAPIInstance.post("/user");

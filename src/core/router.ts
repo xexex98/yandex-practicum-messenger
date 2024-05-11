@@ -1,46 +1,31 @@
 import Block from "src/core/block";
 import Route from "src/core/route";
 
-export default class Router {
-  private static __instance: Router;
-  private _routes!: Route[];
-  private _rootQuery!: string;
-  private _history!: History;
+class Router {
+  private _routes: Route[] = [];
+  private _rootQuery: string;
+  private _history: History = window.history;
   private _currentRoute: Route | null = null;
 
   constructor(rootQuery: string = "#app") {
-    if (Router.__instance) {
-      return Router.__instance;
-    }
-
-    this._routes = [];
-    this._history = window.history;
-    this._currentRoute = null;
     this._rootQuery = rootQuery;
-
-    Router.__instance = this;
   }
 
-  use(pathname: string, block: new () => Block): this {
+  public use(pathname: string, block: new () => Block): Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
     this._routes.push(route);
     return this;
   }
 
-  start(): void {
-    window.onpopstate = (event: PopStateEvent) => {
-      const pathname = (event.currentTarget as Window)?.location?.pathname;
-
-      if (pathname) {
-        this._onRoute(pathname);
-      }
+  public start(): void {
+    window.onpopstate = () => {
+      this._onRoute(window.location.pathname);
     };
-
     this._onRoute(window.location.pathname);
   }
 
-  private _getRoute(pathname: string) {
+  private _getRoute(pathname: string): Route | undefined {
     return this._routes.find((route) => route.match(pathname));
   }
 
@@ -48,6 +33,7 @@ export default class Router {
     const route = this._getRoute(pathname);
 
     if (!route) {
+      this.go("/404", true);
       return;
     }
 
@@ -56,20 +42,23 @@ export default class Router {
     }
 
     this._currentRoute = route;
-    // route.render(route, pathname);
     route.render();
   }
 
-  go(pathname: string): void {
-    this._history.pushState({}, "", pathname);
+  public go(pathname: string, shh: boolean = false): void {
+    if (!shh) {
+      this._history.pushState({}, "", pathname);
+    }
     this._onRoute(pathname);
   }
 
-  back(): void {
-    this._history.back();
+  public back(to: number = -1): void {
+    this._history.go(to);
   }
 
-  forward(): void {
+  public forward(): void {
     this._history.forward();
   }
 }
+
+export default new Router();

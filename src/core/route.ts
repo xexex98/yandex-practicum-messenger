@@ -1,7 +1,9 @@
 import Block from "src/core/block";
 import trim from "src/helpers/trim";
 
-type TProps = Record<string, unknown>;
+type TProps = {
+  rootQuery: string;
+};
 
 export default class Route<T extends Block = Block> {
   private _pathname: string;
@@ -10,34 +12,27 @@ export default class Route<T extends Block = Block> {
   private _props: TProps;
 
   constructor(pathname: string, view: new () => T, props: TProps) {
-    this._pathname = pathname;
+    this._pathname = trim(pathname);
     this._blockClass = view;
     this._block = null;
     this._props = props;
   }
 
-  navigate(pathname: string): void {
-    if (this.match(pathname)) {
-      this._pathname = pathname;
-      this.render();
-    }
-  }
-
-  leave(): void {
+  public leave(): void {
     if (this._block) {
-      this._block.hide();
+      this._block = null;
     }
   }
 
-  match(pathname: string): boolean {
-    return trim(pathname) === trim(this._pathname);
+  public match(pathname: string): boolean {
+    return trim(pathname) === this._pathname;
   }
 
-  render(): void {
+  public render(): void {
     if (!this._block) {
       this._block = new this._blockClass();
-
       this._render(this._props.rootQuery as string, this._block);
+
       return;
     }
 
@@ -50,9 +45,7 @@ export default class Route<T extends Block = Block> {
     if (!root) {
       throw Error(`render: Не удалось найти контейнер ${query}`);
     }
-
     root.innerHTML = "";
-
-    root.appendChild(block.getContent() as Node);
+    root.appendChild(block.getContent() as HTMLElement);
   }
 }

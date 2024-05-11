@@ -23,11 +23,15 @@ type TRegexp = keyof typeof regexp;
 export function validate(value: string, el: Block) {
   const name = el.props.name as TRegexp;
 
+  if (el.props.error) {
+    return;
+  }
   if (!regexp[name].test(value) || !String(value)) {
     el.setProps({
-      errorText: `Некорректно заполнено: ${el.props.label}`,
       error: true,
+      errorText: `Некорректно заполнено: ${el.props.label}`,
     });
+
     return false;
   }
 
@@ -42,7 +46,7 @@ export function validateForm(elements: Record<string, Block>) {
   );
   const isError = fields.every((el) => elements[el].props.value);
   //TODO! Поправить валидацию на Enter, из за 2х validate на submit и blur как будто элемент удаляется из дерева при onblur и вылазит ошибка, но приложение не падает
-  // const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
+  // const isError = fields.forEach((el) => validate(elements[el].props.value, elements[el]));
 
   return isError;
 }

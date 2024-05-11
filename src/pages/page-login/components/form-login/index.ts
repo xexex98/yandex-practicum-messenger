@@ -1,6 +1,9 @@
+import LoginAPI from "src/api/login";
 import Block from "src/core/block";
+import router from "src/core/router";
 import { validate, validateForm } from "src/helpers";
-import { router } from "src/main";
+import login from "src/pages/page-login/controller";
+import ButtonLink from "src/partials/button-link";
 import RButton from "src/partials/r-button";
 import RInput from "src/partials/r-input";
 import RLink from "src/partials/r-link";
@@ -31,14 +34,18 @@ export default class FormLogin extends Block {
       onClick: onLoginBind,
     });
 
-    const Signup = new RLink({
-      href: "#",
-      class: "signup",
-      label: "Нет аккаунта?",
+    const Signup = new ButtonLink({
+      text: "Нет аккаунта?",
+      type: "submit",
+      events: {
+        click: (e) => {
+          e.preventDefault();
+          router.go("/sign-up");
+        },
+      },
     });
 
     this.children = {
-      ...this.children,
       Login,
       Password,
       LoginButton,
@@ -55,18 +62,23 @@ export default class FormLogin extends Block {
   }
 
   onLogin(e: Event) {
-    router.go("/sign-up");
     e.preventDefault();
     const isValid = validateForm(this.children);
 
-    if (isValid) {
-      const props = {
-        login: this.children.Login.props.value,
-        password: this.children.Password.props.value,
-      };
+    // if (isValid) {
+    // const props = {
+    //   login: this.children.Login.props.value,
+    //   password: this.children.Password.props.value,
+    // };
+    const props = {
+      login: "ivan",
+      password: "qweQWE123",
+    };
 
-      console.log(props);
-    }
+    login.signin(props);
+
+    // console.log(props);
+    // }
   }
 
   render() {
@@ -80,6 +92,7 @@ export default class FormLogin extends Block {
           {{{ LoginButton }}}
           {{{ Signup }}}
         </div>
-      </div>`;
+      </div>
+    `;
   }
 }
