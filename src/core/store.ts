@@ -1,4 +1,5 @@
 import EventBus from "src/core/event-bus";
+import set from "src/helpers/set";
 
 export enum StoreEvents {
   Updated = "updated",
@@ -11,8 +12,10 @@ class Store extends EventBus {
     return this._state;
   }
 
-  public set(path: string, value: unknown) {
-    this.set(this._state, path, value);
+  public set(path: string, value: unknown): void {
+    set(this._state, path, value);
+
+    this.emit(StoreEvents.Updated);
   }
 }
 
