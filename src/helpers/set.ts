@@ -1,8 +1,4 @@
-import merge from "src/helpers/merge";
-
-type Indexed<T = unknown> = {
-  [key in string]: T;
-};
+type Indexed = Record<string, unknown>;
 
 /**
  * set({ foo: 5 }, 'bar.baz', 10);
@@ -11,23 +7,30 @@ type Indexed<T = unknown> = {
  * 3
  */
 
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
-  if (typeof object !== "object" || object === null) {
-    return object;
-  }
-
+function set<T extends Indexed>(obj: T, path: string, value: unknown): T {
   if (typeof path !== "string") {
     throw new Error("path must be string");
   }
 
-  const result = path.split(".").reduceRight(
-    (acc, key) => ({
-      [key]: acc,
-    }),
-    value
-  );
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
 
-  return merge(object as Indexed, result as Indexed);
+  const keys = path.split(".");
+  let current: Indexed = obj;
+
+  for (let i = 0; i < keys.length - 1; i++) {
+    const key = keys[i];
+
+    if (!current[key] || typeof current[key] !== "object") {
+      current[key] = {};
+    }
+    current = current[key] as Indexed;
+  }
+
+  current[keys[keys.length - 1]] = value;
+
+  return obj;
 }
 
 export default set;
