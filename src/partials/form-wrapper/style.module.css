@@ -1,8 +1,12 @@
 .form {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: var(--box-shadow);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  width: 340px;
+  text-align: center;
 }
 
 .title {

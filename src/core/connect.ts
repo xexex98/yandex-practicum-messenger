@@ -7,14 +7,14 @@ type Indexed = Record<string, unknown>;
 export default function connect(mapStateToProps: (state: Indexed) => Indexed) {
   return function (Component: typeof Block) {
     return class extends Component {
-      constructor(props: Indexed) {
+      constructor(props?: Indexed) {
         let state = mapStateToProps(store.getState());
 
         super({ ...props, ...state });
-
         store.on(StoreEvents.Updated, () => {
           const newState = mapStateToProps(store.getState());
 
+          console.log(state, newState);
           if (!isEqual(state, newState)) {
             this.setProps({ ...newState });
           }

@@ -12,9 +12,10 @@ import controller from "src/pages/page-chat/controller";
 import css from "./style.module.css";
 
 export default class PageMessenger extends Block {
-  public init(): void {
+  public init() {
     controller.user();
   }
+
   constructor() {
     super({
       Search: new Search({

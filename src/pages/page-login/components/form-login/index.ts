@@ -1,6 +1,6 @@
 import Block from "src/core/block";
 import router from "src/core/router";
-import { validate, validateForm } from "src/helpers";
+import { validate } from "src/helpers";
 import login from "src/pages/page-login/controller";
 import ButtonLink from "src/partials/button-link";
 import RButton from "src/partials/r-button";
@@ -62,7 +62,7 @@ export default class FormLogin extends Block {
 
   onLogin(e: Event) {
     e.preventDefault();
-    const isValid = validateForm(this.children);
+    // const isValid = validateForm(this.children);
 
     // if (isValid) {
     // const props = {
