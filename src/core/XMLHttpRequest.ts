@@ -72,9 +72,9 @@ export default class HTTP {
       const handleOnReadyStateChange = () => {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           if (xhr.status >= 400 && xhr.status < 500) {
-            return reject();
+            return reject(JSON.parse(xhr.responseText).reason);
           } else if (xhr.status >= 500 && xhr.status < 600) {
-            return reject();
+            return reject(JSON.parse(xhr.responseText).reason);
           }
         }
       };

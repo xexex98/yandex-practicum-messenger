@@ -6,20 +6,23 @@ const registerAPIInstance = new HTTP("auth");
 type TData = Record<string, unknown>;
 
 class AuthApi extends BaseAPI {
-  async signup(data: TData) {
+  public async signup(data: TData) {
     return registerAPIInstance.post("/signup", {
       data,
     });
   }
-  async signin(data: TData) {
+
+  public async signin(data: TData) {
     return registerAPIInstance.post("/signin", {
       data,
     });
   }
-  async user() {
+
+  public async user() {
     return registerAPIInstance.get("/user");
   }
-  async logout() {
+
+  public async logout() {
     return registerAPIInstance.post("/logout");
   }
 }

@@ -37,6 +37,7 @@ class Block {
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.props = this._makePropsProxy({ ...props });
+
     this.children = children;
 
     this.eventBus = () => eventBus;
