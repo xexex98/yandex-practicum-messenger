@@ -11,10 +11,10 @@ export default function connect(mapStateToProps: (state: Indexed) => Indexed) {
         let state = mapStateToProps(store.getState());
 
         super({ ...props, ...state });
+
         store.on(StoreEvents.Updated, () => {
           const newState = mapStateToProps(store.getState());
 
-          console.log(state, newState);
           if (!isEqual(state, newState)) {
             this.setProps({ ...newState });
           }

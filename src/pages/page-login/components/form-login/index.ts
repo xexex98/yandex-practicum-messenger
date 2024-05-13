@@ -1,10 +1,8 @@
 import Block from "src/core/block";
 import router from "src/core/router";
 import { validate } from "src/helpers";
-import login from "src/pages/page-login/controller";
-import ButtonLink from "src/partials/button-link";
-import RButton from "src/partials/r-button";
-import RInput from "src/partials/r-input";
+import controller from "src/pages/page-login/controller";
+import { ButtonLink, RButton, RInput } from "src/partials";
 
 export default class FormLogin extends Block {
   init() {
@@ -74,7 +72,7 @@ export default class FormLogin extends Block {
       password: "qweQWE123",
     };
 
-    login.signin(props);
+    controller.signin(props);
 
     // console.log(props);
     // }

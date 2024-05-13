@@ -15,3 +15,9 @@
   font-size: 20px;
   line-height: 20px;
 }
+
+.error {
+  margin-top: 10px;
+  color: red;
+  font-size: 12px;
+}

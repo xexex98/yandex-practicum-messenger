@@ -14,10 +14,9 @@ export default class ErrorPagesLayout extends Block {
   init(): void {
     const goBack = new ButtonLink({
       text: "Вернуться обратно",
+      type: "button",
       events: {
-        click: () => {
-          router.back();
-        },
+        click: () => router.back(),
       },
     });
 

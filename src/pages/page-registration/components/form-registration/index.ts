@@ -2,13 +2,10 @@ import Block from "src/core/block";
 import router from "src/core/router";
 import { validate } from "src/helpers";
 import controller from "src/pages/page-registration/controller";
-import ButtonLink from "src/partials/button-link";
-import RButton from "src/partials/r-button";
-import RInput from "src/partials/r-input";
+import { ButtonLink, RButton, RInput } from "src/partials";
 
 export default class FormRegistration extends Block {
   init() {
-    // auth.logout();
     const onChangeEmailBind = this.onChangeEmail.bind(this);
     const onChangeLoginBind = this.onChangeLogin.bind(this);
     const onChangeNameBind = this.onChangeName.bind(this);
