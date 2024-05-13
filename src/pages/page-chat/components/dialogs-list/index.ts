@@ -1,12 +1,14 @@
 import Block from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
+import { Loader } from "src/partials";
 
 import css from "./style.module.css";
 
-class DialogList extends Block {
+class DialogsList extends Block {
   constructor() {
     super({
+      Loader: new Loader({ loading: true }),
       events: {
         click: (e) => {
           if (e.target) {
@@ -21,7 +23,7 @@ class DialogList extends Block {
 
   public render(): string {
     return `
-     <ul>
+     <ul class="${css.dialogs}">
       {{#each chats}}
         <li data-id="{{ id }}">
           <div class="${css.dialog}">
@@ -45,4 +47,4 @@ class DialogList extends Block {
   }
 }
 
-export default connect(({ chats }) => ({ chats }))(DialogList);
+export default connect(({ chats }) => ({ chats }))(DialogsList);

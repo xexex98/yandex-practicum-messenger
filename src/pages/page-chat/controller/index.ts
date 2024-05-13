@@ -14,7 +14,10 @@ class ChatController {
   }
   public async getChats() {
     try {
+      store.set("isDialogLoading", true);
       const res = (await chats.getChats()) as XMLHttpRequest;
+
+      store.set("isDialogLoading", false);
 
       // await chats.deleteChat({
       //   chatId: 6787,
@@ -23,6 +26,7 @@ class ChatController {
       store.set("chats", JSON.parse(res.response));
     } catch (error) {
       console.error(error);
+    } finally {
     }
   }
 

@@ -1,38 +1,39 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
+import isEqual from "src/helpers/is-equal";
 import {
   ChatMessage,
-  Dialog,
-  DialogList,
+  DialogsHeader,
+  DialogsList,
   Header,
   NewMessage,
-  Search,
   SearchResult,
 } from "src/pages/page-chat/components";
 import controller from "src/pages/page-chat/controller";
 import { chats } from "src/pages/page-chat/controller/chats";
+import { Loader } from "src/partials";
 
 import css from "./style.module.css";
 
 class PageMessenger extends Block {
   public init() {
-    controller.user();
-    // chats.createChat("test");
+    // controller.user();
+    // chats.createChat("aa");
     chats.getChats();
   }
 
   constructor() {
     super({
-      Search: new Search(),
+      Loader: new Loader({ loading: true }),
 
-      DialogList: new DialogList(),
+      DialogsHeader: new DialogsHeader(),
 
-      // Result: new SearchResult({
-      //   result: "Андрей",
-      // }),
+      DialogList: new DialogsList(),
 
-      ChatHeader: new Header({}),
+      Result: new SearchResult(),
+
+      ChatHeader: new Header(),
 
       Message1: new ChatMessage({
         content: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории!!",
@@ -50,11 +51,23 @@ class PageMessenger extends Block {
     });
   }
 
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+
+    const loading = store.getState().isDialogLoading;
+
+    this.children.Loader.setProps({ loading });
+    return true;
+  }
+
   render(): string {
     return `
       <main class="${css.messenger}">
         <div class="${css.dialogs}">
-          {{{ Search }}}
+          {{{ Loader }}}
+          {{{ DialogsHeader }}}
           {{{ DialogList }}}
           {{{ Result }}}
         </div>
@@ -73,4 +86,8 @@ class PageMessenger extends Block {
   }
 }
 
-export default connect(({ chatId, chats }) => ({ chatId, chats }))(PageMessenger);
+export default connect(({ chatId, chats, isDialogLoading }) => ({
+  chatId,
+  chats,
+  isDialogLoading,
+}))(PageMessenger);

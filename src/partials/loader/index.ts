@@ -1,10 +1,10 @@
 import Block from "src/core/block";
-import connect from "src/core/connect";
 
 import css from "./style.module.css";
 
 class Loader extends Block {
   public render(): string {
+    console.log(this.props);
     return `
       <div class="${css.container} {{#if loading}}${css.show}{{/if}}">
         <div class="${css.loader}"></div>
@@ -13,8 +13,4 @@ class Loader extends Block {
   }
 }
 
-const isLoading = connect((state) => ({
-  loading: state.loading,
-}));
-
-export default isLoading(Loader);
+export default Loader;

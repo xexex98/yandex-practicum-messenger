@@ -1,3 +1,7 @@
+.dialogs {
+  position: relative;
+}
+
 .dialog {
   display: flex;
   position: relative;

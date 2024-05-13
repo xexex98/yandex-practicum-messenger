@@ -4,7 +4,7 @@ import { ButtonLink } from "src/partials";
 
 import css from "./style.module.css";
 
-export default class Search extends Block {
+export default class DialogsHeader extends Block {
   constructor() {
     super({
       AddChat: new ButtonLink({
