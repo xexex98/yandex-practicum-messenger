@@ -1,51 +1,36 @@
 import Block from "src/core/block";
+import connect from "src/core/connect";
+import store from "src/core/store";
 import {
   ChatMessage,
   Dialog,
+  DialogList,
   Header,
   NewMessage,
   Search,
   SearchResult,
 } from "src/pages/page-chat/components";
 import controller from "src/pages/page-chat/controller";
+import { chats } from "src/pages/page-chat/controller/chats";
 
 import css from "./style.module.css";
 
-export default class PageMessenger extends Block {
+class PageMessenger extends Block {
   public init() {
     controller.user();
+    // chats.createChat("test");
+    chats.getChats();
   }
 
   constructor() {
     super({
-      Search: new Search({
-        result: "Андрей",
-      }),
+      Search: new Search(),
 
-      Dialog: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!.",
-        unread: "12",
-        date: "14:12",
-      }),
+      DialogList: new DialogList(),
 
-      Dialog2: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!...",
-        unread: "12",
-        date: "14:12",
-      }),
-
-      Dialog3: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!...",
-        unread: "12",
-        date: "14:12",
-      }),
-
-      Result: new SearchResult({
-        result: "Андрей",
-      }),
+      // Result: new SearchResult({
+      //   result: "Андрей",
+      // }),
 
       ChatHeader: new Header({}),
 
@@ -68,13 +53,11 @@ export default class PageMessenger extends Block {
   render(): string {
     return `
       <main class="${css.messenger}">
-        <ul class="${css.dialogs}">
+        <div class="${css.dialogs}">
           {{{ Search }}}
-          {{{ Dialog }}}
-          {{{ Dialog2 }}}
-          {{{ Dialog3 }}}
+          {{{ DialogList }}}
           {{{ Result }}}
-        </ul>
+        </div>
         <div class="${css.chat}">
           {{{ ChatHeader }}}
           <div class="${css.messages}">
@@ -89,3 +72,5 @@ export default class PageMessenger extends Block {
     `;
   }
 }
+
+export default connect(({ chatId }) => ({ chatId: chatId }))(PageMessenger);

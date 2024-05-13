@@ -1,3 +1,4 @@
+import auth from "src/api/auth";
 import Block from "src/core/block";
 import router from "src/core/router";
 import { validate } from "src/helpers";
@@ -6,6 +7,7 @@ import { ButtonLink, RButton, RInput } from "src/partials";
 
 export default class FormLogin extends Block {
   init() {
+    // auth.logout();
     const onChangeLoginBind = this.onChangeLogin.bind(this);
     const onChangePasswordBind = this.onChangePassword.bind(this);
     const onLoginBind = this.onLogin.bind(this);
