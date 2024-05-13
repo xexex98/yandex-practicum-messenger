@@ -22,6 +22,7 @@ export default class RInputElement extends Block {
   render(): string {
     return `
       <input
+        
         name="{{ name }}"
         id="{{ name }}"
         type="{{ type }}"

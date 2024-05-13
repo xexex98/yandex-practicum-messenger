@@ -1,14 +1,12 @@
 import Block from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
-import { Loader } from "src/partials";
 
 import css from "./style.module.css";
 
 class DialogsList extends Block {
   constructor() {
     super({
-      Loader: new Loader({ loading: true }),
       events: {
         click: (e) => {
           if (e.target) {
@@ -23,26 +21,26 @@ class DialogsList extends Block {
 
   public render(): string {
     return `
-     <ul class="${css.dialogs}">
-      {{#each chats}}
-        <li data-id="{{ id }}">
-          <div class="${css.dialog}">
-            <div class="${css.border}"></div>
-            <div class="${css.avatar}"></div>
-            <div class="${css.content}">
-              <p class="${css.user}">{{ title }}</p>
-              <p class="${css.message}">{{ last_message }}</p>
+      <ul class="${css.dialogs}">
+        {{#each chats}}
+          <li data-id="{{ id }}">
+            <div class="${css.dialog}">
+              <div class="${css.border}"></div>
+              <div class="${css.avatar}"></div>
+              <div class="${css.content}">
+                <p class="${css.user}">{{ title }}</p>
+                <p class="${css.message}">{{ last_message }}</p>
+              </div>
+              <div class="${css.info}">
+                <p class="${css.time}">{{ date }}</p>
+                {{#if unread_count}}
+                  <p class="${css.unread}">{{ unread_count }}</p>
+                {{/if}}
+              </div>
             </div>
-            <div class="${css.info}">
-              <p class="${css.time}">{{ date }}</p>
-              {{#if unread_count}}
-                <p class="${css.unread}">{{ unread_count }}</p>
-              {{/if}}
-            </div>
-          </div>
-        </li>
-      {{/each}}
-     </ul>
+          </li>
+        {{/each}}
+      </ul>
     `;
   }
 }

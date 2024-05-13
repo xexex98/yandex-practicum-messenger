@@ -17,16 +17,16 @@ class ChatController {
       store.set("isDialogLoading", true);
       const res = (await chats.getChats()) as XMLHttpRequest;
 
-      store.set("isDialogLoading", false);
-
       // await chats.deleteChat({
       //   chatId: 6787,
       // });
 
       store.set("chats", JSON.parse(res.response));
     } catch (error) {
+      store.set("dialogsError", true);
       console.error(error);
     } finally {
+      store.set("isDialogLoading", false);
     }
   }
 

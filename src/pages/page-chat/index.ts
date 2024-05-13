@@ -4,13 +4,11 @@ import store from "src/core/store";
 import isEqual from "src/helpers/is-equal";
 import {
   ChatMessage,
+  Dialogs,
   DialogsHeader,
-  DialogsList,
   Header,
   NewMessage,
-  SearchResult,
 } from "src/pages/page-chat/components";
-import controller from "src/pages/page-chat/controller";
 import { chats } from "src/pages/page-chat/controller/chats";
 import { Loader } from "src/partials";
 
@@ -28,11 +26,7 @@ class PageMessenger extends Block {
       Loader: new Loader({ loading: true }),
 
       DialogsHeader: new DialogsHeader(),
-
-      DialogList: new DialogsList(),
-
-      Result: new SearchResult(),
-
+      Dialogs: new Dialogs(),
       ChatHeader: new Header(),
 
       Message1: new ChatMessage({
@@ -55,7 +49,6 @@ class PageMessenger extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
-
     const loading = store.getState().isDialogLoading;
 
     this.children.Loader.setProps({ loading });
@@ -68,8 +61,7 @@ class PageMessenger extends Block {
         <div class="${css.dialogs}">
           {{{ Loader }}}
           {{{ DialogsHeader }}}
-          {{{ DialogList }}}
-          {{{ Result }}}
+          {{{ Dialogs }}}
         </div>
         <div class="${css.chat}">
           {{{ ChatHeader }}}
@@ -86,8 +78,8 @@ class PageMessenger extends Block {
   }
 }
 
-export default connect(({ chatId, chats, isDialogLoading }) => ({
+export default connect(({ chatId, isDialogLoading, chats }) => ({
   chatId,
-  chats,
   isDialogLoading,
+  chats,
 }))(PageMessenger);
