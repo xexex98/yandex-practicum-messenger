@@ -73,4 +73,4 @@ class PageMessenger extends Block {
   }
 }
 
-export default connect(({ chatId }) => ({ chatId: chatId }))(PageMessenger);
+export default connect(({ chatId, chats }) => ({ chatId, chats }))(PageMessenger);
