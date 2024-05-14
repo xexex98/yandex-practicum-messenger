@@ -1,6 +1,7 @@
 import { TUpdateProfile } from "src/api/profile";
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
+import router from "src/core/router";
 import store from "src/core/store";
 import { validate, validateForm } from "src/helpers";
 import isEqual from "src/helpers/is-equal";
@@ -98,6 +99,7 @@ class ProfileEditInfo extends Block {
     }
     this.children.Save.setProps({ disabled: store.getState().loading });
     this.setProps({ isProfileEditError: store.getState().isProfileEditError });
+
     return true;
   }
 

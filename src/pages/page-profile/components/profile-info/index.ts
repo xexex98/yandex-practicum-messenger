@@ -3,16 +3,10 @@ import connect from "src/core/connect";
 import store from "src/core/store";
 import isEqual from "src/helpers/is-equal";
 import ProfileInfoField from "src/pages/page-profile/components/profile-info-field";
-import controller from "src/pages/page-profile/controller";
 
 class ProfileInfo extends Block {
   init() {
-    controller.user();
-
-    const Email = new ProfileInfoField({
-      label: "Почта",
-      value: "pochta@yandex.ru",
-    });
+    const Email = new ProfileInfoField({ label: "Почта" });
     const Login = new ProfileInfoField({ label: "Логин" });
     const FirstName = new ProfileInfoField({ label: "Имя" });
     const SecondName = new ProfileInfoField({ label: "Фамилия" });
@@ -60,4 +54,4 @@ class ProfileInfo extends Block {
   }
 }
 
-export default connect(({ user }) => ({ user }))(ProfileInfo);
+export default connect(({ user, render }) => ({ user, render }))(ProfileInfo);

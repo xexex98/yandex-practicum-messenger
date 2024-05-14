@@ -12,11 +12,15 @@ class ProfileController {
   }
   public async user() {
     try {
+      store.set("load", true);
       const res = (await auth.user()) as XMLHttpRequest;
 
       store.set("user", JSON.parse(res.response));
     } catch (error) {
+      store.set("isUserError", true);
       console.error(error);
+    } finally {
+      store.set("load", false);
     }
   }
   public async updateProfile(data: TUpdateProfile) {
