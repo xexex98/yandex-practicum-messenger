@@ -212,11 +212,11 @@ class Block {
     return document.createElement(tagName) as HTMLTemplateElement;
   }
 
-  public show(display: string = "block"): void {
+  public show(): void {
     const content = this.getContent();
 
     if (content) {
-      content.style.display = display;
+      content.style.display = "block";
     }
   }
 

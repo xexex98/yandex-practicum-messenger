@@ -31,4 +31,10 @@
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(var(--primary-border));
   padding-bottom: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.profile :global(.logout) {
+  color: red;
 }

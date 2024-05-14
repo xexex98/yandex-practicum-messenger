@@ -25,8 +25,7 @@ export default class ProfileAvatarModal extends Block {
         text: "Закрыть",
         type: "button",
         onClick: () => {
-          this.setProps({ error: false });
-          this.hide();
+          this.setProps({ error: false, show: false });
         },
       }),
     });
@@ -34,22 +33,26 @@ export default class ProfileAvatarModal extends Block {
 
   render(): string {
     return `
-        <div class="${css.modal}">
-          <div class="${css.container}">
-            <p class="${css.title}">{{ title }}</p>
-            <div class=${css.load}>
-              <label for="file" class="${css.content}">
-                Выбрать файл на <br />
-                компьютере
-                {{{ Load }}}
-              </label>
+        <div>
+          {{#if show}}
+          <div class="${css.modal}">
+            <div class="${css.container}">
+              <p class="${css.title}">{{ title }}</p>
+              <div class=${css.load}>
+                <label for="file" class="${css.content}">
+                  Выбрать файл на <br />
+                  компьютере
+                  {{{ Load }}}
+                </label>
+              </div>
+              <div class="${css.buttons}">
+                {{{ Button }}}
+                {{{ Close }}}
+              </div>
+              <p class="${css.error} {{#if error}}${css.show}{{/if}}">Нужно выбрать файл</p>
             </div>
-            <div class="${css.buttons}">
-              {{{ Button }}}
-              {{{ Close }}}
-            </div>
-            <p class="${css.error} {{#if error}}${css.show}{{/if}}">Нужно выбрать файл</p>
           </div>
+          {{/if}}
         </div>
       `;
   }

@@ -1,9 +1,14 @@
-import Block from "src/core/block";
+import { TUpdateProfile } from "src/api/profile";
+import Block, { BlockProps } from "src/core/block";
+import connect from "src/core/connect";
+import store from "src/core/store";
 import { validate, validateForm } from "src/helpers";
+import isEqual from "src/helpers/is-equal";
 import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
-import { RButton } from "src/partials";
+import controller from "src/pages/page-profile/controller";
+import { ApiError, RButton } from "src/partials";
 
-export default class ProfileEditInfo extends Block {
+class ProfileEditInfo extends Block {
   init() {
     const Email = new ProfileEditInfoField({
       label: "Почта",
@@ -44,28 +49,35 @@ export default class ProfileEditInfo extends Block {
     });
 
     const Save = new RButton({
+      disabled: false,
       text: "Сохранить",
-      onClick: (e: Event) => {
+      type: "submit",
+      onClick: async (e: Event) => {
         e.preventDefault();
 
         const isValid = validateForm(this.children);
 
-        if (isValid) {
-          if (typeof this.props.onSaveEdit === "function") {
-            this.props.onSaveEdit();
-          }
-          this.hide();
-          console.log({
+        if (true) {
+          await controller.updateProfile({
             email: this.children.Email.props.value,
             login: this.children.Login.props.value,
             first_name: this.children.FirstName.props.value,
             second_name: this.children.SecondName.props.value,
             display_name: this.children.DisplayName.props.value,
             phone: this.children.Phone.props.value,
-          });
+          } as TUpdateProfile);
+
+          if (
+            typeof this.props.onSaveEdit === "function" &&
+            store.getState().isProfileEditError === false
+          ) {
+            this.props.onSaveEdit();
+          }
         }
       },
     });
+
+    const Error = new ApiError();
 
     this.children = {
       ...this.children,
@@ -76,7 +88,21 @@ export default class ProfileEditInfo extends Block {
       DisplayName,
       Phone,
       Save,
+      Error,
     };
+  }
+
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+    this.children.Save.setProps({ disabled: store.getState().loading });
+    this.setProps({ isProfileEditError: store.getState().isProfileEditError });
+    return true;
+  }
+
+  constructor(props: BlockProps) {
+    super({ ...props, isProfileEditError: false });
   }
 
   render() {
@@ -89,7 +115,14 @@ export default class ProfileEditInfo extends Block {
         {{{ DisplayName }}}
         {{{ Phone }}}
         {{{ Save }}}
+        {{#if isProfileEditError}}
+          {{{ Error }}}
+        {{/if}}
       </form>
     `;
   }
 }
+
+export default connect(({ isProfileEditError, loading }) => ({ isProfileEditError, loading }))(
+  ProfileEditInfo
+);

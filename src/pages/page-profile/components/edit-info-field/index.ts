@@ -1,4 +1,5 @@
 import Block from "src/core/block";
+import isEqual from "src/helpers/is-equal";
 import ProfileEditInput from "src/pages/page-profile/components/edit-info-input";
 import ErrorLine from "src/partials/r-input/error-line";
 
@@ -30,7 +31,7 @@ export default class ProfileEditInfoField extends Block {
   }
 
   componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    if (oldProps === newProps) {
+    if (isEqual(oldProps, newProps)) {
       return false;
     }
 
