@@ -7,6 +7,7 @@ type TProps = {
   type?: string;
   onClick: (e: Event) => void;
   events?: Record<string, EventListener>;
+  disabled?: boolean;
 };
 
 export default class RButton extends Block {
@@ -24,6 +25,7 @@ export default class RButton extends Block {
       <button
         class="${styles.btn} ${styles["btn-default"]}"
         type="{{ type }}"
+        {{#if disabled}}disabled{{/if}}
       >
         {{ text }}
       </button>

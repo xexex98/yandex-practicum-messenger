@@ -11,7 +11,7 @@ type TProps = {
   type: string;
   error?: boolean;
   errorText?: string;
-  onBlur: (e?: Event) => void;
+  events?: Record<string, EventListener>;
 };
 
 export default class RInput extends Block {
@@ -19,9 +19,7 @@ export default class RInput extends Block {
     super({
       ...props,
       Input: new RInputElement(props),
-      ErrorLine: new ErrorLine({
-        errorText: props.errorText || "",
-      }),
+      ErrorLine: new ErrorLine(props),
     });
   }
 

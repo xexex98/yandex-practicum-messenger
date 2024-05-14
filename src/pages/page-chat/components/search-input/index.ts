@@ -14,10 +14,10 @@ export default class SearchInput extends Block {
           const chats = store.getState().chats as TChats[];
 
           const foundChats = chats.filter((el) => {
-            if (!el.title) {
+            if (!el.title || typeof el.title !== "string") {
               return false;
             }
-            return (el.title as string).includes(value);
+            return el.title.includes(value);
           });
 
           if (value) {

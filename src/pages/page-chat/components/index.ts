@@ -9,6 +9,7 @@ export { default as Kebab } from "./kebab";
 export { default as MenuButton } from "./menu-button";
 export { default as MessageAttachMenu } from "./message-attach-menu";
 export { default as MessagesList } from "./messages";
+export { default as ModalAddChat } from "./modal-add-chat";
 export { default as NewMessage } from "./new-message";
 export { default as SearchInput } from "./search-input";
 export { default as SearchResult } from "./search-result";

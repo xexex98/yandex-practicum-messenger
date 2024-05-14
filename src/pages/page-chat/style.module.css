@@ -8,7 +8,6 @@
 .dialogs {
   position: relative;
   background: #fbfbfb;
-  overflow-y: scroll;
 }
 
 .chat {

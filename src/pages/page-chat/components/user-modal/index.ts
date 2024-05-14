@@ -1,4 +1,5 @@
 import Block from "src/core/block";
+import store from "src/core/store";
 import { validate, validateForm } from "src/helpers";
 import { RButton, RInput } from "src/partials";
 

@@ -15,6 +15,11 @@
   background-color: rgb(var(--primary-color) / 80%);
 }
 
+.btn:disabled {
+  background-color: rgb(var(--secondary-color) / 50%);
+  cursor: default;
+}
+
 .btn-default {
   width: 100%;
   color: white;

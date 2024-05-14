@@ -32,9 +32,16 @@ class ChatController {
 
   public async createChat(title: string) {
     try {
+      store.set("loading", true);
+
       await chats.createChat({ title });
+
+      store.set("createChatError", false);
     } catch (error) {
       console.error(error);
+      store.set("createChatError", true);
+    } finally {
+      store.set("loading", false);
     }
   }
 }

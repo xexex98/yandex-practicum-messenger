@@ -3,6 +3,8 @@ import connect from "src/core/connect";
 import { DialogsList, SearchResult } from "src/pages/page-chat/components";
 import { ApiError } from "src/partials";
 
+import css from "./style.module.css";
+
 class Dialogs extends Block {
   constructor() {
     super({
@@ -14,7 +16,7 @@ class Dialogs extends Block {
 
   public render(): string {
     return `
-      <div>
+      <div class="${css.dialogs}">
         {{#if dialogsError}}
           {{{ ApiError }}}
         {{/if}}

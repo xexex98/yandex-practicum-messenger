@@ -29,7 +29,7 @@ class Block {
 
   protected eventBus: () => EventBus;
 
-  protected props: BlockProps;
+  public props: BlockProps;
 
   constructor(propsWithChildren: BlockProps = {}) {
     const eventBus = new EventBus();

@@ -17,7 +17,7 @@ import css from "./style.module.css";
 class PageMessenger extends Block {
   public init() {
     // controller.user();
-    // chats.createChat("aa");
+    // chats.createChat("zzzddd");
     chats.getChats();
   }
 
