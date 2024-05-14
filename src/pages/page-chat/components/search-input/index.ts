@@ -17,7 +17,7 @@ export default class SearchInput extends Block {
             if (!el.title || typeof el.title !== "string") {
               return false;
             }
-            return el.title.includes(value);
+            return el.title.toLowerCase().includes(value.toLowerCase());
           });
 
           if (value) {

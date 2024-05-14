@@ -8,7 +8,7 @@ import { ApiError, RButton, RInput } from "src/partials";
 import css from "./style.module.css";
 
 class ModalAddChat extends Block {
-  onChangeInput(e: Event) {
+  public onChangeInput(e: Event) {
     const target = e.target as HTMLInputElement;
 
     this.children.Add.setProps({ title: target.value });
@@ -35,6 +35,7 @@ class ModalAddChat extends Block {
         const title = this.children.Add.props.title as string;
 
         await chats.createChat(title);
+        await chats.getChats();
 
         if (typeof this.props.close === "function" && this.props.createChatError !== true) {
           this.props.close();

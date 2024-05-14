@@ -16,8 +16,6 @@ import css from "./style.module.css";
 
 class PageMessenger extends Block {
   public init() {
-    // controller.user();
-    // chats.createChat("zzzddd");
     chats.getChats();
   }
 
@@ -49,6 +47,7 @@ class PageMessenger extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
+
     const loading = store.getState().isDialogLoading;
 
     this.children.Loader.setProps({ loading });

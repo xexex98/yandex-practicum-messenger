@@ -21,6 +21,14 @@ class LoginController {
       store.set("loading", false);
     }
   }
+  public async me() {
+    try {
+      await auth.user();
+      router.go("/messenger");
+    } catch (error) {
+      console.error(`Error in: class LoginController -> signin -> ${error}`);
+    }
+  }
 }
 
 export default new LoginController();

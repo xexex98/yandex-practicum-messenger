@@ -15,11 +15,8 @@ class ChatController {
   public async getChats() {
     try {
       store.set("isDialogLoading", true);
-      const res = (await chats.getChats()) as XMLHttpRequest;
 
-      // await chats.deleteChat({
-      //   chatId: 6787,
-      // });
+      const res = (await chats.getChats()) as XMLHttpRequest;
 
       store.set("chats", JSON.parse(res.response));
     } catch (error) {
