@@ -6,7 +6,9 @@ import store from "src/core/store";
 class ChatController {
   public async user() {
     try {
-      await auth.user();
+      const res = (await auth.user()) as XMLHttpRequest;
+
+      store.set("user_ID", JSON.parse(res.response).id);
     } catch (error) {
       router.go("/");
       console.error("Error in: class ChatController -> user");
@@ -39,6 +41,13 @@ class ChatController {
       store.set("createChatError", true);
     } finally {
       store.set("loading", false);
+    }
+  }
+  public async getToken(id: number) {
+    try {
+      await chats.getToken(id);
+    } catch (error) {
+      console.error(error);
     }
   }
 }

@@ -21,6 +21,9 @@ class ChatApi {
   public async deleteUsersFromChat(data: { users: number[]; chatId: number }) {
     return chats.delete("/users", { data });
   }
+  public async getToken(id: number) {
+    return chats.post(`/token/${id}`);
+  }
 }
 
 export default new ChatApi();

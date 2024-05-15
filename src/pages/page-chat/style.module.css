@@ -17,19 +17,3 @@
   padding: 0 21px;
   overflow: hidden;
 }
-
-.messages {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-bottom: 30px;
-  overflow: scroll;
-}
-
-.date {
-  margin-bottom: 20px;
-  color: rgb(var(--secondary-color));
-  font-size: 12px;
-  text-align: center;
-}

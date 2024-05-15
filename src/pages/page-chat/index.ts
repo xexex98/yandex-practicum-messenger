@@ -7,6 +7,7 @@ import {
   Dialogs,
   DialogsHeader,
   Header,
+  Messages,
   NewMessage,
 } from "src/pages/page-chat/components";
 import { chats } from "src/pages/page-chat/controller/chats";
@@ -14,9 +15,49 @@ import { Loader } from "src/partials";
 
 import css from "./style.module.css";
 
+const socket = new WebSocket(
+  "wss://ya-praktikum.tech/ws/chats/586/6951/dcd8fc700a06307d7716094afd9668cb85ea6cff:1715723094"
+);
+
+socket.addEventListener("open", () => {
+  console.log("Соединение установлено");
+  // setInterval(() => socket.send(""), 3000);
+  socket.send(
+    JSON.stringify({
+      content: "0",
+      type: "get old",
+    })
+  );
+});
+
+socket.addEventListener("close", (event) => {
+  if (event.wasClean) {
+    console.log("Соединение закрыто чисто");
+  } else {
+    console.log("Обрыв соединения");
+  }
+
+  console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+});
+
+socket.addEventListener("message", (event) => {
+  console.log(event.data);
+  if (event.data) {
+    store.set("messages", JSON.parse(event.data));
+  }
+  // console.log("Получены данные", event.data);
+});
+
+socket.addEventListener("error", (event) => {
+  console.log("Ошибка", event.message);
+});
+
 class PageMessenger extends Block {
   public init() {
     chats.getChats();
+    chats.user(); //586
+    // chats.
+    // chats.getToken(6951);
   }
 
   constructor() {
@@ -24,21 +65,13 @@ class PageMessenger extends Block {
       Loader: new Loader({ loading: true }),
 
       DialogsHeader: new DialogsHeader(),
+
       Dialogs: new Dialogs(),
+
       ChatHeader: new Header(),
 
-      Message1: new ChatMessage({
-        content: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории!!",
-        type: "is-in",
-      }),
-      Message2: new ChatMessage({
-        content: "<img src='/src/assets/img/photo.png' alt='message-image' />",
-        type: "is-in is-img",
-      }),
-      Message3: new ChatMessage({
-        content: "Привет!",
-        type: "is-out",
-      }),
+      MessagesList: new Messages(),
+
       NewMessageInput: new NewMessage(),
     });
   }
@@ -64,12 +97,7 @@ class PageMessenger extends Block {
         </div>
         <div class="${css.chat}">
           {{{ ChatHeader }}}
-          <div class="${css.messages}">
-            <div class="${css.date}">19 июня</div>
-            {{{ Message1 }}}
-            {{{ Message2 }}}
-            {{{ Message3 }}}
-          </div>
+          {{{ MessagesList }}}
           {{{ NewMessageInput }}}
         </div>
       </main>
@@ -77,8 +105,10 @@ class PageMessenger extends Block {
   }
 }
 
-export default connect(({ chatId, isDialogLoading, chats }) => ({
+export default connect(({ chatId, userId, isDialogLoading, chats, messages }) => ({
   chatId,
+  userId,
   isDialogLoading,
   chats,
+  messages,
 }))(PageMessenger);

@@ -45,8 +45,4 @@ function cloneDeep<T>(obj: T): T {
   return clone;
 }
 
-const objects = [{ a: 1 }, { b: 2, c: 3 }];
-const deep = cloneDeep(objects);
-
-console.log(deep[0] === objects[0]); // => false
 export default cloneDeep;

@@ -8,4 +8,9 @@ export const registerPartial = () => {
       Handlebars.registerPartial(name, component);
     }
   });
+
+  Handlebars.registerHelper("equal", function (a, b) {
+    console.log(a, b);
+    return a === b;
+  });
 };
