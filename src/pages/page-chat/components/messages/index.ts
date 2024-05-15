@@ -1,5 +1,6 @@
 import Block from "src/core/block";
 import connect from "src/core/connect";
+import store from "src/core/store";
 
 import css from "./style.module.css";
 
@@ -9,12 +10,13 @@ import css from "./style.module.css";
 // }),
 class Messages extends Block {
   public render(): string {
-    if (Array.isArray(this.props.messages)) {
-      const messages = this.props.messages.reverse();
+    console.log("render");
+    // if (Array.isArray(store.getState().messages)) {
+    //   const messages = store.getState().messages.reverse();
 
-      this.setProps({ messages });
-    }
-
+    //   this.setProps({ messages });
+    // }
+    console.log(this.props);
     return `
       <div class="${css.messages}">
         {{#each messages}}
