@@ -8,7 +8,7 @@ export default class NewMessageInput extends Block {
       <input
         placeholder="Сообщение"
         type="text"
-        class="${css.message}"
+        class="${css.input}"
       />
     `;
   }

@@ -1,11 +1,9 @@
 .messages {
   display: flex;
   flex-direction: column;
-
-  /* justify-content: flex-end; */
-  gap: 10px;
   padding-bottom: 30px;
-  overflow: scroll;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .msg {

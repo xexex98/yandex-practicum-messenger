@@ -7,7 +7,11 @@ export default class NewMessageSend extends Block {
   constructor() {
     super({
       events: {
-        click: () => controller.sendMessage(this.props.msg as string),
+        click: () => {
+          if (this.props.msg) {
+            controller.sendMessage(this.props.msg as string);
+          }
+        },
       },
     });
   }
