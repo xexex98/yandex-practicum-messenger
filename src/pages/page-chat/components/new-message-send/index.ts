@@ -9,7 +9,14 @@ export default class NewMessageSend extends Block {
       events: {
         click: () => {
           if (this.props.msg) {
+            const inputField = document.getElementById("message") as HTMLInputElement;
+
             controller.sendMessage(this.props.msg as string);
+
+            if (inputField) {
+              inputField.value = "";
+            }
+            this.setProps({ msg: "" });
           }
         },
       },
@@ -17,9 +24,9 @@ export default class NewMessageSend extends Block {
   }
   render(): string {
     return `
-      <div class="${css.circle}">
+      <button id="sendMsg" class="${css.circle}">
         <span class="${css.arrow}">&#8594;</span>
-      </div>
+      </button>
     `;
   }
 }

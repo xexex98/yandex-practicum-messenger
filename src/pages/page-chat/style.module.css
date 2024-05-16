@@ -13,10 +13,27 @@
 }
 
 .chat {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   background: #fff;
   padding: 0 21px;
   overflow: hidden;
+}
+
+.select {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

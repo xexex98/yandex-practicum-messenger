@@ -1,6 +1,5 @@
 import Block from "src/core/block";
-import store from "src/core/store";
-import { validate, validateForm } from "src/helpers";
+import { validate } from "src/helpers";
 import { RButton, RInput } from "src/partials";
 
 import css from "./style.module.css";
@@ -15,7 +14,9 @@ export default class UserModal extends Block {
       label: "Логин",
       name: "login",
       type: "text",
-      onBlur: onChangeLoginBind,
+      events: {
+        blur: onChangeLoginBind,
+      },
     });
 
     const Button = new RButton({ text: "Применить", onClick: onSubmitBind });
@@ -36,15 +37,15 @@ export default class UserModal extends Block {
   onSubmit(e: Event) {
     e.preventDefault();
 
-    const isValid = validateForm(this.children);
+    // const isValid = validateForm(this.children);
 
-    if (isValid) {
-      console.log({ login: this.children.Input.props.value });
-      this.setProps({
-        show: false,
-      });
-    }
-    this.children.Input.setProps({ value: "" });
+    // if (isValid) {
+    //   console.log({ login: this.children.Input.props.value });
+    //   this.setProps({
+    //     show: false,
+    //   });
+    // }
+    // this.children.Input.setProps({ value: "" });
   }
 
   onClose(e: Event) {

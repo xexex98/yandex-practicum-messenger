@@ -12,8 +12,8 @@ class ChatApi {
   public async deleteChat(data: { chatId: number }) {
     return chats.delete("/", { data });
   }
-  public async getChatUsers(data: { id: number }) {
-    return chats.get(`/${data.id}/users`);
+  public async getChatUsers(id: number) {
+    return chats.get(`/${id}/users`);
   }
   public async addUsersToChat(data: { users: number[]; chatId: number }) {
     return chats.put("/users", { data });

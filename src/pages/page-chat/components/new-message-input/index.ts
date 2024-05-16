@@ -6,6 +6,7 @@ export default class NewMessageInput extends Block {
   render(): string {
     return `
       <input
+        id="message"
         placeholder="Сообщение"
         type="text"
         class="${css.input}"

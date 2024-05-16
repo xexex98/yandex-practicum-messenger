@@ -1,6 +1,10 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
+import cloneDeep from "src/helpers/clone-deep";
+import isEqual from "src/helpers/is-equal";
+import isValidDate from "src/helpers/is-valid-date";
+import controller from "src/pages/page-chat/controller";
 
 import css from "./style.module.css";
 
@@ -10,15 +14,41 @@ class SearchResult extends Block {
   constructor() {
     super({
       events: {
-        click: (e) => {
+        click: async (e) => {
           if (e.target) {
             const chatId = Number((e.target as HTMLElement).closest("li")?.getAttribute("data-id"));
 
             store.set("chatId", chatId);
+            controller.changeChat();
+            controller.getChatUsers(chatId);
           }
         },
       },
     });
+  }
+
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+
+    if (Array.isArray(this.props.foundChats)) {
+      const chatsClone = cloneDeep([this.props.foundChats])[0];
+
+      const foundChats = chatsClone.map((el) => {
+        if (
+          el.last_message &&
+          typeof el.last_message.time === "string" &&
+          isValidDate(el.last_message.time)
+        ) {
+          el.last_message.time = new Date(el.last_message.time).toLocaleDateString();
+        }
+        return el;
+      });
+
+      this.setProps({ foundChats });
+    }
+    return true;
   }
 
   render(): string {
@@ -31,10 +61,14 @@ class SearchResult extends Block {
               <div class="${css.avatar}"></div>
               <div class="${css.content}">
                 <p class="${css.user}">{{ title }}</p>
-                <p class="${css.message}">{{ last_message }}</p>
+                {{#if last_message.content}}
+                  <p class="${css.message}">{{ last_message.content }}</p>
+                {{else}}
+                  <p class="${css.message}">Пора написать первое сообщение!</p>
+                {{/if}}
               </div>
               <div class="${css.info}">
-                <p class="${css.time}">{{ date }}</p>
+                <p class="${css.time}">{{ last_message.time }}</p>
                 {{#if unread_count}}
                   <p class="${css.unread}">{{ unread_count }}</p>
                 {{/if}}
@@ -47,4 +81,4 @@ class SearchResult extends Block {
   }
 }
 
-export default connect(({ foundChats }) => ({ foundChats }))(SearchResult);
+export default connect(({ foundChats, chatId }) => ({ foundChats, chatId }))(SearchResult);

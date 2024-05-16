@@ -10,20 +10,21 @@ import {
   NewMessage,
 } from "src/pages/page-chat/components";
 import { chats } from "src/pages/page-chat/controller/chats";
-import { Loader } from "src/partials";
+import { ApiError, Loader } from "src/partials";
 
 import css from "./style.module.css";
 
 class PageMessenger extends Block {
   public init() {
     chats.getChats();
-    chats.user(); //586
-    // chats.getToken(6951);
+    chats.user();
   }
 
   constructor() {
     super({
       Loader: new Loader({ loading: true }),
+
+      ChatsLoader: new Loader({ loading: true }),
 
       DialogsHeader: new DialogsHeader(),
 
@@ -34,6 +35,8 @@ class PageMessenger extends Block {
       MessagesList: new Messages(),
 
       NewMessageInput: new NewMessage(),
+
+      Error: new ApiError(),
     });
   }
 
@@ -43,8 +46,10 @@ class PageMessenger extends Block {
     }
 
     const loading = store.getState().isDialogLoading;
+    const chatsLoading = store.getState().isChatsLoading;
 
     this.children.Loader.setProps({ loading });
+    this.children.ChatsLoader.setProps({ loading: chatsLoading });
     return true;
   }
 
@@ -57,19 +62,36 @@ class PageMessenger extends Block {
           {{{ Dialogs }}}
         </div>
         <div class="${css.chat}">
-          {{{ ChatHeader }}}
-          {{{ MessagesList }}}
-          {{{ NewMessageInput }}}
+          {{#if isChatsError}}
+            <div class="${css.error}">
+              {{{ Error }}}
+            </div>
+          {{/if}}
+          {{{ ChatsLoader }}}
+          {{#unless isChatsError}}
+            {{#if chatId}}
+              {{{ ChatHeader }}}
+              {{{ MessagesList }}}
+              {{{ NewMessageInput }}}
+            {{else}}
+              <p class="${css.select}">Выберите чат</p>
+            {{/if}}
+
+          {{/unless}}
         </div>
       </main>
     `;
   }
 }
 
-export default connect(({ chatId, userId, isDialogLoading, chats, messages }) => ({
-  chatId,
-  userId,
-  isDialogLoading,
-  chats,
-  messages,
-}))(PageMessenger);
+export default connect(
+  ({ chatId, userId, isDialogLoading, isChatsLoading, chats, messages, isChatsError }) => ({
+    chatId,
+    userId,
+    isDialogLoading,
+    isChatsLoading,
+    chats,
+    messages,
+    isChatsError,
+  })
+)(PageMessenger);

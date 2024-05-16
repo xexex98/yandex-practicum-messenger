@@ -9,8 +9,9 @@ export default class NewMessage extends Block {
     super({
       Input: new NewMessageInput({
         events: {
-          input: (e: Event) =>
-            this.children.Send.setProps({ msg: (e.target as HTMLInputElement).value }),
+          input: (e: Event) => {
+            this.children.Send.setProps({ msg: (e.target as HTMLInputElement).value });
+          },
         },
       }),
       Send: new NewMessageSend(),

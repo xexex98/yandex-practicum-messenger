@@ -25,18 +25,27 @@ export default class Header extends Block {
     Modal.setProps({ show: true, title: "Удалить пользователя" });
   }
 
+  onRemoveChat() {
+    const Modal = this.children.Modal;
+
+    Modal.setProps({ show: true, title: "Удалить пользователя" });
+  }
+
   init(): void {
     const onShowBind = this.onShow.bind(this);
     const onAddBind = this.onAdd.bind(this);
     const onRemoveBind = this.onRemove.bind(this);
+    const onRemoveChatBind = this.onRemoveChat.bind(this);
 
-    const Header = new HeaderInfo({
-      name: "Андрей",
-    });
+    const Header = new HeaderInfo();
 
     const HeaderKebab = new Kebab({ onShow: onShowBind });
 
-    const Menu = new HeaderMenu({ onAdd: onAddBind, onRemove: onRemoveBind });
+    const Menu = new HeaderMenu({
+      onAdd: onAddBind,
+      onRemove: onRemoveBind,
+      onRemoveChat: onRemoveChatBind,
+    });
 
     const Modal = new UserModal();
 

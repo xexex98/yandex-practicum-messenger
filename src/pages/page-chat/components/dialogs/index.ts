@@ -30,8 +30,9 @@ class Dialogs extends Block {
   }
 }
 
-export default connect(({ isSearch, dialogsError, chats }) => ({
+export default connect(({ isSearch, dialogsError, chats, chatId }) => ({
   isSearch,
   dialogsError,
   chats,
+  chatId,
 }))(Dialogs);
