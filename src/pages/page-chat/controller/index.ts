@@ -125,6 +125,8 @@ class ChatController {
     const chatId = store.getState().chatId as number;
 
     if (this.prevId === chatId) {
+      store.set("isChatsLoading", false);
+
       return;
     }
     this.prevId = chatId as number;
@@ -135,21 +137,22 @@ class ChatController {
 
     this.socket = new WebSocket(url);
 
+    let timer: number;
+
     const handleOpen = () => {
       store.set("isChatsLoading", false);
       store.set("isChatsError", false);
 
       console.log("Соединение установлено");
 
-      setInterval(
-        () =>
-          this.socket.send(
-            JSON.stringify({
-              type: "ping",
-            })
-          ),
-        5000
-      );
+      timer = setInterval(() => {
+        this.socket.send(
+          JSON.stringify({
+            type: "ping",
+          })
+        );
+      }, 5000);
+
       this.socket.send(
         JSON.stringify({
           content: "0",
@@ -196,6 +199,7 @@ class ChatController {
     this.socket.addEventListener("error", handleError);
 
     const handleClose = (event: CloseEvent) => {
+      clearInterval(timer);
       this.socket.removeEventListener("message", handleMessage);
       this.socket.removeEventListener("open", handleOpen);
       this.socket.removeEventListener("close", handleClose);
