@@ -12,12 +12,11 @@ class HeaderInfo extends Block {
   }
 
   render() {
-    console.log(this.props);
     return `
       <div class="${css.avatar}">
         <div class="${css.login}"></div>
         {{#each chatUsers}}
-          <span>{{ first_name }}</span>
+          <span>{{ first_name }}[{{ id }}]</span>
         {{/each}}
       </div>
     `;

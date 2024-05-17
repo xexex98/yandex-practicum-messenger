@@ -79,6 +79,31 @@ class ChatController {
       console.error(error);
     }
   }
+  public async deleteUsersFromChat(data: { users: number[]; chatId: number }) {
+    try {
+      store.set("loading", true);
+      await chats.deleteUsersFromChat(data);
+      store.set("deleteUserError", false);
+    } catch (error) {
+      store.set("deleteUserError", true);
+      console.error(error);
+    } finally {
+      store.set("loading", false);
+    }
+  }
+
+  public async addUsersToChat(data: { users: number[]; chatId: number }) {
+    try {
+      store.set("loading", true);
+      await chats.addUsersToChat(data);
+      store.set("addUserError", false);
+    } catch (error) {
+      store.set("addUserError", true);
+      console.error(error);
+    } finally {
+      store.set("loading", false);
+    }
+  }
 
   public sendMessage(msg: string) {
     const data = JSON.stringify({

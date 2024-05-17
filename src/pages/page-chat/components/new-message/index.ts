@@ -12,6 +12,15 @@ export default class NewMessage extends Block {
           input: (e: Event) => {
             this.children.Send.setProps({ msg: (e.target as HTMLInputElement).value });
           },
+          keydown: (e: Event) => {
+            if ((e as KeyboardEvent).key === "Enter") {
+              this.children.Send.setProps({ msg: (e.target as HTMLInputElement).value });
+
+              const send = document.getElementById("sendMsg");
+
+              send?.click();
+            }
+          },
         },
       }),
       Send: new NewMessageSend(),

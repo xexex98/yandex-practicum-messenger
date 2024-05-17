@@ -9,6 +9,8 @@ export { default as MenuButton } from "./menu-button";
 export { default as MessagesList } from "./messages";
 export { default as Messages } from "./messages";
 export { default as ModalAddChat } from "./modal-add-chat";
+export { default as ModalAddUser } from "./modal-add-user";
+export { default as ModalRemoveUser } from "./modal-remove-user";
 export { default as NewMessage } from "./new-message";
 export { default as NewMessageInput } from "./new-message-input";
 export { default as NewMessageSend } from "./new-message-send";

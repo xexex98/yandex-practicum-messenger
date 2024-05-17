@@ -69,8 +69,13 @@ export default class FormLogin extends Block {
     //   login: this.children.Login.props.value,
     //   password: this.children.Password.props.value,
     // };
+    // const props = {
+    //   login: "ivan",
+    //   password: "qweQWE123",
+    // };
+
     const props = {
-      login: "ivan",
+      login: "ivan2",
       password: "qweQWE123",
     };
 

@@ -129,11 +129,21 @@ export default class FormRegistration extends Block {
     //   password: this.children.Password.props.value,
     //   repeatNewPassword: this.children.PasswordRetry.props.value,
     // };
+    //586
+    // const props = {
+    //   first_name: "Ivan",
+    //   second_name: "Ivan",
+    //   login: "ivan",
+    //   email: "ivan@mail.ru",
+    //   password: "qweQWE123",
+    //   phone: "79555555555",
+    // };
+    //678
     const props = {
-      first_name: "Ivan",
-      second_name: "Ivan",
-      login: "ivan",
-      email: "ivan@mail.ru",
+      first_name: "Ivan2",
+      second_name: "Ivan2",
+      login: "ivan2",
+      email: "ivan2@mail.ru",
       password: "qweQWE123",
       phone: "79555555555",
     };

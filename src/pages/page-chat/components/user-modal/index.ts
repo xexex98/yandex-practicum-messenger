@@ -37,6 +37,7 @@ export default class UserModal extends Block {
   onSubmit(e: Event) {
     e.preventDefault();
 
+    console.log(this.props);
     // const isValid = validateForm(this.children);
 
     // if (isValid) {
@@ -64,7 +65,7 @@ export default class UserModal extends Block {
 
   render() {
     return `
-      <div class="${css.modal} {{#if show}}${css.show}{{/if}} ">
+      <div class="${css.modal} {{#if true}}${css.show}{{/if}} ">
         <div class="${css.content}">
           <p class="${css.title}">{{ title }}</p>
           <form action="#">

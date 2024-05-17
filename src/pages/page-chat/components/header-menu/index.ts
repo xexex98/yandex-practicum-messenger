@@ -8,15 +8,14 @@ import css from "./style.module.css";
 type TProps = {
   onAdd: () => void;
   onRemove: () => void;
-  onRemoveChat: () => void;
 };
 
 export default class HeaderMenu extends Block {
   constructor(props: TProps) {
     super({
       ...props,
-      Add: new MenuButton({ onClick: props.onAdd, title: "Добавить пользователя" }),
-      Remove: new MenuButton({ onClick: props.onRemove, title: "Удалить пользователя" }),
+      Add: new MenuButton({ events: { click: props.onAdd }, title: "Добавить пользователя" }),
+      Remove: new MenuButton({ events: { click: props.onRemove }, title: "Удалить пользователя" }),
       RemoveChat: new MenuButton({
         events: {
           click: async () => {
