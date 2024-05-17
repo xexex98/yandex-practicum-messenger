@@ -45,7 +45,7 @@ export default class Route<T extends Block = Block> {
     if (!root) {
       throw Error(`render: Не удалось найти контейнер ${query}`);
     }
-    root.innerHTML = "";
+    root.textContent = "";
     root.appendChild(block.getContent() as HTMLElement);
   }
 }

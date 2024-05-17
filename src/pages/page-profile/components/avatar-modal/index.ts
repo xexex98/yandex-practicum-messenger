@@ -1,33 +1,14 @@
-import Block from "src/core/block";
-import LoadFile from "src/pages/page-profile/components/load-file";
-import { RButton } from "src/partials";
+import Block, { BlockProps } from "src/core/block";
+import FileForm from "src/pages/page-profile/components/file-form";
 
 import css from "./style.module.css";
 
-type TProps = {
-  title: string;
-  error?: boolean;
-};
-
 export default class ProfileAvatarModal extends Block {
-  constructor(props: TProps) {
+  constructor(props: BlockProps) {
     super({
       ...props,
-      Load: new LoadFile(),
-
-      Button: new RButton({
-        text: "Поменять",
-        type: "button",
-        onClick: () => this.setProps({ error: true }),
-      }),
-
-      Close: new RButton({
-        text: "Закрыть",
-        type: "button",
-        onClick: () => {
-          this.setProps({ error: false, show: false });
-        },
-      }),
+      Form: new FileForm({ title: "Загрузить файл", onClose: props.onClose }),
+      show: false,
     });
   }
 
@@ -35,23 +16,9 @@ export default class ProfileAvatarModal extends Block {
     return `
         <div>
           {{#if show}}
-          <div class="${css.modal}">
-            <div class="${css.container}">
-              <p class="${css.title}">{{ title }}</p>
-              <div class=${css.load}>
-                <label for="file" class="${css.content}">
-                  Выбрать файл на <br />
-                  компьютере
-                  {{{ Load }}}
-                </label>
-              </div>
-              <div class="${css.buttons}">
-                {{{ Button }}}
-                {{{ Close }}}
-              </div>
-              <p class="${css.error} {{#if error}}${css.show}{{/if}}">Нужно выбрать файл</p>
+            <div class="${css.modal}">
+              {{{ Form }}}
             </div>
-          </div>
           {{/if}}
         </div>
       `;

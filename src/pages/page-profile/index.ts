@@ -17,7 +17,12 @@ import { ApiError, Loader } from "src/partials";
 import css from "./style.module.css";
 
 class PageProfile extends Block {
+  onClose() {
+    this.children.AvatarModal.setProps({ show: false });
+  }
+
   public init() {
+    const onCloseBind = this.onClose.bind(this);
     const Back = new GoPrevPage();
 
     const Avatar = new ProfileAvatar({
@@ -26,7 +31,7 @@ class PageProfile extends Block {
       },
     });
 
-    const AvatarModal = new ProfileAvatarModal({ title: "Загрузить файл" });
+    const AvatarModal = new ProfileAvatarModal({ onClose: onCloseBind });
 
     const Info = new ProfileInfo();
 

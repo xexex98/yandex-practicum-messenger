@@ -49,6 +49,18 @@ class ProfileController {
       store.set("loading", false);
     }
   }
+  public async updateProfileAvatar(data: { formData: FormData }) {
+    try {
+      store.set("loading", true);
+      profile.updateProfileAvatar(data);
+      store.set("avatarError", false);
+    } catch (error) {
+      console.error(error);
+      store.set("avatarError", true);
+    } finally {
+      store.set("loading", false);
+    }
+  }
 }
 
 export default new ProfileController();
