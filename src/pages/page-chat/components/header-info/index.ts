@@ -1,5 +1,6 @@
 import Block from "src/core/block";
 import connect from "src/core/connect";
+import { RESOURCES } from "src/core/const";
 
 import css from "./style.module.css";
 
@@ -12,11 +13,18 @@ class HeaderInfo extends Block {
   }
 
   render() {
+    console.log(this.props);
     return `
-      <div class="${css.avatar}">
-        <div class="${css.login}"></div>
+      <div class="${css.container}">
         {{#each chatUsers}}
-          <span>{{ first_name }}[{{ id }}]</span>
+          <div class="${css.avatar}">
+            <div class="${css.login}">
+              {{#if avatar}}
+                <img class="${css.img}" src="${RESOURCES}{{avatar}}" />
+              {{/if}}
+            </div>
+            <p>{{ first_name }}[{{ id }}]</p>
+          </div>
         {{/each}}
       </div>
     `;

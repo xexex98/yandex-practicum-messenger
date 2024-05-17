@@ -1,11 +1,10 @@
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
+import { RESOURCES } from "src/core/const";
 import store from "src/core/store";
 import isEqual from "src/helpers/is-equal";
 
 import css from "./style.module.css";
-
-const RESOURCES = "https://ya-praktikum.tech/api/v2/resources";
 
 class ProfileAvatar extends Block {
   public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
