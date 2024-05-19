@@ -1,4 +1,5 @@
 import Block from "src/core/block";
+import trim from "src/helpers/trim";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RInput } from "src/partials";
 
@@ -42,9 +43,18 @@ export function validateForm(elements: Record<string, Block>) {
   );
 
   const isError = fields.some((el) => {
-    // console.log(elements[el].props.error, elements[el].props.value);
     return !elements[el].props.value || elements[el].props.error;
   });
 
   return !isError;
+}
+
+export function isEqualPassword(lh: string, rh: string) {
+  if (!lh || !rh) {
+    return false;
+  }
+  if (trim(lh) !== trim(rh)) {
+    return false;
+  }
+  return true;
 }

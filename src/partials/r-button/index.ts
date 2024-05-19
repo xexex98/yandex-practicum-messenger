@@ -5,7 +5,6 @@ import styles from "./style.module.css";
 type TProps = {
   text: string;
   type?: string;
-  onClick?: (e: Event) => void;
   events?: Record<string, EventListener>;
   disabled?: boolean;
 };

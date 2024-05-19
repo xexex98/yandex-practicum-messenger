@@ -2,7 +2,7 @@ import auth from "src/api/auth";
 import router from "src/core/router";
 import store from "src/core/store";
 
-type LoginForm = {
+type RegisterForm = {
   first_name: string;
   second_name: string;
   login: string;
@@ -12,7 +12,7 @@ type LoginForm = {
 };
 
 class RegistrationController {
-  public async signup(data: LoginForm) {
+  public async signup(data: RegisterForm) {
     try {
       store.set("loading", true);
       store.set("error", false);
@@ -20,7 +20,7 @@ class RegistrationController {
       router.go("/messenger");
     } catch (error) {
       store.set("error", true);
-      console.error("Error in: class RegistrationController");
+      console.error(`Error in: class RegistrationController ${error as string}`);
     } finally {
       store.set("loading", false);
     }

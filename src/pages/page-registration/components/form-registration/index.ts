@@ -1,6 +1,8 @@
 import Block from "src/core/block";
 import router from "src/core/router";
-import { validate } from "src/helpers";
+import store from "src/core/store";
+import { isEqualPassword, validate, validateForm } from "src/helpers";
+import { PasswordError } from "src/pages/page-registration/components";
 import controller from "src/pages/page-registration/controller";
 import { ButtonLink, RButton, RInput } from "src/partials";
 
@@ -21,7 +23,7 @@ export default class FormRegistration extends Block {
       name: "email",
       type: "text",
       events: {
-        input: onChangeEmailBind,
+        blur: onChangeEmailBind,
       },
     });
     const Login = new RInput({
@@ -29,7 +31,7 @@ export default class FormRegistration extends Block {
       name: "login",
       type: "text",
       events: {
-        input: onChangeLoginBind,
+        blur: onChangeLoginBind,
       },
     });
     const Name = new RInput({
@@ -37,7 +39,7 @@ export default class FormRegistration extends Block {
       name: "first_name",
       type: "text",
       events: {
-        input: onChangeNameBind,
+        blur: onChangeNameBind,
       },
     });
 
@@ -46,7 +48,7 @@ export default class FormRegistration extends Block {
       name: "second_name",
       type: "text",
       events: {
-        input: onChangeSurnameBind,
+        blur: onChangeSurnameBind,
       },
     });
 
@@ -56,7 +58,7 @@ export default class FormRegistration extends Block {
       type: "text",
       errorText: "Неверный логин",
       events: {
-        input: onChangePhoneBind,
+        blur: onChangePhoneBind,
       },
     });
 
@@ -65,7 +67,7 @@ export default class FormRegistration extends Block {
       name: "password",
       type: "password",
       events: {
-        input: onChangePasswordBind,
+        blur: onChangePasswordBind,
       },
     });
 
@@ -74,14 +76,16 @@ export default class FormRegistration extends Block {
       name: "password_check",
       type: "password",
       events: {
-        input: onChangePasswordRetryBind,
+        blur: onChangePasswordRetryBind,
       },
     });
 
     const Register = new RButton({
       text: "Зарегистрироваться",
       type: "submit",
-      onClick: onRegisterBind,
+      events: {
+        click: onRegisterBind,
+      },
     });
 
     const Signin = new ButtonLink({
@@ -96,6 +100,8 @@ export default class FormRegistration extends Block {
       },
     });
 
+    const PwdError = new PasswordError();
+
     this.children = {
       ...this.children,
       Email,
@@ -107,6 +113,7 @@ export default class FormRegistration extends Block {
       PasswordRetry,
       Register,
       Signin,
+      PwdError,
     };
   }
 
@@ -135,36 +142,32 @@ export default class FormRegistration extends Block {
   onRegister(e: Event) {
     e.preventDefault();
 
-    // if (!isValid) {
+    const isValid = validateForm(this.children);
 
-    // const props = {
-    //   email: this.children.Email.props.value,
-    //   login: this.children.Login.props.value,
-    //   password: this.children.Password.props.value,
-    //   repeatNewPassword: this.children.PasswordRetry.props.value,
-    // };
-    //586
-    // const props = {
-    //   first_name: "Ivan",
-    //   second_name: "Ivan",
-    //   login: "ivan",
-    //   email: "ivan@mail.ru",
-    //   password: "qweQWE123",
-    //   phone: "79555555555",
-    // };
-    //678
-    const props = {
-      first_name: "Ivan2",
-      second_name: "Ivan2",
-      login: "ivan2",
-      email: "ivan2@mail.ru",
-      password: "qweQWE123",
-      phone: "79555555555",
-    };
+    if (isValid) {
+      const props = {
+        email: this.children.Email.props.value as string,
+        login: this.children.Login.props.value as string,
+        first_name: this.children.Name.props.value as string,
+        second_name: this.children.Surname.props.value as string,
+        phone: this.children.Phone.props.value as string,
+        password: this.children.Password.props.value as string,
+        repeatNewPassword: this.children.PasswordRetry.props.value as string,
+      };
 
-    void controller.signup(props);
-
-    // }
+      if (
+        !isEqualPassword(
+          this.children.Password.props.value as string,
+          this.children.PasswordRetry.props.value as string
+        )
+      ) {
+        store.set("pwdError", true);
+        return;
+      } else {
+        void controller.signup(props);
+        store.set("pwdError", false);
+      }
+    }
   }
 
   render() {
@@ -178,6 +181,7 @@ export default class FormRegistration extends Block {
           {{{ Phone }}}
           {{{ Password }}}
           {{{ PasswordRetry }}}
+          {{{ PwdError }}}
         </div>
         <div>
           {{{ Register }}}
