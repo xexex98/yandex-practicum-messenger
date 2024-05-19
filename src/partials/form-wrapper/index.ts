@@ -10,7 +10,13 @@ type TProps = {
 
 export default class FormWrapper extends Block {
   constructor(props: TProps) {
-    super({ ...props, Error: new formError() });
+    super({
+      ...props,
+      Error: new formError(),
+      events: {
+        submit: (e) => e.preventDefault(),
+      },
+    });
   }
 
   render() {

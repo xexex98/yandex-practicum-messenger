@@ -56,7 +56,7 @@ class DialogsList extends Block {
           <li data-id="{{ id }}">
             <div class="${css.dialog}">
               <div class="${css.border}"></div>
-              <div class="${css.avatar}"></div>
+
               <div class="${css.content}">
                 <p class="${css.user}">{{ title }}</p>
                 {{#if last_message.content}}
@@ -78,5 +78,6 @@ class DialogsList extends Block {
     `;
   }
 }
+// <div class="${css.avatar}"></div>
 
 export default connect(({ chats, chatId }) => ({ chats, chatId }))(DialogsList);

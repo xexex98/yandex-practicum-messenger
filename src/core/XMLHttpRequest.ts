@@ -87,7 +87,6 @@ export default class HTTP {
       xhr.timeout = timeout;
       xhr.withCredentials = true;
 
-      // console.log(data?.formData);
       if (method === Request.GET || !data) {
         xhr.send();
       } else if (data.formData instanceof FormData) {

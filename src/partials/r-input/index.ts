@@ -27,6 +27,7 @@ export default class RInput extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
+
     this.children.ErrorLine.setProps(newProps);
 
     return true;

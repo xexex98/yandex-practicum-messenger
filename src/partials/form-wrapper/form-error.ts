@@ -14,6 +14,5 @@ class FormError extends Block {
     `;
   }
 }
-const isError = connect((state) => ({ error: state.error }));
 
-export default isError(FormError);
+export default connect(({ error }) => ({ error }))(FormError);

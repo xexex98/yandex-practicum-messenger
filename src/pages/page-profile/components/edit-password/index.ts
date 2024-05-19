@@ -41,7 +41,7 @@ class ProfileEditPassword extends Block {
 
         const isValid = validateForm(this.children);
 
-        if (true) {
+        if (isValid) {
           await controller.updateProfilePassword({
             oldPassword: this.children.OldPassword.props.value,
             newPassword: this.children.NewPassword.props.value,

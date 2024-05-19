@@ -20,26 +20,34 @@ export default class FormRegistration extends Block {
       label: "Почта",
       name: "email",
       type: "text",
-      onBlur: onChangeEmailBind,
+      events: {
+        input: onChangeEmailBind,
+      },
     });
     const Login = new RInput({
       label: "Логин",
       name: "login",
       type: "text",
-      onBlur: onChangeLoginBind,
+      events: {
+        input: onChangeLoginBind,
+      },
     });
     const Name = new RInput({
       label: "Имя",
       name: "first_name",
       type: "text",
-      onBlur: onChangeNameBind,
+      events: {
+        input: onChangeNameBind,
+      },
     });
 
     const Surname = new RInput({
       label: "Фамилия",
       name: "second_name",
       type: "text",
-      onBlur: onChangeSurnameBind,
+      events: {
+        input: onChangeSurnameBind,
+      },
     });
 
     const Phone = new RInput({
@@ -47,21 +55,27 @@ export default class FormRegistration extends Block {
       name: "phone",
       type: "text",
       errorText: "Неверный логин",
-      onBlur: onChangePhoneBind,
+      events: {
+        input: onChangePhoneBind,
+      },
     });
 
     const Password = new RInput({
       label: "Пароль",
       name: "password",
       type: "password",
-      onBlur: onChangePasswordBind,
+      events: {
+        input: onChangePasswordBind,
+      },
     });
 
     const PasswordRetry = new RInput({
       label: "Пароль (еще раз)",
       name: "password_check",
       type: "password",
-      onBlur: onChangePasswordRetryBind,
+      events: {
+        input: onChangePasswordRetryBind,
+      },
     });
 
     const Register = new RButton({
@@ -148,7 +162,8 @@ export default class FormRegistration extends Block {
       phone: "79555555555",
     };
 
-    controller.signup(props);
+    void controller.signup(props);
+
     // }
   }
 

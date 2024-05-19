@@ -1,5 +1,7 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
+import store from "src/core/store";
+import isEqual from "src/helpers/is-equal";
 import { FormLogin } from "src/pages/page-login/components";
 import controller from "src/pages/page-login/controller";
 import FormWrapper from "src/partials/form-wrapper";
@@ -9,7 +11,7 @@ import css from "./style.module.css";
 
 class PageLogin extends Block {
   public init(): void {
-    controller.me();
+    void controller.me();
   }
 
   constructor() {
@@ -22,6 +24,18 @@ class PageLogin extends Block {
     });
   }
 
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+
+    const loading = store.getState().loading;
+
+    this.children.Loader.setProps({ loading });
+
+    return true;
+  }
+
   render() {
     return `
       <main class="${css.container}">
@@ -31,6 +45,5 @@ class PageLogin extends Block {
     `;
   }
 }
-const login = connect((state) => state);
 
-export default login(PageLogin);
+export default connect(({ loading }) => ({ loading }))(PageLogin);

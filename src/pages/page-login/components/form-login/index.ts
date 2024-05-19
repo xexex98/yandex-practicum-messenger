@@ -1,13 +1,14 @@
-import auth from "src/api/auth";
 import Block from "src/core/block";
+import connect from "src/core/connect";
 import router from "src/core/router";
-import { validate } from "src/helpers";
+import { validate, validateForm } from "src/helpers";
 import controller from "src/pages/page-login/controller";
 import { ButtonLink, RButton, RInput } from "src/partials";
 
-export default class FormLogin extends Block {
+import css from "./style.module.css";
+
+class FormLogin extends Block {
   init() {
-    // auth.logout();
     const onChangeLoginBind = this.onChangeLogin.bind(this);
     const onChangePasswordBind = this.onChangePassword.bind(this);
     const onLoginBind = this.onLogin.bind(this);
@@ -16,25 +17,31 @@ export default class FormLogin extends Block {
       label: "Логин",
       name: "login",
       type: "text",
-      onBlur: onChangeLoginBind,
+      events: {
+        blur: onChangeLoginBind,
+      },
     });
 
     const Password = new RInput({
       label: "Пароль",
       name: "password",
       type: "password",
-      onBlur: onChangePasswordBind,
+      events: {
+        blur: onChangePasswordBind,
+      },
     });
 
     const LoginButton = new RButton({
       text: "Авторизоваться",
       type: "submit",
-      onClick: onLoginBind,
+      events: {
+        click: onLoginBind,
+      },
     });
 
     const Signup = new ButtonLink({
       text: "Нет аккаунта?",
-      type: "submit",
+      type: "button",
       class: "login",
       events: {
         click: (e: Event) => {
@@ -53,46 +60,39 @@ export default class FormLogin extends Block {
   }
 
   onChangeLogin(e?: Event) {
-    validate((e?.target as HTMLInputElement).value, this.children.Login);
+    validate((e?.target as HTMLInputElement)?.value, this.children.Login);
   }
 
   onChangePassword(e?: Event) {
-    validate((e?.target as HTMLInputElement).value, this.children.Password);
+    validate((e?.target as HTMLInputElement)?.value, this.children.Password);
   }
 
   onLogin(e: Event) {
     e.preventDefault();
-    // const isValid = validateForm(this.children);
 
-    // if (isValid) {
-    // const props = {
-    //   login: this.children.Login.props.value,
-    //   password: this.children.Password.props.value,
-    // };
-    // const props = {
-    //   login: "ivan",
-    //   password: "qweQWE123",
-    // };
+    const isValid = validateForm(this.children);
 
-    const props = {
-      login: "ivan2",
-      password: "qweQWE123",
-    };
+    if (isValid) {
+      const props = {
+        login: this.children.Login.props.value as string,
+        password: this.children.Password.props.value as string,
+      };
 
-    controller.signin(props);
-
-    // console.log(props);
-    // }
+      void controller.signin(props);
+    }
   }
 
-  render() {
+  public render(): string {
     return `
       <div>
         <div>
           {{{ Login }}}
           {{{ Password }}}
-        </div>
+        </div>  
         <div>
+          {{#if isSomeEmpty }}
+            <p class="${css.error}">Все поля должны быть заполнены</p>
+          {{/if}}
           {{{ LoginButton }}}
           {{{ Signup }}}
         </div>
@@ -100,3 +100,5 @@ export default class FormLogin extends Block {
     `;
   }
 }
+
+export default connect(({ error, isSomeEmpty }) => ({ error, isSomeEmpty }))(FormLogin);
