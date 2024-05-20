@@ -1,7 +1,6 @@
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
-import cloneDeep from "src/helpers/clone-deep";
 import isEqual from "src/helpers/is-equal";
 import isValidDate from "src/helpers/is-valid-date";
 import controller from "src/pages/page-chat/controller";
@@ -32,7 +31,7 @@ class SearchResult extends Block {
     }
 
     if (Array.isArray(this.props.foundChats)) {
-      const chatsClone = cloneDeep([this.props.foundChats])[0];
+      const chatsClone = structuredClone(this.props.foundChats);
 
       const foundChats = chatsClone.map((el: TLastMessage) => {
         const last_message = el.last_message as TLastMessage;
@@ -59,7 +58,7 @@ class SearchResult extends Block {
           <li data-id="{{ id }}">
             <div class="${css.dialog}">
               <div class="${css.border}"></div>
-              <div class="${css.avatar}"></div>
+
               <div class="${css.content}">
                 <p class="${css.user}">{{ title }}</p>
                 {{#if last_message.content}}

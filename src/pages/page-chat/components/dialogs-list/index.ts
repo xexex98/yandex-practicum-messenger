@@ -1,7 +1,6 @@
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
-import cloneDeep from "src/helpers/clone-deep";
 import isEqual from "src/helpers/is-equal";
 import isValidDate from "src/helpers/is-valid-date";
 import controller from "src/pages/page-chat/controller";
@@ -33,7 +32,7 @@ class DialogsList extends Block {
     }
 
     if (Array.isArray(this.props.chats)) {
-      const chatsClone = cloneDeep([this.props.chats])[0];
+      const chatsClone = structuredClone(this.props.chats);
 
       const chats = chatsClone.map((el: TLastMessage) => {
         const last_message = el.last_message as TLastMessage;
