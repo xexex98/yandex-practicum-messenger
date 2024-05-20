@@ -7,6 +7,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 
+const vite = await createViteServer({
+  server: { middlewareMode: "ssr" },
+});
+
+app.use(vite.middlewares);
+
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("*", (req, res) => {
