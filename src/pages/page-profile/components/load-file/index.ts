@@ -14,17 +14,18 @@ class LoadFile extends Block {
       Submit: new RButton({
         text: "Поменять",
         type: "submit",
-        onClick: () => {},
       }),
 
       Close: new RButton({
         text: "Закрыть",
         type: "button",
-        onClick: () => {
-          if (typeof this.props.onClose === "function") {
-            this.props.onClose();
-          }
-          this.setProps({ error: false });
+        events: {
+          click: () => {
+            if (typeof this.props.onClose === "function") {
+              this.props.onClose();
+            }
+            this.setProps({ error: false });
+          },
         },
       }),
 
@@ -42,7 +43,7 @@ class LoadFile extends Block {
           if (!file) {
             this.setProps({ error: true });
           } else {
-            controller.updateProfileAvatar({ formData: form });
+            void controller.updateProfileAvatar({ formData: form });
             if (typeof this.props.onClose === "function" && this.props.avatarError !== true) {
               this.props.onClose();
             }

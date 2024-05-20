@@ -16,8 +16,8 @@ import css from "./style.module.css";
 
 class PageMessenger extends Block {
   public init() {
-    chats.getChats();
-    chats.user();
+    void chats.getChats();
+    void chats.user();
   }
 
   constructor() {

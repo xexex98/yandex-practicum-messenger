@@ -8,6 +8,7 @@ const Request = {
   DELETE: "DELETE",
 } as const;
 
+type TRecord = Record<string, unknown>;
 const BASE_URL = "https://ya-praktikum.tech/api/v2/";
 
 function queryStringify(data: Record<string, unknown> = {}) {
@@ -18,7 +19,7 @@ function queryStringify(data: Record<string, unknown> = {}) {
   const keys = Object.keys(data);
 
   return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
+    return `${result}${key}=${data[key] as string}${index < keys.length - 1 ? "&" : ""}`;
   }, "?");
 }
 
@@ -72,9 +73,11 @@ export default class HTTP {
       const handleOnReadyStateChange = () => {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           if (xhr.status >= 400 && xhr.status < 500) {
-            return reject(JSON.parse(xhr.responseText).reason);
+            if (typeof xhr.responseText === "string") {
+              return reject((JSON.parse(xhr.responseText) as TRecord).reason);
+            }
           } else if (xhr.status >= 500 && xhr.status < 600) {
-            return reject(JSON.parse(xhr.responseText).reason);
+            return reject((JSON.parse(xhr.responseText) as TRecord).reason);
           }
         }
       };

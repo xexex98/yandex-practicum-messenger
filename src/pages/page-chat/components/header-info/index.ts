@@ -13,7 +13,6 @@ class HeaderInfo extends Block {
   }
 
   render() {
-    console.log(this.props);
     return `
       <div class="${css.container}">
         {{#each chatUsers}}

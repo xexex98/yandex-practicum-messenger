@@ -8,6 +8,8 @@ interface WebSocketErrorEvent extends Event {
   message?: string;
 }
 
+type TResponse = Record<string, string | number>;
+
 class ChatController {
   private socket!: WebSocket;
   private prevId: number | null = null;
@@ -16,7 +18,9 @@ class ChatController {
     try {
       const res = (await auth.user()) as XMLHttpRequest;
 
-      store.set("userID", JSON.parse(res.response).id);
+      if (typeof res.response === "string") {
+        store.set("userID", (JSON.parse(res.response) as TResponse).id);
+      }
     } catch (error) {
       router.go("/");
       console.error("Error in: class ChatController -> user");
@@ -28,7 +32,9 @@ class ChatController {
 
       const res = (await chats.getChats()) as XMLHttpRequest;
 
-      store.set("chats", JSON.parse(res.response));
+      if (typeof res.response === "string") {
+        store.set("chats", JSON.parse(res.response));
+      }
     } catch (error) {
       store.set("dialogsError", true);
       console.error(error);
@@ -41,7 +47,9 @@ class ChatController {
     try {
       const res = (await chats.getChatUsers(chatId)) as XMLHttpRequest;
 
-      store.set("chatUsers", JSON.parse(res.response));
+      if (typeof res.response === "string") {
+        store.set("chatUsers", JSON.parse(res.response));
+      }
     } catch (error) {
       console.error(error);
     }
@@ -129,12 +137,16 @@ class ChatController {
 
       return;
     }
-    this.prevId = chatId as number;
+    this.prevId = chatId;
 
     const token = (await chats.getToken(chatId)) as XMLHttpRequest;
+    let url = "";
 
-    const url = `wss://ya-praktikum.tech/ws/chats/${userID}/${chatId}/${JSON.parse(token.response).token}`;
+    if (typeof token.response === "string") {
+      const tok = JSON.parse(token.response) as TResponse;
 
+      url = `wss://ya-praktikum.tech/ws/chats/${userID}/${chatId}/${tok.token}`;
+    }
     this.socket = new WebSocket(url);
 
     let timer: number;
@@ -164,16 +176,18 @@ class ChatController {
     this.socket.addEventListener("open", handleOpen);
 
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && JSON.parse(event.data).type === "pong") {
+      if (typeof event.data === "string" && (JSON.parse(event.data) as TResponse).type === "pong") {
         return;
       }
 
-      let data;
+      let data: TResponse = {};
 
       try {
-        data = JSON.parse(event.data);
+        if (typeof event.data === "string") {
+          data = JSON.parse(event.data) as TResponse;
+        }
       } catch (error) {
-        alert(`Невалидно: ${error}`);
+        console.error(`Невалидно: ${error as string}`);
       }
 
       if (Array.isArray(data)) {

@@ -8,19 +8,18 @@ import controller from "src/pages/page-chat/controller";
 
 import css from "./style.module.css";
 
-//TODO: Дублирование с Dialogs
-
+type TLastMessage = Record<string, unknown>;
 class SearchResult extends Block {
   constructor() {
     super({
       events: {
-        click: async (e) => {
+        click: (e) => {
           if (e.target) {
             const chatId = Number((e.target as HTMLElement).closest("li")?.getAttribute("data-id"));
 
             store.set("chatId", chatId);
-            controller.changeChat();
-            controller.getChatUsers(chatId);
+            void controller.changeChat();
+            void controller.getChatUsers(chatId);
           }
         },
       },
@@ -35,13 +34,15 @@ class SearchResult extends Block {
     if (Array.isArray(this.props.foundChats)) {
       const chatsClone = cloneDeep([this.props.foundChats])[0];
 
-      const foundChats = chatsClone.map((el) => {
+      const foundChats = chatsClone.map((el: TLastMessage) => {
+        const last_message = el.last_message as TLastMessage;
+
         if (
-          el.last_message &&
-          typeof el.last_message.time === "string" &&
-          isValidDate(el.last_message.time)
+          last_message &&
+          typeof last_message.time === "string" &&
+          isValidDate(last_message.time)
         ) {
-          el.last_message.time = new Date(el.last_message.time).toLocaleDateString();
+          last_message.time = new Date(last_message.time).toLocaleDateString();
         }
         return el;
       });

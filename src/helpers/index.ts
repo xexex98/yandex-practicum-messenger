@@ -3,8 +3,6 @@ import trim from "src/helpers/trim";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RInput } from "src/partials";
 
-//TODO! Поправить сообщения об ошибке, на более узкие
-
 const regexp = {
   email: /^[a-zA-Z0-9_.+-]+@[A-Za-z0-9]+([_.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/,
   login: /^[A-Za-z][A-Za-z0-9_-]{2,19}$/,
@@ -27,7 +25,7 @@ export function validate(value: string, el: Block) {
   if ((el && !regexp[name].test(value)) || !String(value)) {
     el.setProps({
       error: true,
-      errorText: `Некорректно заполнено: ${el.props.label}`,
+      errorText: `Некорректно заполнено: ${el.props.label as string}`,
     });
 
     return false;

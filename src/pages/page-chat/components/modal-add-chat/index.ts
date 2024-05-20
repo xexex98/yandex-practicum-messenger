@@ -30,16 +30,18 @@ class ModalAddChat extends Block {
       text: "Добавить",
       type: "submit",
       disabled: false,
-      onClick: async (e) => {
-        e.preventDefault();
-        const title = this.children.Add.props.title as string;
+      events: {
+        click: (e) => {
+          e.preventDefault();
+          const title = this.children.Add.props.title as string;
 
-        await chats.createChat(title);
-        await chats.getChats();
+          void chats.createChat(title);
+          void chats.getChats();
 
-        if (typeof this.props.close === "function" && this.props.createChatError !== true) {
-          this.props.close();
-        }
+          if (typeof this.props.close === "function" && this.props.createChatError !== true) {
+            this.props.close();
+          }
+        },
       },
     });
 

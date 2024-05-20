@@ -30,16 +30,18 @@ class ModalRemoveUser extends Block {
       text: "Удалить",
       type: "submit",
       disabled: false,
-      onClick: async (e) => {
-        e.preventDefault();
-        const id = this.children.Remove.props.id as string;
-        const chatId = store.getState().chatId as number;
+      events: {
+        click: (e) => {
+          e.preventDefault();
+          const id = this.children.Remove.props.id as string;
+          const chatId = store.getState().chatId as number;
 
-        await chats.deleteUsersFromChat({ users: [Number(id)], chatId });
+          void chats.deleteUsersFromChat({ users: [Number(id)], chatId });
 
-        if (typeof this.props.close === "function" && this.props.deleteUserError !== true) {
-          this.props.close();
-        }
+          if (typeof this.props.close === "function" && this.props.deleteUserError !== true) {
+            this.props.close();
+          }
+        },
       },
     });
 

@@ -20,6 +20,12 @@
   "rules": {
     "curly": "error",
     "newline-after-var": "error",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "simple-import-sort/imports": [
       "error",
       {

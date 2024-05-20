@@ -2,7 +2,7 @@ type TIndexed<T = unknown> = {
   [key in string]: T;
 };
 
-function isEqual<T>(obj1: TIndexed<T>, obj2: TIndexed<T>): boolean {
+function isEqual<T>(obj1: TIndexed<T> | T, obj2: TIndexed<T> | T): boolean {
   if (obj1 === obj2) {
     return true;
   }
@@ -47,7 +47,7 @@ function isEqual<T>(obj1: TIndexed<T>, obj2: TIndexed<T>): boolean {
       return false;
     }
 
-    if (!isEqual(obj1[key] as TIndexed<T>, obj2[key] as TIndexed<T>)) {
+    if (!isEqual((obj1 as TIndexed<T>)[key], (obj2 as TIndexed<T>)[key] as TIndexed<T>)) {
       return false;
     }
   }

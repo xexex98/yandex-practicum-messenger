@@ -1,8 +1,6 @@
 import autoprefixer from "autoprefixer";
 import { defineConfig } from "vite";
 
-import handlebars from "./src/init/vite-plugin-handlebars-precompile";
-
 export default defineConfig({
   resolve: {
     alias: {
@@ -14,5 +12,4 @@ export default defineConfig({
       plugins: [autoprefixer({})],
     },
   },
-  plugins: [handlebars()],
 });

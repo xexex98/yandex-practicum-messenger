@@ -2,10 +2,11 @@ import { TUpdateProfilePassword } from "src/api/profile";
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
 import store from "src/core/store";
-import { validate, validateForm } from "src/helpers";
+import { isEqualPassword, validate, validateForm } from "src/helpers";
 import isEqual from "src/helpers/is-equal";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import controller from "src/pages/page-profile/controller";
+import { PasswordError } from "src/pages/page-registration/components";
 import { ApiError, RButton } from "src/partials";
 
 class ProfileEditPassword extends Block {
@@ -36,35 +37,43 @@ class ProfileEditPassword extends Block {
       disabled: false,
       text: "Сохранить",
       type: "submit",
-      onClick: async (e: Event) => {
-        e.preventDefault();
+      events: {
+        click: async (e: Event) => {
+          e.preventDefault();
 
-        const isValid = validateForm(this.children);
+          const isValid = validateForm(this.children);
 
-        if (isValid) {
-          await controller.updateProfilePassword({
-            oldPassword: this.children.OldPassword.props.value,
-            newPassword: this.children.NewPassword.props.value,
-            repeatPassword: this.children.RepeatNewPassword.props.value,
-          } as TUpdateProfilePassword);
+          if (isValid) {
+            if (
+              !isEqualPassword(
+                this.children.NewPassword.props.value as string,
+                this.children.RepeatNewPassword.props.value as string
+              )
+            ) {
+              store.set("pwdError", true);
+              return;
+            } else {
+              await controller.updateProfilePassword({
+                oldPassword: this.children.OldPassword.props.value,
+                newPassword: this.children.NewPassword.props.value,
+                repeatPassword: this.children.RepeatNewPassword.props.value,
+              } as TUpdateProfilePassword);
+              store.set("pwdError", false);
+            }
 
-          if (
-            typeof this.props.onSaveEdit === "function" &&
-            store.getState().isProfileEditError === false
-          ) {
-            this.props.onSaveEdit();
+            if (
+              typeof this.props.onSaveEdit === "function" &&
+              store.getState().isPasswordEditError === false
+            ) {
+              this.props.onSaveEdit();
+            }
           }
-
-          console.log({
-            oldPassword: this.children.OldPassword.props.value,
-            newPassword: this.children.NewPassword.props.value,
-            repeatPassword: this.children.RepeatNewPassword.props.value,
-          });
-        }
+        },
       },
     });
 
     const Error = new ApiError();
+    const PwdError = new PasswordError();
 
     this.children = {
       ...this.children,
@@ -73,6 +82,7 @@ class ProfileEditPassword extends Block {
       RepeatNewPassword,
       Save,
       Error,
+      PwdError,
     };
   }
 
@@ -86,7 +96,7 @@ class ProfileEditPassword extends Block {
   }
 
   constructor(props: BlockProps) {
-    super({ ...props, isPasswordEditError: false });
+    super({ ...props, isPasswordEditError: false, events: { submit: (e) => e.preventDefault() } });
   }
 
   render() {
@@ -95,6 +105,7 @@ class ProfileEditPassword extends Block {
         {{{ OldPassword }}}
         {{{ NewPassword }}}
         {{{ RepeatNewPassword }}}
+        {{{ PwdError }}}
         {{{ Save }}}
         {{#if isPasswordEditError}}
           {{{ Error }}}

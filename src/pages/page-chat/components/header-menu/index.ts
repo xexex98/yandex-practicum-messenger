@@ -18,10 +18,10 @@ export default class HeaderMenu extends Block {
       Remove: new MenuButton({ events: { click: props.onRemove }, title: "Удалить пользователя" }),
       RemoveChat: new MenuButton({
         events: {
-          click: async () => {
+          click: () => {
             const chatId = store.getState().chatId as number;
 
-            await controller.deleteChat(chatId);
+            void controller.deleteChat(chatId);
           },
         },
         title: "Удалить чат",

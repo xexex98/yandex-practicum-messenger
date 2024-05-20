@@ -73,7 +73,7 @@ class PageProfile extends Block {
       Error,
     };
 
-    controller.user();
+    void controller.user();
   }
 
   constructor(props: Record<string, unknown>) {

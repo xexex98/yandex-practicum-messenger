@@ -31,7 +31,7 @@ export default class Route<T extends Block = Block> {
   public render(): void {
     if (!this._block) {
       this._block = new this._blockClass();
-      this._render(this._props.rootQuery as string, this._block);
+      this._render(this._props.rootQuery, this._block);
 
       return;
     }

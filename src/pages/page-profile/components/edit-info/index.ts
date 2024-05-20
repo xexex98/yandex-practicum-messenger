@@ -52,28 +52,30 @@ class ProfileEditInfo extends Block {
       disabled: false,
       text: "Сохранить",
       type: "submit",
-      onClick: async (e: Event) => {
-        e.preventDefault();
+      events: {
+        click: async (e) => {
+          e.preventDefault();
 
-        const isValid = validateForm(this.children);
+          const isValid = validateForm(this.children);
 
-        if (isValid) {
-          await controller.updateProfile({
-            email: this.children.Email.props.value,
-            login: this.children.Login.props.value,
-            first_name: this.children.FirstName.props.value,
-            second_name: this.children.SecondName.props.value,
-            display_name: this.children.DisplayName.props.value,
-            phone: this.children.Phone.props.value,
-          } as TUpdateProfile);
+          if (isValid) {
+            await controller.updateProfile({
+              email: this.children.Email.props.value,
+              login: this.children.Login.props.value,
+              first_name: this.children.FirstName.props.value,
+              second_name: this.children.SecondName.props.value,
+              display_name: this.children.DisplayName.props.value,
+              phone: this.children.Phone.props.value,
+            } as TUpdateProfile);
 
-          if (
-            typeof this.props.onSaveEdit === "function" &&
-            store.getState().isProfileEditError === false
-          ) {
-            this.props.onSaveEdit();
+            if (
+              typeof this.props.onSaveEdit === "function" &&
+              store.getState().isProfileEditError === false
+            ) {
+              this.props.onSaveEdit();
+            }
           }
-        }
+        },
       },
     });
 
@@ -103,12 +105,20 @@ class ProfileEditInfo extends Block {
   }
 
   constructor(props: BlockProps) {
-    super({ ...props, isProfileEditError: false });
+    super({
+      ...props,
+      isProfileEditError: false,
+      events: {
+        submit: (e) => {
+          e.preventDefault();
+        },
+      },
+    });
   }
 
   render() {
     return `
-      <form action="#">
+      <form>
         {{{ Email }}}
         {{{ Login }}}
         {{{ FirstName }}}

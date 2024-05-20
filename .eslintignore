@@ -2,3 +2,4 @@ dist
 node_modules
 vite.config.js
 server.js
+postcss.config.js

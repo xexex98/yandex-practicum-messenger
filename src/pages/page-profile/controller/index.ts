@@ -15,7 +15,9 @@ class ProfileController {
       store.set("load", true);
       const res = (await auth.user()) as XMLHttpRequest;
 
-      store.set("user", JSON.parse(res.response));
+      if (typeof res.response === "string") {
+        store.set("user", JSON.parse(res.response));
+      }
     } catch (error) {
       store.set("isUserError", true);
       console.error(error);
@@ -52,7 +54,7 @@ class ProfileController {
   public async updateProfileAvatar(data: { formData: FormData }) {
     try {
       store.set("loading", true);
-      profile.updateProfileAvatar(data);
+      await profile.updateProfileAvatar(data);
       store.set("avatarError", false);
     } catch (error) {
       console.error(error);
