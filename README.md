@@ -1,6 +1,6 @@
 ## Веб-приложения «Чат»
 
-[Netify](https://662df9dae9bd9a0008e7679b--superb-cat-bb68a3.netlify.app/)
+[Netify](https://deploy--superb-cat-bb68a3.netlify.app/)
 
 [Макет](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?type=design&node-id=0-1&mode=design&t=KcFQhqvS78z1NHQ0-0)
 
