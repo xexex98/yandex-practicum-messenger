@@ -13,15 +13,15 @@ type TLastMessage = Record<string, unknown>;
 class DialogsList extends Block {
   constructor() {
     super({
-      chats: store.getState().chats,
+      chats: store.getState().chats || [],
       events: {
-        click: (e) => {
+        click: async (e) => {
           if (e.target) {
             const chatId = Number((e.target as HTMLElement).closest("li")?.getAttribute("data-id"));
 
             store.set("chatId", chatId);
-            void controller.changeChat();
-            void controller.getChatUsers(chatId);
+            await controller.changeChat();
+            await controller.getChatUsers(chatId);
           }
         },
       },
@@ -34,9 +34,7 @@ class DialogsList extends Block {
     }
 
     if (Array.isArray(this.props.chats)) {
-      const chatsClone = structuredClone(this.props.chats);
-
-      const chats = chatsClone.map((el: TLastMessage) => {
+      const chats = this.props.chats.map((el: TLastMessage) => {
         const last_message = el.last_message as TLastMessage;
 
         if (

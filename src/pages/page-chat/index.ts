@@ -15,9 +15,9 @@ import { ApiError, Loader } from "src/partials";
 import css from "./style.module.css";
 
 class PageMessenger extends Block {
-  public init() {
-    void chats.getChats();
-    void chats.user();
+  public async init() {
+    await chats.getChats();
+    await chats.user();
   }
 
   constructor() {

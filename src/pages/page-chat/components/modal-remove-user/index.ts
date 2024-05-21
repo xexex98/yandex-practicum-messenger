@@ -31,12 +31,12 @@ class ModalRemoveUser extends Block {
       type: "submit",
       disabled: false,
       events: {
-        click: (e) => {
+        click: async (e) => {
           e.preventDefault();
           const id = this.children.Remove.props.id as string;
           const chatId = store.getState().chatId as number;
 
-          void chats.deleteUsersFromChat({ users: [Number(id)], chatId });
+          await chats.deleteUsersFromChat({ users: [Number(id)], chatId });
 
           if (typeof this.props.close === "function" && this.props.deleteUserError !== true) {
             this.props.close();

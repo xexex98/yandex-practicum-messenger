@@ -1,5 +1,6 @@
 import auth from "src/api/auth";
 import chats from "src/api/chats";
+import { WS } from "src/core/const";
 import router from "src/core/router";
 import store from "src/core/store";
 import isIterable from "src/helpers/is-iterable";
@@ -12,7 +13,6 @@ type TResponse = Record<string, string | number>;
 
 class ChatController {
   private socket!: WebSocket;
-  private prevId: number | null = null;
 
   public async user() {
     try {
@@ -132,22 +132,17 @@ class ChatController {
     const userID = store.getState().userID as number;
     const chatId = store.getState().chatId as number;
 
-    if (this.prevId === chatId) {
-      store.set("isChatsLoading", false);
-
-      return;
-    }
-    this.prevId = chatId;
-
     const token = (await chats.getToken(chatId)) as XMLHttpRequest;
-    let url = "";
 
     if (typeof token.response === "string") {
       const tok = JSON.parse(token.response) as TResponse;
 
-      url = `wss://ya-praktikum.tech/ws/chats/${userID}/${chatId}/${tok.token}`;
+      const url = `${WS}${userID}/${chatId}/${tok.token}`;
+
+      this.socket = new WebSocket(url);
+    } else {
+      this.socket.close();
     }
-    this.socket = new WebSocket(url);
 
     let timer: number;
 

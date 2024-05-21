@@ -41,8 +41,8 @@ export default class ProfileControls extends Block {
       class: "logout",
       type: "button",
       events: {
-        click: () => {
-          void controller.logout();
+        click: async () => {
+          await controller.logout();
           router.go("/");
         },
       },
