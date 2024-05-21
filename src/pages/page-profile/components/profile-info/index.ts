@@ -6,12 +6,20 @@ import ProfileInfoField from "src/pages/page-profile/components/profile-info-fie
 
 class ProfileInfo extends Block {
   init() {
-    const Email = new ProfileInfoField({ label: "Почта" });
-    const Login = new ProfileInfoField({ label: "Логин" });
-    const FirstName = new ProfileInfoField({ label: "Имя" });
-    const SecondName = new ProfileInfoField({ label: "Фамилия" });
-    const DisplayName = new ProfileInfoField({ label: "Имя в чате" });
-    const Phone = new ProfileInfoField({ label: "Телефон" });
+    const user = store.getState().user as Record<string, string>;
+
+    const Email = new ProfileInfoField({ label: "Почта", value: user?.email });
+    const Login = new ProfileInfoField({ label: "Логин", value: user?.login });
+    const FirstName = new ProfileInfoField({ label: "Имя", value: user?.first_name });
+    const SecondName = new ProfileInfoField({
+      label: "Фамилия",
+      value: user?.second_name,
+    });
+    const DisplayName = new ProfileInfoField({
+      label: "Имя в чате",
+      value: user?.display_name,
+    });
+    const Phone = new ProfileInfoField({ label: "Телефон", value: user?.email });
 
     this.children = {
       ...this.children,
@@ -28,6 +36,7 @@ class ProfileInfo extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
+
     const user = store.getState().user as Record<string, string | number>;
 
     this.children.Email.setProps({ value: user.email });

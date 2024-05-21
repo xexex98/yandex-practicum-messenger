@@ -17,67 +17,54 @@ import { ApiError, Loader } from "src/partials";
 import css from "./style.module.css";
 
 class PageProfile extends Block {
-  onClose() {
-    this.children.AvatarModal.setProps({ show: false });
-  }
-
-  public init() {
-    const onCloseBind = this.onClose.bind(this);
-    const Back = new GoPrevPage();
-
-    const Avatar = new ProfileAvatar({
-      events: {
-        click: () => AvatarModal.setProps({ show: true }),
-      },
-    });
-
-    const AvatarModal = new ProfileAvatarModal({ onClose: onCloseBind });
-
-    const Info = new ProfileInfo();
-
-    const Controls = new ProfileControls({
-      onEditInfo: () => {
-        this.setProps({ editInfo: true, editPassword: false, info: false });
-      },
-      onEditPassword: () => {
-        this.setProps({ editPassword: true, editInfo: false, info: false });
-      },
-    });
-
-    const EditInfo = new ProfileEditInfo({
-      onSaveEdit: () => {
-        this.setProps({ editInfo: false, editPassword: false, info: true });
-      },
-    });
-
-    const EditPassword = new ProfileEditPassword({
-      onSaveEdit: () => {
-        this.setProps({ editInfo: false, editPassword: false, info: true });
-      },
-    });
-
-    const Load = new Loader({ loading: true });
-
-    const Error = new ApiError();
-
-    this.children = {
-      ...this.children,
-      Back,
-      Avatar,
-      AvatarModal,
-      Info,
-      EditInfo,
-      EditPassword,
-      Controls,
-      Load,
-      Error,
-    };
-
-    void controller.user();
+  public async init() {
+    await controller.user();
   }
 
   constructor(props: Record<string, unknown>) {
-    super({ ...props, info: true, editInfo: false, editPassword: false });
+    super({
+      ...props,
+      info: true,
+      editInfo: false,
+      editPassword: false,
+      Back: new GoPrevPage(),
+      Avatar: new ProfileAvatar({
+        events: {
+          click: () => this.children.AvatarModal.setProps({ show: true }),
+        },
+      }),
+
+      AvatarModal: new ProfileAvatarModal({
+        onClose: () => this.children.AvatarModal.setProps({ show: false }),
+      }),
+
+      Info: new ProfileInfo(),
+
+      Controls: new ProfileControls({
+        onEditInfo: () => {
+          this.setProps({ editInfo: true, editPassword: false, info: false });
+        },
+        onEditPassword: () => {
+          this.setProps({ editPassword: true, editInfo: false, info: false });
+        },
+      }),
+
+      EditInfo: new ProfileEditInfo({
+        onSaveEdit: () => {
+          this.setProps({ editInfo: false, editPassword: false, info: true });
+        },
+      }),
+
+      EditPassword: new ProfileEditPassword({
+        onSaveEdit: () => {
+          this.setProps({ editInfo: false, editPassword: false, info: true });
+        },
+      }),
+
+      Load: new Loader({ loading: true }),
+
+      Error: new ApiError(),
+    });
   }
 
   public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {

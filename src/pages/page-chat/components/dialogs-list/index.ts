@@ -1,5 +1,6 @@
 import Block, { BlockProps } from "src/core/block";
 import connect from "src/core/connect";
+import { RESOURCES } from "src/core/const";
 import store from "src/core/store";
 import isEqual from "src/helpers/is-equal";
 import isValidDate from "src/helpers/is-valid-date";
@@ -12,6 +13,7 @@ type TLastMessage = Record<string, unknown>;
 class DialogsList extends Block {
   constructor() {
     super({
+      chats: store.getState().chats,
       events: {
         click: (e) => {
           if (e.target) {
@@ -59,7 +61,11 @@ class DialogsList extends Block {
           <li data-id="{{ id }}">
             <div class="${css.dialog}">
               <div class="${css.border}"></div>
-
+              <div class="${css.avatar}">
+                {{#if last_message.user.avatar}}
+                  <img src="${RESOURCES}{{last_message.user.avatar}}" />
+                {{/if}}
+              </div>
               <div class="${css.content}">
                 <p class="${css.user}">{{ title }}</p>
                 {{#if last_message.content}}
@@ -81,6 +87,5 @@ class DialogsList extends Block {
     `;
   }
 }
-// <div class="${css.avatar}"></div>
 
 export default connect(({ chats, chatId }) => ({ chats, chatId }))(DialogsList);
