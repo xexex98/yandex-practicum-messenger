@@ -56,7 +56,6 @@ export default class FormRegistration extends Block {
       label: "Телефон",
       name: "phone",
       type: "text",
-      errorText: "Неверный логин",
       events: {
         blur: onChangePhoneBind,
       },

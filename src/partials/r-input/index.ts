@@ -1,5 +1,4 @@
 import Block from "src/core/block";
-import isEqual from "src/helpers/is-equal";
 import ErrorLine from "src/partials/r-input/error-line";
 import RInputElement from "src/partials/r-input/r-input";
 
@@ -23,20 +22,10 @@ export default class RInput extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    if (isEqual(oldProps, newProps)) {
-      return false;
-    }
-
-    this.children.ErrorLine.setProps(newProps);
-
-    return true;
-  }
-
   render() {
     return `
       <div
-        class="${styles.field} {{#if error}}input-error{{/if}}"
+        class="${styles.field}"
       >
         <label 
           for="{{ name }}"
