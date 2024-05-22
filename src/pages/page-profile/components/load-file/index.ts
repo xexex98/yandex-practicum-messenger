@@ -32,7 +32,7 @@ class LoadFile extends Block {
       Error: new ApiError(),
 
       events: {
-        submit: (e) => {
+        submit: async (e) => {
           e.preventDefault();
           const avatar = document.getElementById("avatar") as HTMLInputElement;
           const fileForm = document.getElementById("fileForm") as HTMLFormElement;
@@ -43,7 +43,7 @@ class LoadFile extends Block {
           if (!file) {
             this.setProps({ error: true });
           } else {
-            void controller.updateProfileAvatar({ formData: form });
+            await controller.updateProfileAvatar({ formData: form });
             if (typeof this.props.onClose === "function" && this.props.avatarError !== true) {
               this.props.onClose();
             }

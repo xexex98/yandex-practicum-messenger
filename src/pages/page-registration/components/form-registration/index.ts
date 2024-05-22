@@ -56,7 +56,6 @@ export default class FormRegistration extends Block {
       label: "Телефон",
       name: "phone",
       type: "text",
-      errorText: "Неверный логин",
       events: {
         blur: onChangePhoneBind,
       },
@@ -139,7 +138,7 @@ export default class FormRegistration extends Block {
     validate((e?.target as HTMLInputElement).value, this.children.PasswordRetry);
   }
 
-  onRegister(e: Event) {
+  async onRegister(e: Event) {
     e.preventDefault();
 
     const isValid = validateForm(this.children);
@@ -164,7 +163,7 @@ export default class FormRegistration extends Block {
         store.set("pwdError", true);
         return;
       } else {
-        void controller.signup(props);
+        await controller.signup(props);
         store.set("pwdError", false);
       }
     }

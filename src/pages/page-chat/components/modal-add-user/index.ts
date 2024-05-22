@@ -31,12 +31,12 @@ class ModalAddUser extends Block {
       type: "submit",
       disabled: false,
       events: {
-        click: (e) => {
+        click: async (e) => {
           e.preventDefault();
           const id = this.children.Add.props.id as string;
           const chatId = store.getState().chatId as number;
 
-          void chats.addUsersToChat({ users: [Number(id)], chatId });
+          await chats.addUsersToChat({ users: [Number(id)], chatId });
 
           if (typeof this.props.close === "function" && this.props.addUserError !== true) {
             this.props.close();

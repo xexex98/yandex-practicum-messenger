@@ -1,5 +1,4 @@
 import Block from "src/core/block";
-import isEqual from "src/helpers/is-equal";
 import ProfileEditInput from "src/pages/page-profile/components/edit-info-input";
 import ErrorLine from "src/partials/r-input/error-line";
 
@@ -24,25 +23,13 @@ export default class ProfileEditInfoField extends Block {
           blur: props.onBlur,
         },
       }),
-      ErrorLine: new ErrorLine({
-        errorText: props.errorText || "",
-      }),
+      ErrorLine: new ErrorLine(),
     });
-  }
-
-  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    if (isEqual(oldProps, newProps)) {
-      return false;
-    }
-
-    this.children.ErrorLine.setProps(newProps);
-
-    return true;
   }
 
   render() {
     return `
-      <div class="${css.field} {{#if error}}input-error{{/if}}">
+      <div class="${css.field}">
         <label for={{name}} class="${css.label}" >
           {{ label }}
           {{{ Input }}}

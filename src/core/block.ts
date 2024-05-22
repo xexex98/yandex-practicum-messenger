@@ -25,9 +25,9 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-  protected children: BlockChildrenMap;
-
   protected eventBus: () => EventBus;
+
+  public children: BlockChildrenMap;
 
   public props: BlockProps;
 

@@ -17,9 +17,8 @@ export default function connect(mapStateToProps: (state: Indexed) => Indexed) {
 
           if (!isEqual(state, newState)) {
             this.setProps({ ...newState });
+            state = newState;
           }
-
-          state = newState;
         });
       }
     };
