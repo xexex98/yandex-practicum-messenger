@@ -1,13 +1,13 @@
 import Block from "src/core/block";
 import connect from "src/core/connect";
 import { RESOURCES } from "src/core/const";
-import ModalChatAvatar from "src/pages/page-chat/components/modal-avatar-chat";
 
 import css from "./style.module.css";
 
 type TProps = {
   name: string;
 };
+
 class HeaderInfo extends Block {
   constructor(props: TProps) {
     super(props);
