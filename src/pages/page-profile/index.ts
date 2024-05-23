@@ -116,4 +116,8 @@ class PageProfile extends Block {
   }
 }
 
-export default connect(({ user, load, isUserError }) => ({ user, load, isUserError }))(PageProfile);
+export default connect(({ user, load, isUserError }) => ({
+  user,
+  load,
+  isUserError,
+}))(PageProfile);

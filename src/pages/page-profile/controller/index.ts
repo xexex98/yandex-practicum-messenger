@@ -54,7 +54,11 @@ class ProfileController {
   public async updateProfileAvatar(data: { formData: FormData }) {
     try {
       store.set("loading", true);
-      await profile.updateProfileAvatar(data);
+      const res = (await profile.updateProfileAvatar(data)) as XMLHttpRequest;
+
+      if (typeof res.response === "string") {
+        store.set("user", JSON.parse(res.response));
+      }
       store.set("avatarError", false);
     } catch (error) {
       console.error(error);

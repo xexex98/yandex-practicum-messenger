@@ -171,7 +171,9 @@ class ChatController {
     this.socket.addEventListener("open", handleOpen);
 
     const handleMessage = (event: MessageEvent) => {
-      if (typeof event.data === "string" && (JSON.parse(event.data) as TResponse).type === "pong") {
+      const parsedData = JSON.parse(event.data as string) as TResponse;
+
+      if (typeof event.data === "string" && parsedData.type === "pong") {
         return;
       }
 
@@ -179,7 +181,7 @@ class ChatController {
 
       try {
         if (typeof event.data === "string") {
-          data = JSON.parse(event.data) as TResponse;
+          data = parsedData;
         }
       } catch (error) {
         console.error(`Невалидно: ${error as string}`);

@@ -11,7 +11,6 @@ class ProfileAvatar extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
-
     const user = store.getState().user as Record<string, unknown>;
 
     if (user && typeof user.avatar === "string") {
