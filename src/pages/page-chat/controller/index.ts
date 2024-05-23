@@ -186,30 +186,30 @@ class ChatController {
     this.socket.addEventListener("open", handleOpen);
 
     const handleMessage = (event: MessageEvent) => {
-      const parsedData = JSON.parse(event.data as string) as TResponse;
-
-      if (typeof event.data === "string" && parsedData.type === "pong") {
-        return;
-      }
-
-      let data: TResponse = {};
-
       try {
+        const parsedData = JSON.parse(event.data as string) as TResponse;
+
+        if (typeof event.data === "string" && parsedData.type === "pong") {
+          return;
+        }
+
+        let data: TResponse = {};
+
         if (typeof event.data === "string") {
           data = parsedData;
         }
+
+        if (Array.isArray(data)) {
+          store.set("messages", data.reverse());
+        }
+
+        const messages = store.getState().messages;
+
+        if (event.data && data.type === "message" && isIterable(messages)) {
+          store.set("messages", [...messages, data]);
+        }
       } catch (error) {
         console.error(`Невалидно: ${error as string}`);
-      }
-
-      if (Array.isArray(data)) {
-        store.set("messages", data.reverse());
-      }
-
-      const messages = store.getState().messages;
-
-      if (event.data && data.type === "message" && isIterable(messages)) {
-        store.set("messages", [...messages, data]);
       }
     };
 
