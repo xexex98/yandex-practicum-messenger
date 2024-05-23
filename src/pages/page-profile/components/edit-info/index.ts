@@ -4,6 +4,7 @@ import connect from "src/core/connect";
 import store from "src/core/store";
 import { validate, validateForm } from "src/helpers";
 import isEqual from "src/helpers/is-equal";
+import fillInputs from "src/pages/page-profile/components/edit-info/fill-inputs";
 import ProfileEditInfoField from "src/pages/page-profile/components/edit-info-field";
 import controller from "src/pages/page-profile/controller";
 import { ApiError, RButton } from "src/partials";
@@ -98,8 +99,10 @@ class ProfileEditInfo extends Block {
     if (isEqual(oldProps, newProps)) {
       return false;
     }
+
     this.children.Save.setProps({ disabled: store.getState().loading });
     this.setProps({ isProfileEditError: store.getState().isProfileEditError });
+    fillInputs(this.children);
 
     return true;
   }
@@ -134,6 +137,8 @@ class ProfileEditInfo extends Block {
   }
 }
 
-export default connect(({ isProfileEditError, loading }) => ({ isProfileEditError, loading }))(
-  ProfileEditInfo
-);
+export default connect(({ isProfileEditError, loading, user }) => ({
+  isProfileEditError,
+  loading,
+  user,
+}))(ProfileEditInfo);
