@@ -73,6 +73,7 @@ class ChatController {
       store.set("isChatsLoading", true);
 
       await chats.deleteChat({ chatId: id });
+      await this.getChats();
       store.set("chatId", null);
     } catch (error) {
       console.error(error);
