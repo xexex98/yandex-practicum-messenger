@@ -24,6 +24,9 @@ class ChatApi {
   public async getToken(id: number) {
     return chats.post(`/token/${id}`);
   }
+  public async updateChatAvatar(data: { formData: FormData }) {
+    return chats.put("/avatar", { data });
+  }
 }
 
 export default new ChatApi();

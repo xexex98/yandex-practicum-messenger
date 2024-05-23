@@ -28,7 +28,11 @@ class ProfileController {
   public async updateProfile(data: TUpdateProfile) {
     try {
       store.set("loading", true);
-      await profile.updateProfile(data);
+      const res = (await profile.updateProfile(data)) as XMLHttpRequest;
+
+      if (typeof res.response === "string") {
+        store.set("user", JSON.parse(res.response));
+      }
       store.set("isProfileEditError", false);
     } catch (error) {
       store.set("isProfileEditError", true);
@@ -54,7 +58,11 @@ class ProfileController {
   public async updateProfileAvatar(data: { formData: FormData }) {
     try {
       store.set("loading", true);
-      await profile.updateProfileAvatar(data);
+      const res = (await profile.updateProfileAvatar(data)) as XMLHttpRequest;
+
+      if (typeof res.response === "string") {
+        store.set("user", JSON.parse(res.response));
+      }
       store.set("avatarError", false);
     } catch (error) {
       console.error(error);

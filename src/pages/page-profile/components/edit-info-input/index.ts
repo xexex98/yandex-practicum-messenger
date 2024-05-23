@@ -20,6 +20,7 @@ export default class ProfileEditInfoInput extends Block {
         id="{{ name }}"
         type={{ type }}
         class="${css.edit}"
+        value="{{ value }}"
       />
     `;
   }

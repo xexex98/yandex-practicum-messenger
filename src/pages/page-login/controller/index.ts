@@ -12,33 +12,17 @@ class LoginController {
     try {
       store.set("loading", true);
       await auth.signin(data);
+
       store.set("error", false);
       router.go("/messenger");
     } catch (error) {
+      if (error === "User already in system") {
+        router.go("/messenger");
+      }
       store.set("error", true);
       console.error(`Error in: class LoginController -> signin -> ${error as string}`);
     } finally {
       store.set("loading", false);
-    }
-  }
-
-  //id 586
-  // const props = {
-  //   login: "ivan",
-  //   password: "qweQWE123",
-  // };
-
-  //id 678
-  // const props = {
-  //   login: "ivan2",
-  //   password: "qweQWE123",
-  // };
-  public async me() {
-    try {
-      await auth.user();
-      router.go("/messenger");
-    } catch (error) {
-      console.error(`Error in: class LoginController -> signin -> ${error as string}`);
     }
   }
 }

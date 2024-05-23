@@ -73,11 +73,27 @@ class ChatController {
       store.set("isChatsLoading", true);
 
       await chats.deleteChat({ chatId: id });
+      await this.getChats();
       store.set("chatId", null);
     } catch (error) {
       console.error(error);
     } finally {
       store.set("isChatsLoading", false);
+    }
+  }
+  public async updateChatAvatar(data: FormData) {
+    try {
+      store.set("loading", true);
+      await chats.updateChatAvatar({ formData: data });
+
+      await this.getChats();
+
+      store.set("avatarError", false);
+    } catch (error) {
+      console.error(error);
+      store.set("avatarError", true);
+    } finally {
+      store.set("loading", false);
     }
   }
   public async getToken(id: number) {
@@ -171,28 +187,30 @@ class ChatController {
     this.socket.addEventListener("open", handleOpen);
 
     const handleMessage = (event: MessageEvent) => {
-      if (typeof event.data === "string" && (JSON.parse(event.data) as TResponse).type === "pong") {
-        return;
-      }
-
-      let data: TResponse = {};
-
       try {
+        const parsedData = JSON.parse(event.data as string) as TResponse;
+
+        if (typeof event.data === "string" && parsedData.type === "pong") {
+          return;
+        }
+
+        let data: TResponse = {};
+
         if (typeof event.data === "string") {
-          data = JSON.parse(event.data) as TResponse;
+          data = parsedData;
+        }
+
+        if (Array.isArray(data)) {
+          store.set("messages", data.reverse());
+        }
+
+        const messages = store.getState().messages;
+
+        if (event.data && data.type === "message" && isIterable(messages)) {
+          store.set("messages", [...messages, data]);
         }
       } catch (error) {
         console.error(`Невалидно: ${error as string}`);
-      }
-
-      if (Array.isArray(data)) {
-        store.set("messages", data.reverse());
-      }
-
-      const messages = store.getState().messages;
-
-      if (event.data && data.type === "message" && isIterable(messages)) {
-        store.set("messages", [...messages, data]);
       }
     };
 

@@ -7,6 +7,7 @@ import css from "./style.module.css";
 type TProps = {
   name: string;
 };
+
 class HeaderInfo extends Block {
   constructor(props: TProps) {
     super(props);

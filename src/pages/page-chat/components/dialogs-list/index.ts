@@ -60,8 +60,8 @@ class DialogsList extends Block {
             <div class="${css.dialog}">
               <div class="${css.border}"></div>
               <div class="${css.avatar}">
-                {{#if last_message.user.avatar}}
-                  <img src="${RESOURCES}{{last_message.user.avatar}}" />
+                {{#if avatar}}
+                  <img src="${RESOURCES}{{avatar}}" />
                 {{/if}}
               </div>
               <div class="${css.content}">
