@@ -1,0 +1,14 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgb(0 0 0 / 40%);
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+
+.modal.show {
+  display: flex;
+}

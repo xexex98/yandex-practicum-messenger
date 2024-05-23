@@ -80,6 +80,21 @@ class ChatController {
       store.set("isChatsLoading", false);
     }
   }
+  public async updateChatAvatar(data: FormData) {
+    try {
+      store.set("loading", true);
+      await chats.updateChatAvatar({ formData: data });
+
+      await this.getChats();
+
+      store.set("avatarError", false);
+    } catch (error) {
+      console.error(error);
+      store.set("avatarError", true);
+    } finally {
+      store.set("loading", false);
+    }
+  }
   public async getToken(id: number) {
     try {
       await chats.getToken(id);

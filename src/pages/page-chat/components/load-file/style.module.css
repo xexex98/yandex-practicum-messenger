@@ -1,0 +1,30 @@
+.load {
+  position: relative;
+}
+
+.input {
+  cursor: pointer;
+  margin-bottom: 50px;
+  color: rgb(var(--primary-color));
+  font-size: 12px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 35px;
+}
+
+.error {
+  display: none;
+  margin-top: 14px;
+  color: #ff2f2f;
+  font-size: 11px;
+}
+
+.error.show {
+  display: block;
+}
