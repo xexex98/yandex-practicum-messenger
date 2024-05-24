@@ -1,0 +1,17 @@
+.button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: rgb(var(--primary-color));
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+:global(.login) {
+  margin-top: 20px;
+}
+
+:global(.registration) {
+  margin-top: 20px;
+}

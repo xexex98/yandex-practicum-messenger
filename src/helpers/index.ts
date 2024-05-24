@@ -1,12 +1,11 @@
 import Block from "src/core/block";
+import trim from "src/helpers/trim";
 import { ProfileEditInfoField } from "src/pages/page-profile/components";
 import { RInput } from "src/partials";
 
-//TODO! Поправить сообщения об ошибке, на более узкие
-
 const regexp = {
   email: /^[a-zA-Z0-9_.+-]+@[A-Za-z0-9]+([_.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/,
-  login: /^[A-Za-z][A-Za-z0-9_-]{2,19}$/,
+  login: /^[a-zA-Z][a-zA-Z0-9-_]{2,19}$/,
   first_name: /^[A-ZЁА-Я][a-zA-ZЁA-Яёа-я-]+$/,
   second_name: /^[A-ZЁА-Я][a-zA-ZЁA-Яёа-я-]+$/,
   display_name: /^[A-ZЁА-Я][a-zA-ZЁA-Яёа-я-]+$/,
@@ -23,26 +22,40 @@ type TRegexp = keyof typeof regexp;
 export function validate(value: string, el: Block) {
   const name = el.props.name as TRegexp;
 
-  if (!regexp[name].test(value) || !String(value)) {
-    el.setProps({
-      errorText: `Некорректно заполнено: ${el.props.label}`,
+  if (!value || (el && !regexp[name].test(value))) {
+    el.children.ErrorLine.setProps({
       error: true,
+      errorText: `Некорректно заполнено: ${el.props.label as string}`,
     });
+
     return false;
   }
 
-  el.setProps({ error: false, errorText: null, value });
+  el.children.ErrorLine.setProps({ error: false, errorText: null });
+  el.setProps({ value });
   return true;
 }
 
 export function validateForm(elements: Record<string, Block>) {
-  //TODO! Не самый верный подход с instanceof, можно лучше переделать
   const fields = Object.keys(elements).filter(
     (el) => elements[el] instanceof RInput || elements[el] instanceof ProfileEditInfoField
   );
-  const isError = fields.every((el) => elements[el].props.value);
-  //TODO! Поправить валидацию на Enter, из за 2х validate на submit и blur как будто элемент удаляется из дерева при onblur и вылазит ошибка, но приложение не падает
-  // const isError = fields.every((el) => validate(elements[el].props.value, elements[el]));
 
-  return isError;
+  fields.forEach((el) => validate(elements[el].props.value as string, elements[el]));
+
+  const isError = fields.some((el) => {
+    return !elements[el].props.value;
+  });
+
+  return !isError;
+}
+
+export function isEqualPassword(lh: string, rh: string) {
+  if (!lh || !rh) {
+    return false;
+  }
+  if (trim(lh) !== trim(rh)) {
+    return false;
+  }
+  return true;
 }

@@ -1,86 +1,97 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
+import connect from "src/core/connect";
+import store from "src/core/store";
+import isEqual from "src/helpers/is-equal";
 import {
-  ChatMessage,
-  Dialog,
+  Dialogs,
+  DialogsHeader,
   Header,
+  Messages,
   NewMessage,
-  Search,
-  SearchResult,
 } from "src/pages/page-chat/components";
+import { chats } from "src/pages/page-chat/controller/chats";
+import { ApiError, Loader } from "src/partials";
 
 import css from "./style.module.css";
 
-export default class PageMessenger extends Block {
+class PageMessenger extends Block {
+  public async init() {
+    await chats.getChats();
+    await chats.user();
+  }
+
   constructor() {
     super({
-      Search: new Search({
-        result: "Андрей",
-      }),
+      Loader: new Loader({ loading: true }),
 
-      Dialog: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!.",
-        unread: "12",
-        date: "14:12",
-      }),
+      ChatsLoader: new Loader({ loading: true }),
 
-      Dialog2: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!...",
-        unread: "12",
-        date: "14:12",
-      }),
+      DialogsHeader: new DialogsHeader(),
 
-      Dialog3: new Dialog({
-        name: "Андрей",
-        msg: "Друзья, у меня для вас особенный выпуск новостей!...",
-        unread: "12",
-        date: "14:12",
-      }),
+      Dialogs: new Dialogs(),
 
-      Result: new SearchResult({
-        result: "Андрей",
-      }),
+      ChatHeader: new Header(),
 
-      ChatHeader: new Header({}),
+      MessagesList: new Messages(),
 
-      Message1: new ChatMessage({
-        content: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории!!",
-        type: "is-in",
-      }),
-      Message2: new ChatMessage({
-        content: "<img src='/src/assets/img/photo.png' alt='message-image' />",
-        type: "is-in is-img",
-      }),
-      Message3: new ChatMessage({
-        content: "Привет!",
-        type: "is-out",
-      }),
       NewMessageInput: new NewMessage(),
+
+      Error: new ApiError(),
     });
+  }
+
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+
+    const loading = store.getState().isDialogLoading;
+    const chatsLoading = store.getState().isChatsLoading;
+
+    this.children.Loader.setProps({ loading });
+    this.children.ChatsLoader.setProps({ loading: chatsLoading });
+    return true;
   }
 
   render(): string {
     return `
       <main class="${css.messenger}">
-        <ul class="${css.dialogs}">
-          {{{ Search }}}
-          {{{ Dialog }}}
-          {{{ Dialog2 }}}
-          {{{ Dialog3 }}}
-          {{{ Result }}}
-        </ul>
+        <div class="${css.dialogs}">
+          {{{ Loader }}}
+          {{{ DialogsHeader }}}
+          {{{ Dialogs }}}
+        </div>
         <div class="${css.chat}">
-          {{{ ChatHeader }}}
-          <div class="${css.messages}">
-            <div class="${css.date}">19 июня</div>
-            {{{ Message1 }}}
-            {{{ Message2 }}}
-            {{{ Message3 }}}
-          </div>
-          {{{ NewMessageInput }}}
+          {{#if isChatsError}}
+            <div class="${css.error}">
+              {{{ Error }}}
+            </div>
+          {{/if}}
+          {{{ ChatsLoader }}}
+          {{#unless isChatsError}}
+            {{#if chatId}}
+              {{{ ChatHeader }}}
+              {{{ MessagesList }}}
+              {{{ NewMessageInput }}}
+            {{else}}
+              <p class="${css.select}">Выберите чат</p>
+            {{/if}}
+
+          {{/unless}}
         </div>
       </main>
     `;
   }
 }
+
+export default connect(
+  ({ chatId, userId, isDialogLoading, isChatsLoading, chats, messages, isChatsError }) => ({
+    chatId,
+    userId,
+    isDialogLoading,
+    isChatsLoading,
+    chats,
+    messages,
+    isChatsError,
+  })
+)(PageMessenger);

@@ -1,7 +1,7 @@
 import Block from "src/core/block";
 import { ErrorPagesLayout } from "src/partials";
 
-export default class PageNotFound extends Block {
+export default class PageServerError extends Block {
   constructor() {
     super({
       ErrorPagesLayout: new ErrorPagesLayout({

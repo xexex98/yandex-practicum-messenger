@@ -1,4 +1,5 @@
 import Block from "src/core/block";
+import formError from "src/partials/form-wrapper/form-error";
 
 import css from "./style.module.css";
 
@@ -9,7 +10,13 @@ type TProps = {
 
 export default class FormWrapper extends Block {
   constructor(props: TProps) {
-    super(props);
+    super({
+      ...props,
+      Error: new formError(),
+      events: {
+        submit: (e) => e.preventDefault(),
+      },
+    });
   }
 
   render() {
@@ -19,6 +26,7 @@ export default class FormWrapper extends Block {
       >
         <h3 class="${css.title}">{{ title }}</h3>
         {{{ body }}}
+        {{{ Error }}}
       </form>
     `;
   }

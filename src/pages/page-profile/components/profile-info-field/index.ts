@@ -4,7 +4,7 @@ import css from "./style.module.css";
 
 type Props = {
   label: string;
-  value: string;
+  value?: string;
 };
 
 export default class ProfileInfoField extends Block {

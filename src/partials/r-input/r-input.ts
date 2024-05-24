@@ -5,18 +5,13 @@ import styles from "./style.module.css";
 type TProps = {
   name: string;
   type: string;
-  onBlur: (e?: Event) => void;
+  events?: Record<string, EventListener>;
   class?: string;
 };
 
 export default class RInputElement extends Block {
   constructor(props: TProps) {
-    super({
-      ...props,
-      events: {
-        blur: props.onBlur,
-      },
-    });
+    super(props);
   }
 
   render(): string {
@@ -24,8 +19,8 @@ export default class RInputElement extends Block {
       <input
         name="{{ name }}"
         id="{{ name }}"
-        type="{{type}}"
-        class="${styles.input} {{class}}"
+        type="{{ type }}"
+        class="${styles.input} {{ class }}"
       />
     `;
   }

@@ -1,26 +1,25 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
+import connect from "src/core/connect";
+import store from "src/core/store";
+import isEqual from "src/helpers/is-equal";
 import ProfileInfoField from "src/pages/page-profile/components/profile-info-field";
 
-export default class ProfileInfo extends Block {
+class ProfileInfo extends Block {
   init() {
-    const Email = new ProfileInfoField({
-      label: "Почта",
-      value: "pochta@yandex.ru",
-    });
-    const Login = new ProfileInfoField({ label: "Логин", value: "Ivan" });
-    const FirstName = new ProfileInfoField({ label: "Имя", value: "Иван" });
+    const user = store.getState().user as Record<string, string>;
+
+    const Email = new ProfileInfoField({ label: "Почта", value: user?.email });
+    const Login = new ProfileInfoField({ label: "Логин", value: user?.login });
+    const FirstName = new ProfileInfoField({ label: "Имя", value: user?.first_name });
     const SecondName = new ProfileInfoField({
       label: "Фамилия",
-      value: "Иванов",
+      value: user?.second_name,
     });
     const DisplayName = new ProfileInfoField({
       label: "Имя в чате",
-      value: "Иван",
+      value: user?.display_name,
     });
-    const Phone = new ProfileInfoField({
-      label: "Телефон",
-      value: "+7 (909) 967 30 30",
-    });
+    const Phone = new ProfileInfoField({ label: "Телефон", value: user?.email });
 
     this.children = {
       ...this.children,
@@ -31,6 +30,23 @@ export default class ProfileInfo extends Block {
       DisplayName,
       Phone,
     };
+  }
+
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+
+    const user = store.getState().user as Record<string, string | number>;
+
+    this.children.Email.setProps({ value: user.email });
+    this.children.Login.setProps({ value: user.login });
+    this.children.FirstName.setProps({ value: user.first_name });
+    this.children.SecondName.setProps({ value: user.second_name });
+    this.children.DisplayName.setProps({ value: user.display_name });
+    this.children.Phone.setProps({ value: user.phone });
+
+    return true;
   }
 
   render() {
@@ -46,3 +62,5 @@ export default class ProfileInfo extends Block {
     `;
   }
 }
+
+export default connect(({ user, render }) => ({ user, render }))(ProfileInfo);

@@ -6,30 +6,34 @@
 }
 
 .dialogs {
+  position: relative;
   background: #fbfbfb;
-  overflow-y: scroll;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .chat {
-  display: grid;
-  grid-template-rows: 54px 1fr 54px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   background: #fff;
   padding: 0 21px;
   overflow: hidden;
 }
 
-.messages {
+.select {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-bottom: 30px;
-  overflow: scroll;
+  align-items: center;
+  justify-content: center;
 }
 
-.date {
-  margin-bottom: 20px;
-  color: rgb(var(--secondary-color));
-  font-size: 12px;
-  text-align: center;
+.error {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

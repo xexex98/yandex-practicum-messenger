@@ -1,83 +1,85 @@
 import Block from "src/core/block";
+import connect from "src/core/connect";
+import router from "src/core/router";
 import { validate, validateForm } from "src/helpers";
-import RButton from "src/partials/r-button";
-import RInput from "src/partials/r-input";
-import RLink from "src/partials/r-link";
+import controller from "src/pages/page-login/controller";
+import { ButtonLink, RButton, RInput } from "src/partials";
 
-export default class FormLogin extends Block {
-  init() {
-    const onChangeLoginBind = this.onChangeLogin.bind(this);
-    const onChangePasswordBind = this.onChangePassword.bind(this);
-    const onLoginBind = this.onLogin.bind(this);
+import css from "./style.module.css";
 
-    const Login = new RInput({
-      label: "Логин",
-      name: "login",
-      type: "text",
-      onBlur: onChangeLoginBind,
+class FormLogin extends Block {
+  constructor() {
+    super({
+      Login: new RInput({
+        label: "Логин",
+        name: "login",
+        type: "text",
+        events: {
+          blur: (e) => validate((e?.target as HTMLInputElement)?.value, this.children.Login),
+        },
+      }),
+
+      Password: new RInput({
+        label: "Пароль",
+        name: "password",
+        type: "password",
+        events: {
+          blur: (e) => validate((e?.target as HTMLInputElement)?.value, this.children.Password),
+        },
+      }),
+
+      LoginButton: new RButton({
+        text: "Авторизоваться",
+        type: "submit",
+        events: {
+          click: async (e) => {
+            e.preventDefault();
+
+            const isValid = validateForm(this.children);
+
+            if (isValid) {
+              const props = {
+                login: this.children.Login.props.value as string,
+                password: this.children.Password.props.value as string,
+              };
+
+              await controller.signin(props);
+            }
+          },
+        },
+      }),
+
+      Signup: new ButtonLink({
+        text: "Нет аккаунта?",
+        type: "button",
+        class: "login",
+        events: {
+          click: (e: Event) => {
+            e.preventDefault();
+            router.go("/sign-up");
+          },
+        },
+      }),
     });
-
-    const Password = new RInput({
-      label: "Пароль",
-      name: "password",
-      type: "password",
-      onBlur: onChangePasswordBind,
-    });
-
-    const LoginButton = new RButton({
-      text: "Авторизоваться",
-      type: "submit",
-      onClick: onLoginBind,
-    });
-
-    const Signup = new RLink({
-      href: "#",
-      class: "signup",
-      label: "Нет аккаунта?",
-    });
-
-    this.children = {
-      ...this.children,
-      Login,
-      Password,
-      LoginButton,
-      Signup,
-    };
   }
 
-  onChangeLogin(e?: Event) {
-    validate((e?.target as HTMLInputElement).value, this.children.Login);
-  }
-
-  onChangePassword(e?: Event) {
-    validate((e?.target as HTMLInputElement).value, this.children.Password);
-  }
-
-  onLogin(e: Event) {
-    e.preventDefault();
-    const isValid = validateForm(this.children);
-
-    if (isValid) {
-      const props = {
-        login: this.children.Login.props.value,
-        password: this.children.Password.props.value,
-      };
-
-      console.log(props);
-    }
-  }
-
-  render() {
+  public render(): string {
     return `
       <div>
         <div>
           {{{ Login }}}
           {{{ Password }}}
-        </div>
+        </div>  
         <div>
+          {{#if isSomeEmpty }}
+            <p class="${css.error}">Все поля должны быть заполнены</p>
+          {{/if}}
           {{{ LoginButton }}}
           {{{ Signup }}}
         </div>
-      </div>`;
+      </div>
+    `;
   }
 }
+
+export default connect(({ error, isSomeEmpty }) => ({ error, isSomeEmpty }))(FormLogin);

@@ -1,41 +1,51 @@
 import Block from "src/core/block";
-import { RLink, RLinkWithEvent } from "src/partials";
+import router from "src/core/router";
+import controller from "src/pages/page-profile/controller";
+import { ButtonLink } from "src/partials";
 
 export default class ProfileControls extends Block {
   onEditInfo() {
     if (typeof this.props.onEditInfo === "function") {
       this.props.onEditInfo();
     }
-    this.hide();
   }
 
   onEditPassword() {
     if (typeof this.props.onEditPassword === "function") {
       this.props.onEditPassword();
     }
-    this.hide();
   }
 
   init() {
     const onEditInfoBind = this.onEditInfo.bind(this);
     const onEditPasswordBind = this.onEditPassword.bind(this);
 
-    const LinkEditInfo = new RLinkWithEvent({
-      label: "Изменить данные",
-      href: "#",
+    const LinkEditInfo = new ButtonLink({
+      text: "Изменить данные",
+      type: "button",
       class: "profile-underline",
-      onClick: onEditInfoBind,
+      events: {
+        click: onEditInfoBind,
+      },
     });
-    const LinkChangePassword = new RLinkWithEvent({
-      label: "Изменить пароль",
-      href: "#",
+    const LinkChangePassword = new ButtonLink({
+      text: "Изменить пароль",
       class: "profile-underline",
-      onClick: onEditPasswordBind,
+      type: "button",
+      events: {
+        click: onEditPasswordBind,
+      },
     });
-    const LinkLogout = new RLink({
-      label: "Выйти",
-      href: "#",
+    const LinkLogout = new ButtonLink({
+      text: "Выйти",
       class: "logout",
+      type: "button",
+      events: {
+        click: async () => {
+          await controller.logout();
+          router.go("/");
+        },
+      },
     });
 
     this.children = {

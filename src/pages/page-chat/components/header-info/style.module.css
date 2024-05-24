@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
 .avatar {
   display: flex;
   align-items: center;
@@ -5,10 +11,20 @@
 }
 
 .login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 50%;
   background: #efefef;
   width: 34px;
   min-width: 34px;
   height: 34px;
   min-height: 34px;
+}
+
+.img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  border-radius: inherit;
 }

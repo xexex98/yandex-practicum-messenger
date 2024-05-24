@@ -10,38 +10,22 @@ type TProps = {
   type: string;
   error?: boolean;
   errorText?: string;
-  onBlur: (e?: Event) => void;
+  events?: Record<string, EventListener>;
 };
 
 export default class RInput extends Block {
   constructor(props: TProps) {
     super({
       ...props,
-      Input: new RInputElement({
-        ...props,
-        onBlur: props.onBlur,
-      }),
-      ErrorLine: new ErrorLine({
-        errorText: props.errorText || "",
-      }),
+      Input: new RInputElement(props),
+      ErrorLine: new ErrorLine(props),
     });
-  }
-
-  //TODO! тут объекты смысла нет, поправить проверку на рекурсивную
-  componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    if (oldProps === newProps) {
-      return false;
-    }
-
-    this.children.ErrorLine.setProps(newProps);
-
-    return true;
   }
 
   render() {
     return `
       <div
-        class="${styles.field} {{#if error}}input-error{{/if}}"
+        class="${styles.field}"
       >
         <label 
           for="{{ name }}"

@@ -1,11 +1,33 @@
-import Block from "src/core/block";
+import Block, { BlockProps } from "src/core/block";
+import connect from "src/core/connect";
+import { RESOURCES } from "src/core/const";
+import store from "src/core/store";
+import isEqual from "src/helpers/is-equal";
 
 import css from "./style.module.css";
 
-export default class ProfileAvatar extends Block {
+class ProfileAvatar extends Block {
+  public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    if (isEqual(oldProps, newProps)) {
+      return false;
+    }
+    const user = store.getState().user as Record<string, unknown>;
+
+    if (user && typeof user.avatar === "string") {
+      const path = RESOURCES + user.avatar;
+
+      this.setProps({ img: path });
+    }
+
+    return true;
+  }
+
   render(): string {
     return `
       <div class="${css.avatar}">
+        {{#if img}}
+          <img class="${css.img}" src="{{ img }}">
+        {{/if}}
         <input
           type="file"
           name="avatar"
@@ -30,3 +52,5 @@ export default class ProfileAvatar extends Block {
     `;
   }
 }
+
+export default connect(({ user }) => ({ user }))(ProfileAvatar);

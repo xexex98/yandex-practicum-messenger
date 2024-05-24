@@ -3,7 +3,6 @@ import * as Pages from "./pages";
 export type TPages = keyof typeof pages;
 
 const pages = {
-  nav: [Pages.PageNavigation],
   login: [Pages.PageLogin],
   registration: [Pages.PageRegistration],
   profile: [Pages.PageProfile],

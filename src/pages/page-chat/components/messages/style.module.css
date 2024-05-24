@@ -1,0 +1,54 @@
+.messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 0;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.msg {
+  position: relative;
+  border-radius: 12px;
+  padding: 11px;
+  max-width: 50%;
+  color: #1e1e1e;
+  font-size: 12px;
+  background: #f8f8f8;
+}
+
+.msg:global(.is-img) {
+  padding: 0;
+}
+
+.msg:global(.is-in) {
+  background: #f8f8f8;
+}
+
+.msg:global(.is-out) {
+  margin-left: auto;
+  background: #e4edfd;
+  padding-right: 50px;
+}
+
+.msg:global(.is-img img) {
+  padding: 0;
+  width: 100%;
+}
+
+.time {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  color: rgb(var(--secondary-color));
+  font-size: 9px;
+}
+
+.read {
+  margin-right: 2px;
+  font-size: 9px;
+}
+
+:global(.is-in) .read {
+  display: none;
+}
