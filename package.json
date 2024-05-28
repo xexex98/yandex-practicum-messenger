@@ -14,7 +14,14 @@
     "eslint:fix": "eslint . --fix --ext .ts",
     "lint:formatting": "prettier . --check",
     "lint:css": "stylelint src/**/*.css --fix",
-    "test": "mocha --no-warnings"
+    "test": "mocha --no-warnings",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "prettier --write",
+      "eslint --max-warnings 0 ."
+    ]
   },
   "devDependencies": {
     "@types/chai": "4.3.16",
