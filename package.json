@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "type": "module",
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.18.0"
@@ -14,7 +14,7 @@
     "eslint:fix": "eslint . --fix --ext .ts",
     "lint:formatting": "prettier . --check",
     "lint:css": "stylelint src/**/*.css --fix",
-    "test": "mocha"
+    "test": "mocha --no-warnings"
   },
   "devDependencies": {
     "@types/chai": "4.3.16",
