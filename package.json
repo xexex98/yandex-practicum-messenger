@@ -15,7 +15,7 @@
     "lint:formatting": "prettier . --check",
     "lint:css": "stylelint src/**/*.css --fix",
     "test": "mocha --no-warnings",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,js}": [
