@@ -11,6 +11,9 @@ class Router {
     this._rootQuery = rootQuery;
   }
 
+  public routes() {
+    return this._routes;
+  }
   public use(pathname: string, block: new () => Block): Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
