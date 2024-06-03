@@ -23,6 +23,12 @@
 - [Prettier](https://prettier.io/)
 - [ESlint](https://eslint.org/)
 
+### Тестирование
+
+- [Mocha](https://mochajs.org/)
+- [Chai](https://www.chaijs.com/)
+- [Sinon](https://sinonjs.org/)
+
 ### Cреда выполнения кода
 
 - [NodeJS](https://nodejs.org/en/)
