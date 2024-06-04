@@ -160,7 +160,7 @@ class ChatController {
       this.socket.close();
     }
 
-    let timer: number;
+    let timer: NodeJS.Timeout;
 
     const handleOpen = () => {
       store.set("isChatsLoading", false);
