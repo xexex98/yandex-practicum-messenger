@@ -7,6 +7,7 @@ describe("HTTP class", () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let requests: SinonFakeXMLHttpRequest[] = [];
   const BASE_URL = "https://ya-praktikum.tech/api/v2/";
+  const formData = new FormData();
 
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
@@ -114,8 +115,6 @@ describe("HTTP class", () => {
     });
     it("should not explicitly set Content-Type header when FormData is used", async () => {
       const http = new HTTP();
-
-      const formData = new FormData();
 
       formData.append("key", "value");
 
