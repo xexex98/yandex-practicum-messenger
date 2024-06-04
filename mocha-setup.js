@@ -9,4 +9,5 @@ global.window = jsdom.window;
 global.document = jsdom.window.document;
 global.Node = jsdom.window.Node;
 global.history = jsdom.window.history;
+global.FormData = jsdom.window.FormData;
 global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
