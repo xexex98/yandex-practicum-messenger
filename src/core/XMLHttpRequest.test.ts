@@ -113,12 +113,14 @@ describe("HTTP class", () => {
 
       expect(result).to.equal("");
     });
-    it("should not explicitly set Content-Type header when FormData is used", async () => {
+    it("formData test", async () => {
       const http = new HTTP();
 
       formData.append("key", "value");
 
       const promise = http.put("test", { data: { formData } });
+
+      expect(requests[0].requestBody).to.be.equal(formData);
 
       requests[0].respond(
         200,
@@ -127,7 +129,6 @@ describe("HTTP class", () => {
       );
 
       await promise;
-      expect(requests[0].requestBody).to.be.equal(formData);
     });
   });
 });
