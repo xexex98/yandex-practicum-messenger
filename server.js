@@ -7,16 +7,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 
-const vite = await createViteServer({
-  server: { middlewareMode: "ssr" },
-});
-
-app.use(vite.middlewares);
-
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (_, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
