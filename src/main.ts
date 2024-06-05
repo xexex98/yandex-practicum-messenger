@@ -9,6 +9,8 @@ import "./style.css";
 registerPartial();
 
 document.addEventListener("DOMContentLoaded", () => {
+  let a;
+
   router
     .use("/", PageLogin)
     .use("/sign-up", PageRegistration)
