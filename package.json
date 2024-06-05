@@ -18,9 +18,12 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "*.{js,ts}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "*.{css}": [
+      "stylelint --fix"
     ]
   },
   "devDependencies": {
