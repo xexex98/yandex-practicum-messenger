@@ -9,7 +9,7 @@ import "./style.css";
 registerPartial();
 
 document.addEventListener("DOMContentLoaded", () => {
-  let a;
+  let b;
 
   router
     .use("/", PageLogin)
