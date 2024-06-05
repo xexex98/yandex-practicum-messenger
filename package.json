@@ -19,11 +19,8 @@
   },
   "lint-staged": {
     "*.{ts,js}": [
-      "prettier --write",
-      "eslint --check"
-    ],
-    "*.{css}": [
-      "stylelint --fix"
+      "stylelint --fix",
+      "eslint --fix"
     ]
   },
   "devDependencies": {
