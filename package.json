@@ -20,7 +20,7 @@
   "lint-staged": {
     "*.{ts,js}": [
       "stylelint --fix",
-      "eslint --fix"
+      "eslint --check"
     ]
   },
   "devDependencies": {
