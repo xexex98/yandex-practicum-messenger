@@ -16,7 +16,7 @@ class ChatController {
 
   public async user() {
     try {
-      const res = (await auth.user()) as XMLHttpRequest;
+      const res = await auth.user();
 
       if (typeof res.response === "string") {
         store.set("userID", (JSON.parse(res.response) as TResponse).id);
@@ -30,7 +30,7 @@ class ChatController {
     try {
       store.set("isDialogLoading", true);
 
-      const res = (await chats.getChats()) as XMLHttpRequest;
+      const res = await chats.getChats();
 
       if (typeof res.response === "string") {
         store.set("chats", JSON.parse(res.response));
@@ -45,7 +45,7 @@ class ChatController {
 
   public async getChatUsers(chatId: number) {
     try {
-      const res = (await chats.getChatUsers(chatId)) as XMLHttpRequest;
+      const res = await chats.getChatUsers(chatId);
 
       if (typeof res.response === "string") {
         store.set("chatUsers", JSON.parse(res.response));
@@ -148,7 +148,7 @@ class ChatController {
     const userID = store.getState().userID as number;
     const chatId = store.getState().chatId as number;
 
-    const token = (await chats.getToken(chatId)) as XMLHttpRequest;
+    const token = await chats.getToken(chatId);
 
     if (typeof token.response === "string") {
       const tok = JSON.parse(token.response) as TResponse;
@@ -160,7 +160,7 @@ class ChatController {
       this.socket.close();
     }
 
-    let timer: number;
+    let timer: NodeJS.Timeout;
 
     const handleOpen = () => {
       store.set("isChatsLoading", false);

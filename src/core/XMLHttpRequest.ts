@@ -1,7 +1,7 @@
 type RequestMethod = (typeof Request)[keyof typeof Request];
 type TData = Record<string, unknown>;
 
-const Request = {
+export const Request = {
   GET: "GET",
   PUT: "PUT",
   POST: "POST",
@@ -29,6 +29,9 @@ export default class HTTP {
   constructor(base: string = "") {
     this._base = BASE_URL + base;
   }
+  baseURL() {
+    return this._base;
+  }
 
   get = (url: string, options: { data?: TData; timeout?: number } = {}) => {
     const urlWithQueryParams = url + queryStringify(options?.data);
@@ -53,7 +56,7 @@ export default class HTTP {
       headers?: Record<string, string>;
     },
     timeout: number = 5000
-  ) => {
+  ): Promise<XMLHttpRequest> => {
     const { method, data, headers = {} } = options;
 
     return new Promise((resolve, reject) => {
